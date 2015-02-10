@@ -12,6 +12,9 @@ import java.util.*;
  * @version 1.0
  */
 public class MeetingTester {
+    Calendar date1;
+    Calendar date2;
+    
     /**
      * Sets up the test fixture.
      *
@@ -19,7 +22,8 @@ public class MeetingTester {
      */
     @Before
     public void setUp() {
-
+        date1 = new GregorianCalendar(2015, 04, 25);
+        date2 = new GregorianCalendar(2014, 04, 25);
     }
 
     /**
@@ -29,7 +33,8 @@ public class MeetingTester {
      */
     @After
     public void tearDown() {
-
+        date1 = null;
+        date2 = null;
     }
     
     /**
@@ -40,14 +45,12 @@ public class MeetingTester {
         Set<Contact> contacts1 = new HashSet<Contact>();
         contacts1.add(new ContactImpl("c1", ""));
         contacts1.add(new ContactImpl("c2", "c2 has notes"));
-        Calendar date1 = new GregorianCalendar(2015, 04, 25);
         Meeting meeting1 = new MeetingImpl(contacts1, date1);
         assertEquals(new GregorianCalendar(2015, 04, 25), meeting1.getDate());
         
         Set<Contact> contacts2 = new HashSet<Contact>();
         contacts2.add(new ContactImpl("c1", ""));
         contacts2.add(new ContactImpl("c2", "c2 has notes"));
-        Calendar date2 = new GregorianCalendar(2014, 04, 25);
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
     }
@@ -58,12 +61,10 @@ public class MeetingTester {
     @Test
     public void testHasUniqueId() {
         Set<Contact> contacts1 = new HashSet<Contact>();
-        Calendar date1 = new GregorianCalendar(2015, 04, 25);
         Meeting meeting1 = new MeetingImpl(contacts1, date1);
         assertEquals(1, meeting1.getId());
         
         Set<Contact> contacts2 = new HashSet<Contact>();
-        Calendar date2 = new GregorianCalendar(2014, 04, 25);
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertEquals(2, meeting2.getId());
     }
