@@ -7,7 +7,7 @@ import java.util.*;
  * Meetings have unique IDs, scheduled date and a list of participating contacts
  */
 public class MeetingImpl implements Meeting {
-    private static int lastID = 0;
+    private static int lastId = 0;
     
     private int id;
     private Set<Contact> contacts;
@@ -20,8 +20,8 @@ public class MeetingImpl implements Meeting {
      * @param date the date on which the meeting will take place
      */
     public MeetingImpl(Set<Contact> contacts, Calendar date) {
-        lastID++;
-        this.id = lastID;
+        lastId++;
+        this.id = lastId;
         this.contacts = contacts;
         this.date = date;        
     }
