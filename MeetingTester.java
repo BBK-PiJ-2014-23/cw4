@@ -51,4 +51,20 @@ public class MeetingTester {
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
     }
+    
+    /**
+     * Tests if meetings are assigned a unique ID.
+     */
+    @Test
+    public void testHasUniqueId() {
+        Set<Contact> contacts1 = new HashSet<Contact>();
+        Calendar date1 = new GregorianCalendar(2015, 04, 25);
+        Meeting meeting1 = new MeetingImpl(contacts1, date1);
+        assertEquals(1, meeting1.getId());
+        
+        Set<Contact> contacts2 = new HashSet<Contact>();
+        Calendar date2 = new GregorianCalendar(2014, 04, 25);
+        Meeting meeting2 = new MeetingImpl(contacts2, date2);
+        assertEquals(2, meeting2.getId());
+    }
 }
