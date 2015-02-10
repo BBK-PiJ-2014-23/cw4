@@ -32,7 +32,7 @@ public class MeetingImpl implements Meeting {
      * @return the id of the meeting.
      */
     public int getId() {
-        return -1;
+        return id;
     }
 
     /**
