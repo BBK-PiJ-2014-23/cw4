@@ -25,39 +25,28 @@ public class ContactImpl implements Contact {
     }
     
     /**
-     * Returns the ID of the contact.
-     *
-     * @return the ID of the contact.
+     * {@inheritDoc}
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Returns the name of the contact.
-     *
-     * @return the name of the contact.
+     * {@inheritDoc}
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Returns our notes about the contact, if any.
-     *
-     * If we have not written anything about the contact, the empty
-     * string is returned.
-     *
-     * @return a string with notes about the contact, maybe empty.
+     * {@inheritDoc}
      */
     public String getNotes() {
         return notes;
     }
 
     /**
-     * Add notes about the contact.
-     *
-     * @param note the notes to be added
+     * {@inheritDoc}
      */
     public void addNotes(String note) {
         this.notes = note;
