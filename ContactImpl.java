@@ -40,7 +40,7 @@ public class ContactImpl implements Contact {
      * @return the name of the contact.
      */
     public String getName() {
-        return "test";
+        return name;
     }
 
     /**
@@ -52,7 +52,7 @@ public class ContactImpl implements Contact {
      * @return a string with notes about the contact, maybe empty.
      */
     public String getNotes() {
-        return "test";
+        return notes;
     }
 
     /**
