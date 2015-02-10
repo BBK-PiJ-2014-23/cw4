@@ -11,6 +11,9 @@ import org.junit.Test;
  * @version 1.0
  */
 public class ContactTester {
+    Contact c1;
+    Contact c2;
+
     /**
      * Sets up the test fixture.
      *
@@ -18,7 +21,8 @@ public class ContactTester {
      */
     @Before
     public void setUp() {
-
+        c1 = new ContactImpl("c1", "");
+        c2 = new ContactImpl("c2", "c2 has notes");
     }
 
     /**
@@ -28,7 +32,8 @@ public class ContactTester {
      */
     @After
     public void tearDown() {
-
+        c1 = null;
+        c2 = null;
     }
 
     /**
@@ -36,11 +41,9 @@ public class ContactTester {
      */
     @Test
     public void testContactInformation() {
-        Contact c1 = new ContactImpl("c1", "");
         assertEquals("c1", c1.getName());
         assertEquals("", c1.getNotes());
 
-        Contact c2 = new ContactImpl("c2", "c2 has notes");
         assertEquals("c2", c2.getName());
         assertEquals("c2 has notes", c2.getNotes());
     }
@@ -50,10 +53,7 @@ public class ContactTester {
      */
     @Test
     public void testHasUniqueId() {
-        Contact c1 = new ContactImpl("c1", "");
         assertEquals(1, c1.getId());
-
-        Contact c2 = new ContactImpl("c2", "c2 has notes");
         assertEquals(2, c2.getId());
     }
 }
