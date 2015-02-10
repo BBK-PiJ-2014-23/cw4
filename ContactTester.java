@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -19,7 +18,7 @@ public class ContactTester {
      */
     @Before
     public void setUp() {
-        
+
     }
 
     /**
@@ -29,6 +28,20 @@ public class ContactTester {
      */
     @After
     public void tearDown() {
-        
+
+    }
+
+    /**
+     * Tests the correctness of a contact's information.
+     */
+    @Test
+    public void testContactInformation() {
+        Contact c1 = new ContactImpl("c1", "");
+        assertEquals("c1", c1.getName());
+        assertEquals("", c1.getNotes());
+
+        Contact c2 = new ContactImpl("c2", "c2 has notes");
+        assertEquals("c2", c2.getName());
+        assertEquals("c2 has notes", c2.getNotes());
     }
 }
