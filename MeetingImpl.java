@@ -8,11 +8,11 @@ import java.util.*;
  */
 public class MeetingImpl implements Meeting {
     private static int lastId = 0;
-    
+
     private int id;
     private Set<Contact> contacts;
     private Calendar date;
-    
+
     /**
      * Constructor for a new meeting.
      *
@@ -25,33 +25,23 @@ public class MeetingImpl implements Meeting {
         this.contacts = contacts;
         this.date = date;        
     }
-    
+
     /**
-     * Returns the id of the meeting.
-     *
-     * @return the id of the meeting.
+     * {@inheritDoc}
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Return the date of the meeting.
-     *
-     * @return the date of the meeting.
+     * {@inheritDoc}
      */
     public Calendar getDate() {
         return date;
     }
 
     /**
-     * Return the details of people that attended the meeting.
-     *
-     * The list contains a minimum of one contact (if there were
-     * just two people: the user and the contact) and may contain an
-     * arbitraty number of them.
-     *
-     * @return the details of people that attended the meeting.
+     * {@inheritDoc}
      */
     public Set<Contact> getContacts() {
         return contacts;
