@@ -54,6 +54,6 @@ public class MeetingImpl implements Meeting {
      * @return the details of people that attended the meeting.
      */
     public Set<Contact> getContacts() {
-        return new HashSet<Contact>();
+        return contacts;
     }
 }
