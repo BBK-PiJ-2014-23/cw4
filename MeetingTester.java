@@ -61,12 +61,9 @@ public class MeetingTester {
      */
     @Test
     public void testMeetingDates() {
-        contacts1.add(contact1);
-        contacts1.add(contact2);
         Meeting meeting1 = new MeetingImpl(contacts1, date1);
         assertEquals(new GregorianCalendar(2015, 04, 25), meeting1.getDate());
 
-        contacts2.add(contact3);
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
     }
