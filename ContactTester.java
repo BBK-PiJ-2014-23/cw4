@@ -18,8 +18,8 @@ public class ContactTester {
      * Called before every test case method.
      */
     @Before
-    public void setUp()
-    {
+    public void setUp() {
+        
     }
 
     /**
@@ -28,7 +28,7 @@ public class ContactTester {
      * Called after every test case method.
      */
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
+        
     }
 }
