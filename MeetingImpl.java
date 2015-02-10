@@ -8,6 +8,7 @@ import java.util.*;
  */
 public class MeetingImpl implements Meeting {
     private static int lastID = 0;
+    
     private int id;
     private Set<Contact> contacts;
     private Calendar date;
