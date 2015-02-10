@@ -21,7 +21,7 @@ public class MeetingImpl implements Meeting {
      */
     public MeetingImpl(Set<Contact> contacts, Calendar date) {
         lastID++;
-        this.id = id;
+        this.id = lastID;
         this.contacts = contacts;
         this.date = date;        
     }
