@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * A contact is a person we are making business with or may do in the future.
  *
@@ -5,6 +6,25 @@
  * not), and notes that the user may want to save about them.
  */
 public class ContactImpl implements Contact {
+    private static int lastId = 0;
+    
+    private int id;
+    private String name;
+    private List<String> notes;
+    
+    /**
+     * Create a new contact with the specified name and notes.
+     *
+     * @param name the name of the contact.
+     * @param notes notes to be added about the contact.
+     */
+    public ContactImpl(String name, String notes) {
+        lastId++;
+        this.id = lastId;
+        this.name = name;
+        this.notes.add(notes);
+    }
+    
     /**
      * Returns the ID of the contact.
      *
