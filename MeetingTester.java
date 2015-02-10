@@ -33,7 +33,7 @@ public class MeetingTester {
     @Before
     public void setUp() {
         date1 = new GregorianCalendar(2015, 04, 25);
-        date2 = new GregorianCalendar(2014, 04, 25);
+        date2 = new GregorianCalendar(2014, 02, 18);
 
         contacts1 = new HashSet<Contact>();
         contacts2 = new HashSet<Contact>();
@@ -70,7 +70,7 @@ public class MeetingTester {
     @Test
     public void testMeetingDates() {
         assertEquals(new GregorianCalendar(2015, 04, 25), meeting1.getDate());
-        assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
+        assertEquals(new GregorianCalendar(2014, 02, 18), meeting2.getDate());
     }
 
     /**
