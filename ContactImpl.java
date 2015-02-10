@@ -10,7 +10,7 @@ public class ContactImpl implements Contact {
     
     private int id;
     private String name;
-    private List<String> notes;
+    private String notes;
     
     /**
      * Create a new contact with the specified name and notes.
@@ -22,7 +22,7 @@ public class ContactImpl implements Contact {
         lastId++;
         this.id = lastId;
         this.name = name;
-        this.notes.add(notes);
+        this.notes = notes;
     }
     
     /**
