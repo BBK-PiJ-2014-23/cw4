@@ -55,11 +55,14 @@ public class MeetingTester {
     public void tearDown() {
         date1 = null;
         date2 = null;
+        
         contacts1 = null;
         contacts2 = null;
+        
         contact1 = null;
         contact2 = null;
         contact3 = null;
+        
         meeting1 = null;
         meeting2 = null;
     }
