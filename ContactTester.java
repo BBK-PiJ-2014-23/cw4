@@ -44,4 +44,16 @@ public class ContactTester {
         assertEquals("c2", c2.getName());
         assertEquals("c2 has notes", c2.getNotes());
     }
+
+    /**
+     * Tests if contacts are assigned a unique ID.
+     */
+    @Test
+    public void testHasUniqueId() {
+        Contact c1 = new ContactImpl("c1", "");
+        assertEquals(1, c1.getId());
+
+        Contact c2 = new ContactImpl("c2", "c2 has notes");
+        assertEquals(2, c2.getId());
+    }
 }
