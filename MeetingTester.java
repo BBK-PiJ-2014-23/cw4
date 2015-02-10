@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.*;
 
 /**
  * The test class MeetingTester.
@@ -29,5 +30,25 @@ public class MeetingTester {
     @After
     public void tearDown() {
 
+    }
+    
+    /**
+     * Tests if meetins are assigned a unique ID.
+     */
+    @Test
+    public void testMeetingDates() {
+        Set<Contact> contacts1 = new HashSet<Contact>();
+        contacts1.add(new ContactImpl("c1", ""));
+        contacts1.add(new ContactImpl("c2", "c2 has notes"));
+        Calendar date1 = new GregorianCalendar(2015, 04, 25);
+        Meeting meeting1 = new MeetingImpl(contacts1, date1);
+        assertEquals(new GregorianCalendar(2015, 04, 25), meeting1.getDate());
+        
+        Set<Contact> contacts2 = new HashSet<Contact>();
+        contacts2.add(new ContactImpl("c1", ""));
+        contacts2.add(new ContactImpl("c2", "c2 has notes"));
+        Calendar date2 = new GregorianCalendar(2014, 04, 25);
+        Meeting meeting2 = new MeetingImpl(contacts2, date2);
+        assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
     }
 }
