@@ -17,6 +17,10 @@ public class MeetingTester {
 
     Set<Contact> contacts1;
     Set<Contact> contacts2;
+    
+    Contact contact1;
+    Contact contact2;
+    Contact contact3;
 
     /**
      * Sets up the test fixture.
@@ -30,6 +34,10 @@ public class MeetingTester {
 
         contacts1 = new HashSet<Contact>();
         contacts2 = new HashSet<Contact>();
+        
+        contact1 = new ContactImpl("c1", "");
+        contact2 = new ContactImpl("c2", "c2 has notes");
+        contact3 = new ContactImpl("c3", "");
     }
 
     /**
@@ -41,6 +49,11 @@ public class MeetingTester {
     public void tearDown() {
         date1 = null;
         date2 = null;
+        contacts1 = null;
+        contacts2 = null;
+        contact1 = null;
+        contact2 = null;
+        contact3 = null;
     }
 
     /**
@@ -48,13 +61,12 @@ public class MeetingTester {
      */
     @Test
     public void testMeetingDates() {
-        contacts1.add(new ContactImpl("c1", ""));
-        contacts1.add(new ContactImpl("c2", "c2 has notes"));
+        contacts1.add(contact1);
+        contacts1.add(contact2);
         Meeting meeting1 = new MeetingImpl(contacts1, date1);
         assertEquals(new GregorianCalendar(2015, 04, 25), meeting1.getDate());
 
-        contacts2.add(new ContactImpl("c1", ""));
-        contacts2.add(new ContactImpl("c2", "c2 has notes"));
+        contacts2.add(contact3);
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertEquals(new GregorianCalendar(2014, 04, 25), meeting2.getDate());
     }
@@ -76,15 +88,12 @@ public class MeetingTester {
      */
     @Test
     public void testMeetingContacts() {
-        Contact contact1 = new ContactImpl("c1", "");
-        Contact contact2 = new ContactImpl("c2", "c2 has notes");
         contacts1.add(contact1);
         contacts1.add(contact2);
         Meeting meeting1 = new MeetingImpl(contacts1, date1);
         assertTrue(meeting1.getContacts().contains(contact1));
         assertTrue(meeting1.getContacts().contains(contact2));
 
-        Contact contact3 = new ContactImpl("c3", "");
         contacts2.add(contact3);
         Meeting meeting2 = new MeetingImpl(contacts2, date2);
         assertTrue(meeting2.getContacts().contains(contact3));
