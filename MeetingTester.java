@@ -33,7 +33,7 @@ public class MeetingTester {
     }
     
     /**
-     * Tests if meetins are assigned a unique ID.
+     * Tests if meetins are assigned the correct dates.
      */
     @Test
     public void testMeetingDates() {
