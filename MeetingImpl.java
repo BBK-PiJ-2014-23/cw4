@@ -40,7 +40,7 @@ public class MeetingImpl implements Meeting {
      * @return the date of the meeting.
      */
     public Calendar getDate() {
-        return new GregorianCalendar();
+        return date;
     }
 
     /**
