@@ -56,4 +56,16 @@ public class ContactTester {
         assertEquals(1, c1.getId());
         assertEquals(2, c2.getId());
     }
+    
+    /**
+     * Tests if contacts' notes are updated properly.
+     */
+    @Test
+    public void testAddingORChangingNotes() {
+        c1.addNotes("c1 had notes added later");
+        assertEquals("c1 had notes added later", c1.getNotes());
+        
+        c2.addNotes("c2 had notes changed later");
+        assertEquals("c2 had notes changed later", c2.getNotes());
+    }
 }
