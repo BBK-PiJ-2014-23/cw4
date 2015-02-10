@@ -31,7 +31,7 @@ public class ContactImpl implements Contact {
      * @return the ID of the contact.
      */
     public int getId() {
-        return -1;
+        return id;
     }
 
     /**
