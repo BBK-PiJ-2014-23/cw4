@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
     private String notes;
-    
+
     /**
      * Create a new record for a meeting that took place in the past.
      *
@@ -18,7 +18,7 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
         super(contacts, date);
         notes = text;
     }
-    
+
     /**
      * Returns the notes from the meeting.
      *
@@ -26,6 +26,7 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
      *
      * @return the notes from the meeting.
      */
+    @Override
     public String getNotes() {
         return "test";
     }
