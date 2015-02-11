@@ -1,0 +1,15 @@
+import java.util.*;
+/**
+ * A meeting to be held in the future
+ */
+public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting {
+    /**
+     * Constructor for a future meeting.
+     *
+     * @param contacts a list of contacts that will participate in the meeting
+     * @param date the date on which the meeting will take place
+     */
+    public FutureMeetingImpl(Set<Contact> contacts, Calendar date) {
+        super(contacts, date);
+    }
+}
