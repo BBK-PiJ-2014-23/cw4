@@ -89,4 +89,15 @@ public class MeetingTester {
         contacts2.add(contact3);
         assertTrue(meeting2.getContacts().contains(contact3));
     }
+    
+    /**
+     * Tests if past meetings' notes are retrieved properly.
+     */
+    @Test
+    public void testPastMeetingNotes() {
+        PastMeeting pastMeeting1 = new PastMeetingImpl(contacts1, date1, "");
+        assertEquals("", pastMeeting1.getNotes());
+        PastMeeting pastMeeting2 = new PastMeetingImpl(contacts2, date2, "This meeting has notes");
+        assertEquals("This meeting has notes", pastMeeting2.getNotes());
+    }
 }
