@@ -29,6 +29,7 @@ public class MeetingImpl implements Meeting {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int getId() {
         return id;
     }
@@ -36,6 +37,7 @@ public class MeetingImpl implements Meeting {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Calendar getDate() {
         return date;
     }
@@ -43,6 +45,7 @@ public class MeetingImpl implements Meeting {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Set<Contact> getContacts() {
         return contacts;
     }
