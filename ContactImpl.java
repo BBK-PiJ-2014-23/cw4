@@ -34,6 +34,7 @@ public class ContactImpl implements Contact {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -41,6 +42,7 @@ public class ContactImpl implements Contact {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getNotes() {
         return notes;
     }
@@ -48,6 +50,7 @@ public class ContactImpl implements Contact {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addNotes(String note) {
         this.notes = note;
     }
