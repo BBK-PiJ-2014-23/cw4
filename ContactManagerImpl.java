@@ -164,6 +164,11 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
      */
     public Set<Contact> getContacts(int... ids) {
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i] < 0) {
+                throw new IllegalArgumentException("ID is not valid");
+            }
+        }
         return new HashSet<Contact>();
     }
 
