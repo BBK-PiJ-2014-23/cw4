@@ -103,4 +103,16 @@ public class ContactManagerTester{
         Set<Contact> none = manager.getContacts("NotHere");
         assertEquals(0, none.size());
     }
+    
+    /**
+     * Tests retrieving a contact without a name.
+     */
+    @Test
+    public void testGettingEmptyNamedContact() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
+        Set<Contact> none = manager.getContacts("");
+        assertEquals(0, none.size());
+    }
 }
