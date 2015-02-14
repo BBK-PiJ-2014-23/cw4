@@ -172,8 +172,8 @@ public class ContactManagerImpl implements ContactManager {
         if (name == null) {
             throw new NullPointerException("'null' is invalid as parameter!");
         }
-        contacts.add(new ContactImpl(-1, "test"));
-        return contacts;
+        Set<Contact> searched = new HashSet<Contact>();
+        return searched;
     }
 
     /**
