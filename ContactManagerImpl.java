@@ -179,9 +179,12 @@ public class ContactManagerImpl implements ContactManager {
             throw new NullPointerException("'null' is invalid as parameter!");
         }
         Set<Contact> searched = new HashSet<Contact>();
-        for (Contact member : contacts) {
-            if (member.getName().contains(name)) {
-                searched.add(member);
+        // String "" must be excluded, otherwise all contacts are returned.
+        if (name.length() > 0) {
+            for (Contact member : contacts) {
+                if (member.getName().contains(name)) {
+                    searched.add(member);
+                }
             }
         }
         return searched;
