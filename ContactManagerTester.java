@@ -57,23 +57,23 @@ public class ContactManagerTester {
     //     public void testGettingContactByNameException() {
     //         manager.getContactsString(null);
     //     }
-    
+
     /**
      * Tests to ensure that getting contacts from empty contacts set is also empty.
      */
     @Test
-    public void TestGettingContactByNameFromEmptyList() {
+    public void testGettingContactByNameFromEmptyList() {
         Set<Contact> empty1 = manager.getContacts("");
         Set<Contact> empty2 = manager.getContacts("Tom");
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
-    
+
     /**
-     * 
+     * Tests if a uniquely named contact can be retrieved.
      */
     @Test
-    public void TestAddingAndGettingSingleContactByName() {
+    public void testAddingAndGettingSingleContactByName() {
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
