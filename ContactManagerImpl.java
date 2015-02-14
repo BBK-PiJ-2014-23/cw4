@@ -169,6 +169,9 @@ public class ContactManagerImpl implements ContactManager {
      * @throws NullPointerException if the parameter is null
      */
     public Set<Contact> getContactsString(String name) {
+        if (name == null) {
+            throw new NullPointerException("'null' is invalid as parameter!");
+        }
         return new HashSet<Contact>();
     }
 
