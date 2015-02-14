@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.*;
 
 /**
  * The test class ContactManagerTester.
@@ -56,4 +57,15 @@ public class ContactManagerTester {
     //     public void testGettingContactByNameException() {
     //         manager.getContactsString(null);
     //     }
+    
+    /**
+     * Tests to ensure that getting contacts from empty contacts set is also empty.
+     */
+    @Test
+    public void TestGettingContactByNameFromEmptyList() {
+        Set<Contact> empty1 = manager.getContacts("");
+        Set<Contact> empty2 = manager.getContacts("Tom");
+        assertTrue(empty1.isEmpty());
+        assertTrue(empty2.isEmpty());
+    }
 }
