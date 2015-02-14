@@ -34,8 +34,8 @@ public class MeetingTester {
         contacts1 = new HashSet<Contact>();
         contacts2 = new HashSet<Contact>();
 
-        meeting1 = new MeetingImpl(contacts1, date1);
-        meeting2 = new MeetingImpl(contacts2, date2);
+        meeting1 = new MeetingImpl(1, contacts1, date1);
+        meeting2 = new MeetingImpl(2, contacts2, date2);
     }
 
     /**
@@ -78,14 +78,14 @@ public class MeetingTester {
      */
     @Test
     public void testMeetingContacts() {
-        Contact contact1 = new ContactImpl("c1", "");
+        Contact contact1 = new ContactImpl(1, "c1", "");
         contacts1.add(contact1);
-        Contact contact2 = new ContactImpl("c2", "c2 has notes");
+        Contact contact2 = new ContactImpl(2, "c2", "c2 has notes");
         contacts1.add(contact2);
         assertTrue(meeting1.getContacts().contains(contact1));
         assertTrue(meeting1.getContacts().contains(contact2));
         
-        Contact contact3 = new ContactImpl("c3", "");
+        Contact contact3 = new ContactImpl(3, "c3", "");
         contacts2.add(contact3);
         assertTrue(meeting2.getContacts().contains(contact3));
     }
@@ -95,9 +95,9 @@ public class MeetingTester {
      */
     @Test
     public void testPastMeetingNotes() {
-        PastMeeting pastMeeting1 = new PastMeetingImpl(contacts1, date1, "");
+        PastMeeting pastMeeting1 = new PastMeetingImpl(1, contacts1, date1, "");
         assertEquals("", pastMeeting1.getNotes());
-        PastMeeting pastMeeting2 = new PastMeetingImpl(contacts2, date2, "This meeting has notes");
+        PastMeeting pastMeeting2 = new PastMeetingImpl(2, contacts2, date2, "This meeting has notes");
         assertEquals("This meeting has notes", pastMeeting2.getNotes());
     }
 }
