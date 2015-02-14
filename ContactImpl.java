@@ -5,8 +5,6 @@
  * not), and notes that the user may want to save about them.
  */
 public class ContactImpl implements Contact {
-    private static int lastId = 0;
-    
     private int id;
     private String name;
     private String notes;
@@ -17,9 +15,8 @@ public class ContactImpl implements Contact {
      * @param name the name of the contact.
      * @param notes notes to be added about the contact.
      */
-    public ContactImpl(String name, String notes) {
-        lastId++;
-        this.id = lastId;
+    public ContactImpl(int id, String name, String notes) {
+        this.id = id;
         this.name = name;
         this.notes = notes;
     }
