@@ -94,4 +94,13 @@ public class ContactManagerTester{
         assertTrue(single.size() == 1);
         assertTrue(hasContact(single, "c2"));
     }
+    
+    /**
+     * Tests retrieving a non-existing contact via name.
+     */
+    @Test
+    public void testGettingNonExistingContact() {
+        Set<Contact> single = manager.getContacts("NotHere");
+        assertTrue(single.size() == 0);
+    }
 }
