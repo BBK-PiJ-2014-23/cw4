@@ -115,4 +115,19 @@ public class ContactManagerTester{
         Set<Contact> none = manager.getContacts("");
         assertEquals(0, none.size());
     }
+    
+    /**
+     * Tests if serveral similarily named contacts can be retrieved.
+     */
+    @Test
+    public void testGettingSimilarilyNamedContacts() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
+        Set<Contact> several = manager.getContacts("c");
+        assertEquals(3, several.size());
+        assertTrue(hasContact(several, "c1"));
+        assertTrue(hasContact(several, "c2"));
+        assertTrue(hasContact(several, "c3"));
+    }
 }
