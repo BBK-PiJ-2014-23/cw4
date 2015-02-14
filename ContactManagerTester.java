@@ -41,4 +41,12 @@ public class ContactManagerTester {
     public void testNewContactNameException() {
         manager.addNewContact(null, "notes");
     }
+    
+    /**
+     * Tests nullpointer exception when trying to create a contact with notes 'null'.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testNewContactNotesException() {
+        manager.addNewContact("name", null);
+    }
 }
