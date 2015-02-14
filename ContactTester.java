@@ -21,8 +21,8 @@ public class ContactTester {
      */
     @Before
     public void setUp() {
-        c1 = new ContactImpl(1, "c1", "");
-        c2 = new ContactImpl(2, "c2", "c2 has notes");
+        c1 = new ContactImpl(1, "c1");
+        c2 = new ContactImpl(2, "c2");
     }
 
     /**
@@ -45,7 +45,7 @@ public class ContactTester {
         assertEquals("", c1.getNotes());
 
         assertEquals("c2", c2.getName());
-        assertEquals("c2 has notes", c2.getNotes());
+        assertEquals("", c2.getNotes());
     }
 
     /**
@@ -61,11 +61,11 @@ public class ContactTester {
      * Tests if contacts' notes are updated properly.
      */
     @Test
-    public void testAddingORChangingNotes() {
+    public void testAddingNotes() {
         c1.addNotes("c1 had notes added later");
         assertEquals("c1 had notes added later", c1.getNotes());
         
-        c2.addNotes("c2 had notes changed later");
-        assertEquals("c2 had notes changed later", c2.getNotes());
+        c2.addNotes("c2 had notes added later");
+        assertEquals("c2 had notes added later", c2.getNotes());
     }
 }
