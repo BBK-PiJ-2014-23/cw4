@@ -135,15 +135,19 @@ public class ContactManagerTester{
      * Tests illegal argument exception when retrieving contacts with a negative ID.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void gettingContactNegativeIdException() {
-        manager.getContacts(1, -1, 2);
+    public void testGettingContactNegativeIdException() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.getContacts(1, 2, -1);
     }
     
     /**
      * Tests illegal argument exception when retrieving contacts with non-existing IDs.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void gettingContactNonExistingIdException() {
+    public void testGettingContactNonExistingIdException() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
         manager.getContacts(1, 2, 3);
     }
     
