@@ -7,14 +7,16 @@ import java.util.*;
  */
 public class ContactManagerImpl implements ContactManager {
     private Set<Contact> contacts;
-    
+    private int lastContactId;
+
     /**
      * Create a new contact manager.
      */
     public ContactManagerImpl() {
         contacts = new HashSet<Contact>();
+        lastContactId = 0;
     }
-    
+
     /**
      * Add a new meeting to be held in the future.
      *
@@ -116,7 +118,7 @@ public class ContactManagerImpl implements ContactManager {
      * @throws NullPointerException if any of the arguments is null
      */
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-        
+
     }
 
     /**
@@ -134,9 +136,9 @@ public class ContactManagerImpl implements ContactManager {
      * @throws NullPointerException if the notes are null
      */
     public void addMeetingNotes(int id, String text) {
-        
+
     }
-    
+
     /**
      * Create a new contact with the specified name and notes.
      *
@@ -148,6 +150,10 @@ public class ContactManagerImpl implements ContactManager {
         if (name == null || notes == null) {
             throw new NullPointerException("'null' is invalid for either parameter!");
         }
+        lastContactId++;
+        Contact newGuy = new ContactImpl(lastContactId, name);
+        newGuy.addNotes(notes);
+        contacts.add(newGuy);
     }
 
     /**
@@ -173,6 +179,11 @@ public class ContactManagerImpl implements ContactManager {
             throw new NullPointerException("'null' is invalid as parameter!");
         }
         Set<Contact> searched = new HashSet<Contact>();
+        for (Contact member : contacts) {
+            if (member.getName().contains(name)) {
+                searched.add(member);
+            }
+        }
         return searched;
     }
 
@@ -183,6 +194,6 @@ public class ContactManagerImpl implements ContactManager {
      * closed and when/if the user requests it.
      */
     public void flush() {
-        
+
     }
 }
