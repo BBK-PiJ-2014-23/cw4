@@ -21,8 +21,8 @@ public class ContactTester {
      */
     @Before
     public void setUp() {
-        c1 = new ContactImpl("c1", "");
-        c2 = new ContactImpl("c2", "c2 has notes");
+        c1 = new ContactImpl(1, "c1", "");
+        c2 = new ContactImpl(2, "c2", "c2 has notes");
     }
 
     /**
