@@ -146,7 +146,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     public void addNewContact(String name, String notes) {
         if (name == null || notes == null) {
-            throw new NullPointerException("'null' is invalid for either parameters!");
+            throw new NullPointerException("'null' is invalid for either parameter!");
         }
     }
 
