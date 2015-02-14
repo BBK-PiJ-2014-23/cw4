@@ -130,4 +130,12 @@ public class ContactManagerTester{
         assertTrue(hasContact(several, "c2"));
         assertTrue(hasContact(several, "c3"));
     }
+    
+    /**
+     * Tests illegal argument exception when retrieving contacts with a negative ID.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void gettingContactNegativeIdException() {
+        manager.getContacts(-1);
+    }
 }
