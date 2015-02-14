@@ -156,7 +156,7 @@ public class ContactManagerTester{
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         Set<Contact> several = manager.getContacts(2, 1);
-        assertEquals(3, several.size());
+        assertEquals(2, several.size());
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
     }
