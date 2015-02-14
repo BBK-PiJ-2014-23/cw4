@@ -14,8 +14,8 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
      * @param date the date on which the meeting took place
      * @param text messages to be added about the meeting.
      */
-    public PastMeetingImpl(Set<Contact> contacts, Calendar date, String text) {
-        super(contacts, date);
+    public PastMeetingImpl(int id, Set<Contact> contacts, Calendar date, String text) {
+        super(id, contacts, date);
         notes = text;
     }
 

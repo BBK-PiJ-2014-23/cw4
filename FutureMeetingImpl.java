@@ -9,7 +9,7 @@ public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting {
      * @param contacts a list of contacts that will participate in the meeting
      * @param date the date on which the meeting will take place
      */
-    public FutureMeetingImpl(Set<Contact> contacts, Calendar date) {
-        super(contacts, date);
+    public FutureMeetingImpl(int id, Set<Contact> contacts, Calendar date) {
+        super(id, contacts, date);
     }
 }
