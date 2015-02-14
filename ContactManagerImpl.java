@@ -168,7 +168,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return a list with the contacts whose name contains that string.
      * @throws NullPointerException if the parameter is null
      */
-    public Set<Contact> getContactsString(String name) {
+    public Set<Contact> getContacts(String name) {
         if (name == null) {
             throw new NullPointerException("'null' is invalid as parameter!");
         }

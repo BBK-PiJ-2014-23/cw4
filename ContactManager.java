@@ -134,7 +134,7 @@ public interface ContactManager {
      * @return a list with the contacts whose name contains that string.
      * @throws NullPointerException if the parameter is null
      */
-    Set<Contact> getContactsString(String name);
+    Set<Contact> getContacts(String name);
 
     /**
      * Save all data to disk.
