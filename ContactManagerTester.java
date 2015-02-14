@@ -11,7 +11,7 @@ import java.util.*;
  * @author  Stefan E. Mayer
  * @version 1.0
  */
-public class ContactManagerTester {
+public class ContactManagerTester{
     ContactManager manager;
 
     /**
@@ -68,7 +68,20 @@ public class ContactManagerTester {
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
-
+    
+    /**
+     * Helper method to find contacts in sets via name.
+     */
+    private boolean hasContact(Set<Contact> set, String name) {
+        boolean found = false;
+        for (Contact member : set) {
+            if (member.getName().equals(name)) {
+                found = true;
+            }
+        }
+        return found;
+    }
+    
     /**
      * Tests if a uniquely named contact can be retrieved.
      */
@@ -77,8 +90,8 @@ public class ContactManagerTester {
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
-        Set<Contact> one = manager.getContacts("c2");
-        assertTrue(one.size() == 1);
-        assertTrue(one.contains(new ContactImpl(2, "c2")));
+        Set<Contact> single = manager.getContacts("c2");
+        assertTrue(single.size() == 1);
+        assertTrue(hasContact(single, "c2"));
     }
 }
