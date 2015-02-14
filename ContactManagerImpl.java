@@ -6,6 +6,15 @@ import java.util.*;
  * A class to manage your contacts and meetings.
  */
 public class ContactManagerImpl implements ContactManager {
+    private List<Contact> contacts;
+    
+    /**
+     * Create a new contact manager.
+     */
+    public ContactManagerImpl() {
+        contacts = new ArrayList<Contact>();
+    }
+    
     /**
      * Add a new meeting to be held in the future.
      *
