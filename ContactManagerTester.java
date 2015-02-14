@@ -68,7 +68,7 @@ public class ContactManagerTester{
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
-    
+
     /**
      * Helper method to find contacts in sets via name.
      */
@@ -81,7 +81,7 @@ public class ContactManagerTester{
         }
         return found;
     }
-    
+
     /**
      * Tests if a uniquely named contact can be retrieved.
      */
@@ -94,7 +94,7 @@ public class ContactManagerTester{
         assertEquals(1, single.size());
         assertTrue(hasContact(single, "c2"));
     }
-    
+
     /**
      * Tests retrieving a non-existing contact via name.
      */
@@ -103,7 +103,7 @@ public class ContactManagerTester{
         Set<Contact> none = manager.getContacts("NotHere");
         assertEquals(0, none.size());
     }
-    
+
     /**
      * Tests retrieving a contact without a name.
      */
@@ -115,7 +115,7 @@ public class ContactManagerTester{
         Set<Contact> none = manager.getContacts("");
         assertEquals(0, none.size());
     }
-    
+
     /**
      * Tests if serveral similarily named contacts can be retrieved.
      */
@@ -130,12 +130,12 @@ public class ContactManagerTester{
         assertTrue(hasContact(several, "c2"));
         assertTrue(hasContact(several, "c3"));
     }
-    
+
     /**
      * Tests illegal argument exception when retrieving contacts with a negative ID.
      */
     @Test(expected = IllegalArgumentException.class)
     public void gettingContactNegativeIdException() {
-        manager.getContacts(2, -1, 4);
+        manager.getContacts(-1);
     }
 }
