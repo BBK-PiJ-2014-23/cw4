@@ -165,7 +165,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     public Set<Contact> getContacts(int... ids) {
         for (int i = 0; i < ids.length; i++) {
-            if (ids[i] < 0 || ids[i] > lastContactId) {
+            if (ids[i] <= 0 || ids[i] > lastContactId) {
                 throw new IllegalArgumentException("ID is not valid");
             }
         }
