@@ -91,7 +91,7 @@ public class ContactManagerTester{
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         Set<Contact> single = manager.getContacts("c2");
-        assertTrue(single.size() == 1);
+        assertEquals(1, single.size());
         assertTrue(hasContact(single, "c2"));
     }
     
@@ -100,7 +100,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingNonExistingContact() {
-        Set<Contact> single = manager.getContacts("NotHere");
-        assertTrue(single.size() == 0);
+        Set<Contact> none = manager.getContacts("NotHere");
+        assertEquals(0, none.size());
     }
 }
