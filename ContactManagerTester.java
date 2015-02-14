@@ -146,4 +146,18 @@ public class ContactManagerTester{
     public void gettingContactNonExistingIdException() {
         manager.getContacts(1, 2, 3);
     }
+    
+    /**
+     * Tests if contacts can be retrieved via IDs.
+     */
+    @Test
+    public void testGettingContactsViaID() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
+        Set<Contact> several = manager.getContacts(2, 1);
+        assertEquals(3, several.size());
+        assertTrue(hasContact(several, "c1"));
+        assertTrue(hasContact(several, "c2"));
+    }
 }
