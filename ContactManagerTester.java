@@ -68,4 +68,17 @@ public class ContactManagerTester {
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
+    
+    /**
+     * 
+     */
+    @Test
+    public void TestAddingAndGettingSingleContactByName() {
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
+        Set<Contact> one = manager.getContacts("c2");
+        assertTrue(one.size() == 1);
+        assertTrue(one.contains(new ContactImpl(2, "c2")));
+    }
 }
