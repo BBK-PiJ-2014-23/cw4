@@ -22,6 +22,9 @@ public class ContactManagerTester{
     @Before
     public void setUp() {
         manager = new ContactManagerImpl();
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
     }
 
     /**
@@ -87,9 +90,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingSingleContactByName() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.addNewContact("c3", "notes3");
         Set<Contact> single = manager.getContacts("c2");
         assertEquals(1, single.size());
         assertTrue(hasContact(single, "c2"));
@@ -109,9 +109,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingEmptyNamedContact() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.addNewContact("c3", "notes3");
         Set<Contact> none = manager.getContacts("");
         assertEquals(0, none.size());
     }
@@ -121,9 +118,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingSimilarilyNamedContacts() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.addNewContact("c3", "notes3");
         Set<Contact> several = manager.getContacts("c");
         assertEquals(3, several.size());
         assertTrue(hasContact(several, "c1"));
@@ -136,8 +130,6 @@ public class ContactManagerTester{
      */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNegativeIdException() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
         manager.getContacts(1, 2, -1);
     }
     
@@ -146,9 +138,7 @@ public class ContactManagerTester{
      */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNonExistingIdException() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.getContacts(1, 2, 3);
+        manager.getContacts(1, 2, 66);
     }
     
     /**
@@ -156,9 +146,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingContactsViaID() {
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.addNewContact("c3", "notes3");
         Set<Contact> several = manager.getContacts(2, 1);
         assertEquals(2, several.size());
         assertTrue(hasContact(several, "c1"));
