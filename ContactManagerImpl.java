@@ -6,13 +6,13 @@ import java.util.*;
  * A class to manage your contacts and meetings.
  */
 public class ContactManagerImpl implements ContactManager {
-    private List<Contact> contacts;
+    private Set<Contact> contacts;
     
     /**
      * Create a new contact manager.
      */
     public ContactManagerImpl() {
-        contacts = new ArrayList<Contact>();
+        contacts = new HashSet<Contact>();
     }
     
     /**
@@ -172,7 +172,8 @@ public class ContactManagerImpl implements ContactManager {
         if (name == null) {
             throw new NullPointerException("'null' is invalid as parameter!");
         }
-        return new HashSet<Contact>();
+        contacts.add(new ContactImpl(-1, "test"));
+        return contacts;
     }
 
     /**

@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +12,7 @@ import org.junit.Test;
  */
 public class ContactManagerTester {
     ContactManager manager;
-    
+
     /**
      * Sets up the test fixture.
      *
@@ -33,7 +32,7 @@ public class ContactManagerTester {
     public void tearDown() {
         manager = null;
     }
-    
+
     /**
      * Tests nullpointer exception when trying to create a contact with name 'null'.
      */
@@ -41,7 +40,7 @@ public class ContactManagerTester {
     public void testNewContactNameException() {
         manager.addNewContact(null, "notes");
     }
-    
+
     /**
      * Tests nullpointer exception when trying to create a contact with notes 'null'.
      */
@@ -49,12 +48,12 @@ public class ContactManagerTester {
     public void testNewContactNotesException() {
         manager.addNewContact("name", null);
     }
-    
-    /**
-     * Tests nullpointer exception when trying to retrieve a contact by name 'null'.
-     */
-    @Test(expected = NullPointerException.class)
-    public void testGettingContactByNameException() {
-        manager.getContactsString(null);
-    }
+
+    //     /**
+    //      * Tests nullpointer exception when trying to retrieve a contact by name 'null'.
+    //      */
+    //     @Test(expected = NullPointerException.class)
+    //     public void testGettingContactByNameException() {
+    //         manager.getContactsString(null);
+    //     }
 }
