@@ -12,6 +12,8 @@ import org.junit.Test;
  * @version 1.0
  */
 public class ContactManagerTester {
+    ContactManager manager;
+    
     /**
      * Sets up the test fixture.
      *
@@ -19,7 +21,7 @@ public class ContactManagerTester {
      */
     @Before
     public void setUp() {
-        
+        manager = new ContactManagerImpl();
     }
 
     /**
@@ -29,6 +31,14 @@ public class ContactManagerTester {
      */
     @After
     public void tearDown() {
+        manager = null;
+    }
     
+    /**
+     * Tests nullpointer exception when trying to create a contact with name 'null'.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testNewContactNameException() {
+        manager.addNewContact(null, "notes");
     }
 }
