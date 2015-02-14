@@ -136,6 +136,6 @@ public class ContactManagerTester{
      */
     @Test(expected = IllegalArgumentException.class)
     public void gettingContactNegativeIdException() {
-        manager.getContacts(-1);
+        manager.getContacts(1, -1, 2);
     }
 }
