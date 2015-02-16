@@ -200,4 +200,13 @@ public class ContactManagerTester{
         unknown.add(new ContactImpl(99, "unknown"));
         manager.addNewPastMeeting(unknown, new GregorianCalendar(2014, 02, 18), "");
     }
+    
+    /**
+    * Tests if adding an empty contacts list to past meetings throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddEmptyContactListToPastMeetingException() {
+        Set<Contact> empty = new HashSet<Contact>();
+        manager.addNewPastMeeting(empty, new GregorianCalendar(2014, 02, 18), "");
+    }
 }
