@@ -192,7 +192,7 @@ public class ContactManagerTester{
     }
     
     /**
-    * Tests if adding unknown contacts to past meetings throws an exception.
+    * Tests if adding unknown contacts to new past meetings throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
@@ -202,7 +202,7 @@ public class ContactManagerTester{
     }
     
     /**
-    * Tests if adding an empty contacts list to past meetings throws an exception.
+    * Tests if adding an empty contacts list to new past meetings throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddEmptyContactListToPastMeetingException() {
@@ -211,7 +211,7 @@ public class ContactManagerTester{
     }
     
     /**
-    * Tests if passing 'null' as contacts to past meetings throws an exception.
+    * Tests if passing 'null' as contacts to past new meetings throws an exception.
     */
     @Test(expected = NullPointerException.class)
     public void testNullForContactListToPastMeetingException() {
@@ -219,7 +219,7 @@ public class ContactManagerTester{
     }
     
     /**
-    * Tests if passing 'null' as date to past meetings throws an exception.
+    * Tests if passing 'null' as date to new past meetings throws an exception.
     */
     @Test(expected = NullPointerException.class)
     public void testNullForDateToPastMeetingException() {
@@ -227,7 +227,7 @@ public class ContactManagerTester{
     }
     
     /**
-    * Tests if passing 'null' as text mesage to past meetings throws an exception.
+    * Tests if passing 'null' as text mesage to new past meetings throws an exception.
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
