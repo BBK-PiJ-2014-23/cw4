@@ -171,7 +171,7 @@ public class ContactManagerTester{
     }
 
     /**
-     * 
+     * Tests if future meetings can be added and retrieved.
      */
     @Test
     public void testAddingAndGettingMeetings() {
