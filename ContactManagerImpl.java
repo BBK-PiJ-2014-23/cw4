@@ -40,7 +40,9 @@ public class ContactManagerImpl implements ContactManager {
                 throw new IllegalArgumentException("Unknown contact(s) present!");
             }
         }
-        return -1;
+        lastMeetingId++;
+        allMeetings.add(new FutureMeetingImpl(lastMeetingId, contacts, date));
+        return lastMeetingId;
     }
 
     /**
@@ -72,7 +74,12 @@ public class ContactManagerImpl implements ContactManager {
      * @return the meeting with the requested ID, or null if it there is none.
      */
     public Meeting getMeeting(int id) {
-        return new MeetingImpl(-1, new HashSet<Contact>(), new GregorianCalendar(0000, 00, 00));
+        for (Meeting meeting : allMeetings) {
+            if (meeting.getId() == id) {
+                return meeting;
+            } 
+        }
+        return null;
     }
 
     /**
