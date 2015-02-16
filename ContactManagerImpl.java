@@ -35,10 +35,8 @@ public class ContactManagerImpl implements ContactManager {
         if (date.compareTo(now) <= 0 ) {
             throw new IllegalArgumentException("Date is in the past!");
         }
-        for (Contact member : contacts) {
-            if (!allContacts.contains(member)) {
-                throw new IllegalArgumentException("Unknown contact(s) present!");
-            }
+        if (hasUnknownContact(contacts)) {
+            throw new IllegalArgumentException("Unknown contact(s) present!");
         }
         lastMeetingId++;
         allMeetings.add(new FutureMeetingImpl(lastMeetingId, contacts, date));
@@ -146,10 +144,8 @@ public class ContactManagerImpl implements ContactManager {
      * @throws NullPointerException if any of the arguments is null
      */
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-        for (Contact member : contacts) {
-            if (!allContacts.contains(member)) {
-                throw new IllegalArgumentException("Unknown contact(s) present!");
-            }
+        if (hasUnknownContact(contacts)) {
+            throw new IllegalArgumentException("Unknown contact(s) present!");
         }
     }
 
@@ -242,7 +238,7 @@ public class ContactManagerImpl implements ContactManager {
     public void flush() {
 
     }
-    
+
     /**
      * Helper method that checks if a set of contacts contains an unknown contact.
      * 
