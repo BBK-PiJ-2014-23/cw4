@@ -242,4 +242,19 @@ public class ContactManagerImpl implements ContactManager {
     public void flush() {
 
     }
+    
+    /**
+     * Helper method that checks if a set of contacts contains an unknown contact.
+     * 
+     * @param contacts a set of contacts
+     * @return true if one contact is unknown, false otherwise
+     */
+    private boolean hasUnknownContact(Set<Contact> contacts) {
+        for (Contact member : contacts) {
+            if (!allContacts.contains(member)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
