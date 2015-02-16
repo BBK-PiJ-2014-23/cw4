@@ -190,4 +190,14 @@ public class ContactManagerTester{
     public void testGettingNonExistingMeeting() {
         assertNull(manager.getMeeting(99));
     }
+    
+    /**
+    * Tests if adding unknown contacts to past meetings throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddUnknownContactToPastMeetingException() {
+        Set<Contact> unknown = manager.getContacts("c1");
+        unknown.add(new ContactImpl(99, "unknown"));
+        manager.addNewPastMeeting(unknown, new GregorianCalendar(2014, 02, 18), "");
+    }
 }
