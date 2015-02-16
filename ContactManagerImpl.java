@@ -27,6 +27,10 @@ public class ContactManagerImpl implements ContactManager {
      * of if any contact is unknown / non-existent
      */
     public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+        Calendar now = new GregorianCalendar();
+        if (date.compareTo(now) <= 0 ) {
+            throw new IllegalArgumentException("Date is in the past!");
+        }
         return -1;
     }
 
