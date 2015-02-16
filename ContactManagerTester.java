@@ -164,7 +164,7 @@ public class ContactManagerTester{
     * Tests if adding unknown contacts to future meetings throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
-    public void testAddingUnknownContactException() {
+    public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
         manager.addFutureMeeting(unknown, new GregorianCalendar(2015, 02, 18));
