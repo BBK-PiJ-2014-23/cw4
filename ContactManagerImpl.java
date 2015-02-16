@@ -147,6 +147,9 @@ public class ContactManagerImpl implements ContactManager {
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
         }
+        if (contacts.size() == 0) {
+            throw new IllegalArgumentException("Contact list is empty!");
+        }
     }
 
     /**
