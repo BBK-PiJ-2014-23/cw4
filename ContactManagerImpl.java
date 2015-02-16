@@ -144,11 +144,14 @@ public class ContactManagerImpl implements ContactManager {
      * @throws NullPointerException if any of the arguments is null
      */
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-        if (hasUnknownContact(contacts)) {
-            throw new IllegalArgumentException("Unknown contact(s) present!");
+        if (contacts == null || date == null || text == null) {
+            throw new NullPointerException("Illegal arguement(s)!");
         }
         if (contacts.size() == 0) {
             throw new IllegalArgumentException("Contact list is empty!");
+        }
+        if (hasUnknownContact(contacts)) {
+            throw new IllegalArgumentException("Unknown contact(s) present!");
         }
     }
 
