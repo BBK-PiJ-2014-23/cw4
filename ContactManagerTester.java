@@ -132,7 +132,7 @@ public class ContactManagerTester{
     public void testGettingContactNegativeIdException() {
         manager.getContacts(1, 2, -1);
     }
-    
+
     /**
      * Tests illegal argument exception when retrieving contacts with non-existing IDs.
      */
@@ -140,7 +140,7 @@ public class ContactManagerTester{
     public void testGettingContactNonExistingIdException() {
         manager.getContacts(1, 2, 66);
     }
-    
+
     /**
      * Tests if contacts can be retrieved via IDs.
      */
@@ -151,7 +151,7 @@ public class ContactManagerTester{
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
     }
-    
+
     /**
      * Tests if using a past date for future meetings throws an exception.
      */
@@ -159,7 +159,7 @@ public class ContactManagerTester{
     public void testAddingFutureMeetingTimeException() {
         manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18));
     }
-    
+
     /**
      * Tests if adding unknown contacts to future meetings throws an exception.
      */
@@ -168,5 +168,18 @@ public class ContactManagerTester{
         Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
         manager.addFutureMeeting(unknown, new GregorianCalendar(2015, 02, 18));
+    }
+
+    /**
+     * 
+     */
+    @Test
+    public void testAddingAndGettingMeetings() {
+        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2015, 02, 18));
+        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2016, 02, 18));
+        assertEquals(1, manager.getMeeting(1).getId());
+        assertEquals(2, manager.getMeeting(2).getId());
+        assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(1).getDate());
+        assertEquals(new GregorianCalendar(2016, 02, 18), manager.getMeeting(2).getDate());
     }
 }
