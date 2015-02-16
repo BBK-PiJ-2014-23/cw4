@@ -8,6 +8,8 @@ import java.util.*;
 public class ContactManagerImpl implements ContactManager {
     private Set<Contact> allContacts;
     private int lastContactId;
+    private List<Meeting> allMeetings;
+    private int lastMeetingId;
 
     /**
      * Create a new contact manager.
@@ -15,6 +17,8 @@ public class ContactManagerImpl implements ContactManager {
     public ContactManagerImpl() {
         allContacts = new HashSet<Contact>();
         lastContactId = 0;
+        allMeetings = new ArrayList<Meeting>();
+        lastMeetingId = 0;
     }
 
     /**
