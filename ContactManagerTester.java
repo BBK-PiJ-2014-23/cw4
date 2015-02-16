@@ -209,4 +209,28 @@ public class ContactManagerTester{
         Set<Contact> empty = new HashSet<Contact>();
         manager.addNewPastMeeting(empty, new GregorianCalendar(2014, 02, 18), "");
     }
+    
+    /**
+    * Tests if passing 'null' as contacts to past meetings throws an exception.
+    */
+    @Test(expected = NullPointerException.class)
+    public void testNullForContactListToPastMeetingException() {
+        manager.addNewPastMeeting(null, new GregorianCalendar(2014, 02, 18), "");
+    }
+    
+    /**
+    * Tests if passing 'null' as date to past meetings throws an exception.
+    */
+    @Test(expected = NullPointerException.class)
+    public void testNullForDateToPastMeetingException() {
+        manager.addNewPastMeeting(manager.getContacts(""), null, "");
+    }
+    
+    /**
+    * Tests if passing 'null' as text mesage to past meetings throws an exception.
+    */
+    @Test(expected = NullPointerException.class)
+    public void testNullForTextToPastMeetingException() {
+        manager.addNewPastMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18), null);
+    }
 }
