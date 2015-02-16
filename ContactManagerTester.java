@@ -223,7 +223,7 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForDateToPastMeetingException() {
-        manager.addNewPastMeeting(manager.getContacts(""), null, "");
+        manager.addNewPastMeeting(manager.getContacts("c1"), null, "");
     }
     
     /**
@@ -231,6 +231,6 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
-        manager.addNewPastMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18), null);
+        manager.addNewPastMeeting(manager.getContacts("c1"), new GregorianCalendar(2014, 02, 18), null);
     }
 }
