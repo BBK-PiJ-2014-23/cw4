@@ -31,6 +31,11 @@ public class ContactManagerImpl implements ContactManager {
         if (date.compareTo(now) <= 0 ) {
             throw new IllegalArgumentException("Date is in the past!");
         }
+        for (Contact member : contacts) {
+            if (!this.contacts.contains(member)) {
+                throw new IllegalArgumentException("Unknown contact(s) present!");
+            }
+        }
         return -1;
     }
 
