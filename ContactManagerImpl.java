@@ -6,14 +6,14 @@ import java.util.*;
  * A class to manage your contacts and meetings.
  */
 public class ContactManagerImpl implements ContactManager {
-    private Set<Contact> contacts;
+    private Set<Contact> allContacts;
     private int lastContactId;
 
     /**
      * Create a new contact manager.
      */
     public ContactManagerImpl() {
-        contacts = new HashSet<Contact>();
+        allContacts = new HashSet<Contact>();
         lastContactId = 0;
     }
 
@@ -32,7 +32,7 @@ public class ContactManagerImpl implements ContactManager {
             throw new IllegalArgumentException("Date is in the past!");
         }
         for (Contact member : contacts) {
-            if (!this.contacts.contains(member)) {
+            if (!allContacts.contains(member)) {
                 throw new IllegalArgumentException("Unknown contact(s) present!");
             }
         }
@@ -162,7 +162,7 @@ public class ContactManagerImpl implements ContactManager {
         lastContactId++;
         Contact newGuy = new ContactImpl(lastContactId, name);
         newGuy.addNotes(notes);
-        contacts.add(newGuy);
+        allContacts.add(newGuy);
     }
 
     /**
@@ -178,7 +178,7 @@ public class ContactManagerImpl implements ContactManager {
             if (ids[i] <= 0 || ids[i] > lastContactId) {
                 throw new IllegalArgumentException("ID is not valid");
             }
-            for (Contact member : contacts) {
+            for (Contact member : allContacts) {
                 if (member.getId() == ids[i]) {
                     searched.add(member);
                 }
@@ -201,7 +201,7 @@ public class ContactManagerImpl implements ContactManager {
         Set<Contact> searched = new HashSet<Contact>();
         // Empty name must be excluded, otherwise all contacts are returned.
         if (name.length() > 0) {
-            for (Contact member : contacts) {
+            for (Contact member : allContacts) {
                 if (member.getName().contains(name)) {
                     searched.add(member);
                 }
