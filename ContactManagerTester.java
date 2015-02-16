@@ -151,4 +151,12 @@ public class ContactManagerTester{
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
     }
+    
+    /**
+     * Tests if using a past date for future meetings throws an exception.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddingFutureMeetingTimeException() {
+        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18));
+    }
 }
