@@ -182,4 +182,12 @@ public class ContactManagerTester{
         assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(1).getDate());
         assertEquals(new GregorianCalendar(2016, 02, 18), manager.getMeeting(2).getDate());
     }
+    
+    /**
+     * Tests if null is returned when getting a non-existing meeting.
+     */
+    @Test
+    public void testGettingNonExistingMeeting() {
+        assertNull(manager.getMeeting(99));
+    }
 }
