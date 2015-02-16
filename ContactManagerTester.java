@@ -38,16 +38,16 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests nullpointer exception when trying to create a contact with name 'null'.
-     */
+    * Tests nullpointer exception when trying to create a contact with name 'null'.
+    */
     @Test(expected = NullPointerException.class)
     public void testNewContactNameException() {
         manager.addNewContact(null, "notes");
     }
 
     /**
-     * Tests nullpointer exception when trying to create a contact with notes 'null'.
-     */
+    * Tests nullpointer exception when trying to create a contact with notes 'null'.
+    */
     @Test(expected = NullPointerException.class)
     public void testNewContactNotesException() {
         manager.addNewContact("name", null);
@@ -126,16 +126,16 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests illegal argument exception when retrieving contacts with a negative ID.
-     */
+    * Tests illegal argument exception when retrieving contacts with a negative ID.
+    */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNegativeIdException() {
         manager.getContacts(1, 2, -1);
     }
 
     /**
-     * Tests illegal argument exception when retrieving contacts with non-existing IDs.
-     */
+    * Tests illegal argument exception when retrieving contacts with non-existing IDs.
+    */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNonExistingIdException() {
         manager.getContacts(1, 2, 66);
@@ -153,16 +153,16 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests if using a past date for future meetings throws an exception.
-     */
+    * Tests if using a past date for future meetings throws an exception.
+    */
     @Test(expected = IllegalArgumentException.class)
     public void testAddingFutureMeetingTimeException() {
         manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18));
     }
 
     /**
-     * Tests if adding unknown contacts to future meetings throws an exception.
-     */
+    * Tests if adding unknown contacts to future meetings throws an exception.
+    */
     @Test(expected = IllegalArgumentException.class)
     public void testAddingUnknownContactException() {
         Set<Contact> unknown = manager.getContacts("c1");
@@ -182,7 +182,7 @@ public class ContactManagerTester{
         assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(1).getDate());
         assertEquals(new GregorianCalendar(2016, 02, 18), manager.getMeeting(2).getDate());
     }
-    
+
     /**
      * Tests if null is returned when getting a non-existing meeting.
      */
