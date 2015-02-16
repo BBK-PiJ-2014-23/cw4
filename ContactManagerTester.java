@@ -165,7 +165,7 @@ public class ContactManagerTester{
      */
     @Test(expected = IllegalArgumentException.class)
     public void testAddingUnknownContactException() {
-        Set<Contact> unknown = manager.getContacts("");
+        Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
         manager.addFutureMeeting(unknown, new GregorianCalendar(2015, 02, 18));
     }
