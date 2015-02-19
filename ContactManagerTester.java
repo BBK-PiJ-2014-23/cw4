@@ -211,9 +211,8 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
-        Set<Contact> unknown = manager.getContacts("c1");
-        unknown.add(new ContactImpl(99, "unknown"));
-        manager.addNewPastMeeting(unknown, past, "");
+        allContacts.add(new ContactImpl(99, "unknown"));
+        manager.addNewPastMeeting(allContacts, past, "");
     }
     
     /**
