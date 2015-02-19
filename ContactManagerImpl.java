@@ -78,7 +78,7 @@ public class ContactManagerImpl implements ContactManager {
                 }
             }
         }
-        return new FutureMeetingImpl(-1, new HashSet<Contact>(), new GregorianCalendar(0000, 00, 00));
+        return null;
     }
 
     /**
