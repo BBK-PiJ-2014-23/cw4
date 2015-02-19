@@ -158,7 +158,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddingFutureMeetingTimeException() {
-        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2014, 02, 18));
+        manager.addFutureMeeting(allContacts, new GregorianCalendar(2014, 02, 18));
     }
 
     /**
