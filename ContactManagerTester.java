@@ -280,4 +280,14 @@ public class ContactManagerTester{
     public void testGetNonExistentPastMeeting() {
         assertNull(manager.getPastMeeting(99));
     }
+    
+    /**
+    * Tests if getting a past meeting can be retrieved via ID.
+    */
+    @Test
+    public void testGetPastMeeting() {
+        manager.addFutureMeeting(allContacts, futureDate);
+        manager.addNewPastMeeting(allContacts, pastDate, "");
+        assertEquals(new PastMeetingImpl(2, allContacts, pastDate, ""), manager.getPastMeeting(2));
+    }
 }
