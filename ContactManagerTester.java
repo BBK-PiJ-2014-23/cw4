@@ -40,7 +40,8 @@ public class ContactManagerTester{
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
-
+        
+        // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
     }
