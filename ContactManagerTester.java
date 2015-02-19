@@ -262,4 +262,14 @@ public class ContactManagerTester{
         assertEquals(pastDate, manager.getMeeting(1).getDate());
         assertEquals(pastDate2, manager.getMeeting(2).getDate());
     }
+    
+    /**
+    * Tests if getting a past meeting that lies in the future throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPastMeetingException() {
+        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addFutureMeeting(allContacts, futureDate);
+        manager.getPastMeeting(2);
+    }
 }
