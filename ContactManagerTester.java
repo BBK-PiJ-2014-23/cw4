@@ -17,6 +17,7 @@ public class ContactManagerTester{
     Calendar pastDate;
     Calendar futureDate;
     final static int INVALID_ID = 99;
+    final static int PAST_MEETING_ID = 1;
     /**
      * Sets up the test fixture.
      *
@@ -258,9 +259,9 @@ public class ContactManagerTester{
         Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
         pastDate2.add(1, -2);
         manager.addNewPastMeeting(allContacts, pastDate2, "");
-        assertEquals(1, manager.getMeeting(1).getId());
+        assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
         assertEquals(3, manager.getMeeting(3).getId());
-        assertEquals(pastDate, manager.getMeeting(1).getDate());
+        assertEquals(pastDate, manager.getMeeting(PAST_MEETING_ID).getDate());
         assertEquals(pastDate2, manager.getMeeting(3).getDate());
     }
     
@@ -285,7 +286,7 @@ public class ContactManagerTester{
     */
     @Test
     public void testGetPastMeeting() {
-        assertEquals(pastDate, manager.getPastMeeting(1).getDate());
+        assertEquals(pastDate, manager.getPastMeeting(PAST_MEETING_ID).getDate());
     }
     
     /**
@@ -293,7 +294,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingException() {
-        manager.getFutureMeeting(1);
+        manager.getFutureMeeting(PAST_MEETING_ID);
     }
     
     /**
