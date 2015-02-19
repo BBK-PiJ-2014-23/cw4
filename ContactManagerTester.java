@@ -29,8 +29,11 @@ public class ContactManagerTester{
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         allContacts = manager.getContacts(1, 2, 3);
-        past = new GregorianCalendar(2014, 02, 18);
-        future = new GregorianCalendar(2016, 02, 18);
+        // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
+        past = new GregorianCalendar();
+        past.add(1, -1);
+        future = new GregorianCalendar();
+        future.add(1, 1);
     }
 
     /**
@@ -182,11 +185,14 @@ public class ContactManagerTester{
     @Test
     public void testAddingAndGettingFutureMeetings() {
         manager.addFutureMeeting(allContacts, future);
-        manager.addFutureMeeting(allContacts, new GregorianCalendar(2015, 02, 18));
+        // Date assignments are dynamic to ensure tests run in the future
+        Calendar future2 = new GregorianCalendar();
+        future2.add(1, 2);
+        manager.addFutureMeeting(allContacts, future2);
         assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
         assertEquals(future, manager.getMeeting(1).getDate());
-        assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(2).getDate());
+        assertEquals(future2, manager.getMeeting(2).getDate());
     }
 
     /**
@@ -246,10 +252,13 @@ public class ContactManagerTester{
     @Test
     public void testAddingAndGettingPastMeetings() {
         manager.addNewPastMeeting(allContacts, past, "");
-        manager.addNewPastMeeting(allContacts, new GregorianCalendar(2013, 02, 18), "");
+        // Date assignments are dynamic to ensure tests run in the future
+        Calendar past2 = new GregorianCalendar(2013, 02, 18);
+        past2.add(1, -2);
+        manager.addNewPastMeeting(allContacts, past2, "");
         assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
         assertEquals(past, manager.getMeeting(1).getDate());
-        assertEquals(new GregorianCalendar(2013, 02, 18), manager.getMeeting(2).getDate());
+        assertEquals(past2, manager.getMeeting(2).getDate());
     }
 }
