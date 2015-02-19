@@ -56,9 +56,9 @@ public class ContactManagerImpl implements ContactManager {
                 if (meeting.getClass() == FutureMeetingImpl.class) {
                     throw new IllegalArgumentException("Meeting with that ID happening in the future");
                 }
-            } 
+            }
         }
-        return new PastMeetingImpl(-1, new HashSet<Contact>(), new GregorianCalendar(0000, 00, 00),"test");
+        return null;
     }
 
     /**
