@@ -287,7 +287,7 @@ public class ContactManagerTester{
     @Test
     public void testGetPastMeeting() {
         manager.addFutureMeeting(allContacts, futureDate);
-        manager.addNewPastMeeting(allContacts, pastDate, "");
-        assertEquals(new PastMeetingImpl(2, allContacts, pastDate, ""), manager.getPastMeeting(2));
+        manager.addNewPastMeeting(allContacts, pastDate, "Desired meeting");   
+        assertEquals("Desired meeting", manager.getPastMeeting(2).getNotes());
     }
 }
