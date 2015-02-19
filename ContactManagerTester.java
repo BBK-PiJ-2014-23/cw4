@@ -15,12 +15,12 @@ public class ContactManagerTester{
     final static int INVALID_ID = 99;
     final static int PAST_MEETING_ID = 1;
     final static int FUTURE_MEETING_ID = 2;
-    
+
     ContactManager manager;
     Set<Contact> allContacts;
     Calendar pastDate;
     Calendar futureDate;
-    
+
     /**
      * Sets up the test fixture.
      *
@@ -29,18 +29,18 @@ public class ContactManagerTester{
     @Before
     public void setUp() {
         manager = new ContactManagerImpl();
-        
+
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         allContacts = manager.getContacts(1, 2, 3);
-        
+
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         pastDate = new GregorianCalendar();
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
-        
+
         manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
     }
@@ -89,7 +89,7 @@ public class ContactManagerTester{
     public void testGettingContactByNameFromEmptyList() {
         Set<Contact> empty1 = manager.getContacts("");
         Set<Contact> empty2 = manager.getContacts("Tom");
-        
+
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
@@ -113,7 +113,7 @@ public class ContactManagerTester{
     @Test
     public void testAddingAndGettingSingleContactByName() {
         Set<Contact> single = manager.getContacts("c2");
-        
+
         assertEquals(1, single.size());
         assertTrue(hasContact(single, "c2"));
     }
@@ -142,7 +142,7 @@ public class ContactManagerTester{
     @Test
     public void testGettingSimilarilyNamedContacts() {
         Set<Contact> several = manager.getContacts("c");
-        
+
         assertEquals(3, several.size());
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
@@ -171,7 +171,7 @@ public class ContactManagerTester{
     @Test
     public void testGettingContactsViaID() {
         Set<Contact> several = manager.getContacts(2, 1);
-        
+
         assertEquals(2, several.size());
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
@@ -191,7 +191,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
-        
+
         unknown.add(new ContactImpl(3, "unknown"));
         manager.addFutureMeeting(unknown, futureDate);
     }
@@ -204,11 +204,9 @@ public class ContactManagerTester{
         // Date assignments are dynamic to ensure tests run in the future
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 2);
-        
+
         manager.addFutureMeeting(allContacts, futureDate2);
-        
-        assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
-        assertEquals(3, manager.getMeeting(3).getId());
+
         assertEquals(futureDate, manager.getMeeting(FUTURE_MEETING_ID).getDate());
         assertEquals(futureDate2, manager.getMeeting(3).getDate());
     }
@@ -220,7 +218,7 @@ public class ContactManagerTester{
     public void testGettingNonExistingMeeting() {
         assertNull(manager.getMeeting(INVALID_ID));
     }
-    
+
     /**
     * Tests if adding unknown contacts to new past meetings throws an exception.
     */
@@ -229,7 +227,7 @@ public class ContactManagerTester{
         allContacts.add(new ContactImpl(99, "unknown"));
         manager.addNewPastMeeting(allContacts, pastDate, "");
     }
-    
+
     /**
     * Tests if adding an empty contacts list to new past meetings throws an exception.
     */
@@ -238,7 +236,7 @@ public class ContactManagerTester{
         Set<Contact> empty = new HashSet<Contact>();
         manager.addNewPastMeeting(empty, pastDate, "");
     }
-    
+
     /**
     * Tests if passing 'null' as contacts to past new meetings throws an exception.
     */
@@ -246,7 +244,7 @@ public class ContactManagerTester{
     public void testNullForContactListToPastMeetingException() {
         manager.addNewPastMeeting(null, pastDate, "");
     }
-    
+
     /**
     * Tests if passing 'null' as date to new past meetings throws an exception.
     */
@@ -254,7 +252,7 @@ public class ContactManagerTester{
     public void testNullForDateToPastMeetingException() {
         manager.addNewPastMeeting(allContacts, null, "");
     }
-    
+
     /**
     * Tests if passing 'null' as text mesage to new past meetings throws an exception.
     */
@@ -262,7 +260,7 @@ public class ContactManagerTester{
     public void testNullForTextToPastMeetingException() {
         manager.addNewPastMeeting(allContacts, pastDate, null);
     }
-    
+
     /**
      * Tests if new past meetings can be added and retrieved.
      */
@@ -271,15 +269,13 @@ public class ContactManagerTester{
         // Date assignments are dynamic to ensure tests run in the future
         Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
         pastDate2.add(1, -2);
-        
+
         manager.addNewPastMeeting(allContacts, pastDate2, "");
-        
-        assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
-        assertEquals(3, manager.getMeeting(3).getId());
+
         assertEquals(pastDate, manager.getMeeting(PAST_MEETING_ID).getDate());
         assertEquals(pastDate2, manager.getMeeting(3).getDate());
     }
-    
+
     /**
     * Tests if getting a past meeting that lies in the future throws an exception.
     */
@@ -287,7 +283,7 @@ public class ContactManagerTester{
     public void testGetPastMeetingException() {
         manager.getPastMeeting(FUTURE_MEETING_ID);
     }
-    
+
     /**
      * Tests if getting a non-existing past meeting return null.
      */
@@ -295,15 +291,15 @@ public class ContactManagerTester{
     public void testGetNonExistentPastMeeting() {
         assertNull(manager.getPastMeeting(INVALID_ID));
     }
-    
+
     /**
-    * Tests if getting a past meeting can be retrieved via ID.
-    */
+     * Tests if getting a past meeting can be retrieved via ID.
+     */
     @Test
     public void testGetPastMeeting() {
         assertEquals(pastDate, manager.getPastMeeting(PAST_MEETING_ID).getDate());
     }
-    
+
     /**
     * Tests if getting a future meeting that lies in the past throws an exception.
     */
@@ -311,7 +307,7 @@ public class ContactManagerTester{
     public void testGetFutureMeetingException() {
         manager.getFutureMeeting(PAST_MEETING_ID);
     }
-    
+
     /**
      * Tests if getting a non-existing future meeting return null.
      */
@@ -319,12 +315,21 @@ public class ContactManagerTester{
     public void testGetNonExistentFutureMeeting() {
         assertNull(manager.getFutureMeeting(INVALID_ID));
     }
-    
+
     /**
-    * Tests if getting a future meeting can be retrieved via ID.
-    */
+     * Tests if getting a future meeting can be retrieved via ID.
+     */
     @Test
     public void testGetFutureMeeting() {
         assertEquals(futureDate, manager.getFutureMeeting(FUTURE_MEETING_ID).getDate());
+    }
+
+    /**
+     * Tests if meeting IDs are calculated properly.
+     */
+    @Test
+    public void testMeetingIds() {
+        assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
+        assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
     }
 }
