@@ -34,6 +34,7 @@ public class ContactManagerTester{
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
         manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addFutureMeeting(allContacts, futureDate);
     }
 
     /**
@@ -187,7 +188,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingFutureMeetings() {
-        manager.addFutureMeeting(allContacts, futureDate);
         // Date assignments are dynamic to ensure tests run in the future
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 2);
@@ -258,9 +258,9 @@ public class ContactManagerTester{
         pastDate2.add(1, -2);
         manager.addNewPastMeeting(allContacts, pastDate2, "");
         assertEquals(1, manager.getMeeting(1).getId());
-        assertEquals(2, manager.getMeeting(2).getId());
+        assertEquals(3, manager.getMeeting(3).getId());
         assertEquals(pastDate, manager.getMeeting(1).getDate());
-        assertEquals(pastDate2, manager.getMeeting(2).getDate());
+        assertEquals(pastDate2, manager.getMeeting(3).getDate());
     }
     
     /**
@@ -268,7 +268,6 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingException() {
-        manager.addFutureMeeting(allContacts, futureDate);
         manager.getPastMeeting(2);
     }
     
@@ -285,7 +284,6 @@ public class ContactManagerTester{
     */
     @Test
     public void testGetPastMeeting() {
-        manager.addFutureMeeting(allContacts, futureDate);  
         assertEquals(pastDate, manager.getPastMeeting(1).getDate());
     }
     
@@ -294,7 +292,6 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingException() {
-        manager.addFutureMeeting(allContacts, futureDate);
         manager.getFutureMeeting(1);
     }
     
@@ -311,7 +308,6 @@ public class ContactManagerTester{
     */
     @Test
     public void testGetFutureMeeting() {
-        manager.addFutureMeeting(allContacts, futureDate);
         assertEquals(futureDate, manager.getFutureMeeting(2).getDate());
     }
 }
