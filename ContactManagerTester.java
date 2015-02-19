@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class ContactManagerTester{
     ContactManager manager;
-
+    Set<Contact> allContacts;
     /**
      * Sets up the test fixture.
      *
@@ -25,6 +25,7 @@ public class ContactManagerTester{
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
+        allContacts = manager.getContacts(1, 2, 3);
     }
 
     /**
@@ -175,8 +176,8 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingMeetings() {
-        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2015, 02, 18));
-        manager.addFutureMeeting(manager.getContacts(""), new GregorianCalendar(2016, 02, 18));
+        manager.addFutureMeeting(allContacts, new GregorianCalendar(2015, 02, 18));
+        manager.addFutureMeeting(allContacts, new GregorianCalendar(2016, 02, 18));
         assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
         assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(1).getDate());
@@ -223,7 +224,7 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForDateToPastMeetingException() {
-        manager.addNewPastMeeting(manager.getContacts("c1"), null, "");
+        manager.addNewPastMeeting(allContacts, null, "");
     }
     
     /**
@@ -231,6 +232,6 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
-        manager.addNewPastMeeting(manager.getContacts("c1"), new GregorianCalendar(2014, 02, 18), null);
+        manager.addNewPastMeeting(allContacts, new GregorianCalendar(2014, 02, 18), null);
     }
 }
