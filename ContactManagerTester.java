@@ -14,6 +14,9 @@ import java.util.*;
 public class ContactManagerTester{
     ContactManager manager;
     Set<Contact> allContacts;
+    Calendar past;
+    Calendar future;
+    
     /**
      * Sets up the test fixture.
      *
@@ -26,6 +29,8 @@ public class ContactManagerTester{
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         allContacts = manager.getContacts(1, 2, 3);
+        past = new GregorianCalendar(2014, 02, 18);
+        future = new GregorianCalendar(2016, 02, 18);
     }
 
     /**
@@ -158,7 +163,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddingFutureMeetingTimeException() {
-        manager.addFutureMeeting(allContacts, new GregorianCalendar(2014, 02, 18));
+        manager.addFutureMeeting(allContacts, past);
     }
 
     /**
@@ -168,7 +173,7 @@ public class ContactManagerTester{
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
-        manager.addFutureMeeting(unknown, new GregorianCalendar(2015, 02, 18));
+        manager.addFutureMeeting(unknown, future);
     }
 
     /**
@@ -176,12 +181,12 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingMeetings() {
+        manager.addFutureMeeting(allContacts, future);
         manager.addFutureMeeting(allContacts, new GregorianCalendar(2015, 02, 18));
-        manager.addFutureMeeting(allContacts, new GregorianCalendar(2016, 02, 18));
         assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
-        assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(1).getDate());
-        assertEquals(new GregorianCalendar(2016, 02, 18), manager.getMeeting(2).getDate());
+        assertEquals(future, manager.getMeeting(1).getDate());
+        assertEquals(new GregorianCalendar(2015, 02, 18), manager.getMeeting(2).getDate());
     }
 
     /**
@@ -199,7 +204,7 @@ public class ContactManagerTester{
     public void testAddUnknownContactToPastMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
-        manager.addNewPastMeeting(unknown, new GregorianCalendar(2014, 02, 18), "");
+        manager.addNewPastMeeting(unknown, past, "");
     }
     
     /**
@@ -208,7 +213,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddEmptyContactListToPastMeetingException() {
         Set<Contact> empty = new HashSet<Contact>();
-        manager.addNewPastMeeting(empty, new GregorianCalendar(2014, 02, 18), "");
+        manager.addNewPastMeeting(empty, past, "");
     }
     
     /**
@@ -216,7 +221,7 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForContactListToPastMeetingException() {
-        manager.addNewPastMeeting(null, new GregorianCalendar(2014, 02, 18), "");
+        manager.addNewPastMeeting(null, past, "");
     }
     
     /**
@@ -232,6 +237,6 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
-        manager.addNewPastMeeting(allContacts, new GregorianCalendar(2014, 02, 18), null);
+        manager.addNewPastMeeting(allContacts, past, null);
     }
 }
