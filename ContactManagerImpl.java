@@ -153,6 +153,8 @@ public class ContactManagerImpl implements ContactManager {
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
         }
+        lastMeetingId++;
+        allMeetings.add(new PastMeetingImpl(lastMeetingId, contacts, date, text));
     }
 
     /**
