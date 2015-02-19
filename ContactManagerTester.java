@@ -290,4 +290,32 @@ public class ContactManagerTester{
         manager.addNewPastMeeting(allContacts, pastDate, "Desired meeting");   
         assertEquals("Desired meeting", manager.getPastMeeting(2).getNotes());
     }
+    
+    /**
+    * Tests if getting a future meeting that lies in the past throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetFutureMeetingException() {
+        manager.addFutureMeeting(allContacts, futureDate);
+        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.getFutureMeeting(2);
+    }
+    
+    /**
+     * Tests if getting a non-existing future meeting return null.
+     */
+    @Test
+    public void testGetNonExistentFutureMeeting() {
+        assertNull(manager.getFutureMeeting(99));
+    }
+    
+    /**
+    * Tests if getting a future meeting can be retrieved via ID.
+    */
+    @Test
+    public void testGetFutureMeeting() {
+        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addFutureMeeting(allContacts, futureDate);
+        assertEquals(futureDate, manager.getFutureMeeting(2).getDate());
+    }
 }
