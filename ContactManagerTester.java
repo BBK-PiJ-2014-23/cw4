@@ -44,6 +44,9 @@ public class ContactManagerTester{
     @After
     public void tearDown() {
         manager = null;
+        allContacts = null;
+        past = null;
+        future = null;
     }
 
     /**
