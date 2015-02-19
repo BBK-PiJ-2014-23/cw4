@@ -239,4 +239,17 @@ public class ContactManagerTester{
     public void testNullForTextToPastMeetingException() {
         manager.addNewPastMeeting(allContacts, past, null);
     }
+    
+    /**
+     * Tests if new past meetings can be added and retrieved.
+     */
+    @Test
+    public void testAddingAndGettingPastMeetings() {
+        manager.addNewPastMeeting(allContacts, past, "");
+        manager.addNewPastMeeting(allContacts, new GregorianCalendar(2013, 02, 18), "");
+        assertEquals(1, manager.getMeeting(1).getId());
+        assertEquals(2, manager.getMeeting(2).getId());
+        assertEquals(past, manager.getMeeting(1).getDate());
+        assertEquals(new GregorianCalendar(2013, 02, 18), manager.getMeeting(2).getDate());
+    }
 }
