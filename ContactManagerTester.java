@@ -16,6 +16,7 @@ public class ContactManagerTester{
     Set<Contact> allContacts;
     Calendar pastDate;
     Calendar futureDate;
+    final static int INVALID_ID = 99;
     /**
      * Sets up the test fixture.
      *
@@ -151,7 +152,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNonExistingIdException() {
-        manager.getContacts(1, 2, 66);
+        manager.getContacts(1, 2, INVALID_ID);
     }
 
     /**
@@ -179,7 +180,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
-        unknown.add(new ContactImpl(99, "unknown"));
+        unknown.add(new ContactImpl(3, "unknown"));
         manager.addFutureMeeting(unknown, futureDate);
     }
 
@@ -203,7 +204,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingNonExistingMeeting() {
-        assertNull(manager.getMeeting(99));
+        assertNull(manager.getMeeting(INVALID_ID));
     }
     
     /**
@@ -276,7 +277,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetNonExistentPastMeeting() {
-        assertNull(manager.getPastMeeting(99));
+        assertNull(manager.getPastMeeting(INVALID_ID));
     }
     
     /**
@@ -300,7 +301,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetNonExistentFutureMeeting() {
-        assertNull(manager.getFutureMeeting(99));
+        assertNull(manager.getFutureMeeting(INVALID_ID));
     }
     
     /**
