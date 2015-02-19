@@ -12,13 +12,14 @@ import java.util.*;
  * @version 1.0
  */
 public class ContactManagerTester{
+    final static int INVALID_ID = 99;
+    final static int PAST_MEETING_ID = 1;
+    final static int FUTURE_MEETING_ID = 2;
+    
     ContactManager manager;
     Set<Contact> allContacts;
     Calendar pastDate;
     Calendar futureDate;
-    final static int INVALID_ID = 99;
-    final static int PAST_MEETING_ID = 1;
-    final static int FUTURE_MEETING_ID = 2;
     
     /**
      * Sets up the test fixture.
@@ -28,15 +29,18 @@ public class ContactManagerTester{
     @Before
     public void setUp() {
         manager = new ContactManagerImpl();
+        
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         allContacts = manager.getContacts(1, 2, 3);
+        
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         pastDate = new GregorianCalendar();
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
+        
         manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
     }
@@ -85,6 +89,7 @@ public class ContactManagerTester{
     public void testGettingContactByNameFromEmptyList() {
         Set<Contact> empty1 = manager.getContacts("");
         Set<Contact> empty2 = manager.getContacts("Tom");
+        
         assertTrue(empty1.isEmpty());
         assertTrue(empty2.isEmpty());
     }
@@ -108,6 +113,7 @@ public class ContactManagerTester{
     @Test
     public void testAddingAndGettingSingleContactByName() {
         Set<Contact> single = manager.getContacts("c2");
+        
         assertEquals(1, single.size());
         assertTrue(hasContact(single, "c2"));
     }
@@ -136,6 +142,7 @@ public class ContactManagerTester{
     @Test
     public void testGettingSimilarilyNamedContacts() {
         Set<Contact> several = manager.getContacts("c");
+        
         assertEquals(3, several.size());
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
@@ -164,6 +171,7 @@ public class ContactManagerTester{
     @Test
     public void testGettingContactsViaID() {
         Set<Contact> several = manager.getContacts(2, 1);
+        
         assertEquals(2, several.size());
         assertTrue(hasContact(several, "c1"));
         assertTrue(hasContact(several, "c2"));
@@ -183,6 +191,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
+        
         unknown.add(new ContactImpl(3, "unknown"));
         manager.addFutureMeeting(unknown, futureDate);
     }
@@ -195,7 +204,9 @@ public class ContactManagerTester{
         // Date assignments are dynamic to ensure tests run in the future
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 2);
+        
         manager.addFutureMeeting(allContacts, futureDate2);
+        
         assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
         assertEquals(3, manager.getMeeting(3).getId());
         assertEquals(futureDate, manager.getMeeting(FUTURE_MEETING_ID).getDate());
@@ -260,7 +271,9 @@ public class ContactManagerTester{
         // Date assignments are dynamic to ensure tests run in the future
         Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
         pastDate2.add(1, -2);
+        
         manager.addNewPastMeeting(allContacts, pastDate2, "");
+        
         assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
         assertEquals(3, manager.getMeeting(3).getId());
         assertEquals(pastDate, manager.getMeeting(PAST_MEETING_ID).getDate());
