@@ -113,7 +113,7 @@ public class ContactManagerTester{
      * Tests if a uniquely named contact can be retrieved.
      */
     @Test
-    public void testAddingAndGettingSingleContactByName() {
+    public void testGettingSingleContactByName() {
         Set<Contact> single = manager.getContacts("c2");
 
         assertEquals(1, single.size());
@@ -183,7 +183,7 @@ public class ContactManagerTester{
     * Tests if using a past date for future meetings throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
-    public void testAddingFutureMeetingTimeException() {
+    public void testAddFutureMeetingTimeException() {
         manager.addFutureMeeting(allContacts, pastDate);
     }
 
@@ -202,7 +202,7 @@ public class ContactManagerTester{
      * Tests if future meetings can be added and retrieved.
      */
     @Test
-    public void testAddingAndGettingFutureMeetings() {
+    public void testAddAndGetFutureMeetings() {
         // Date assignments are dynamic to ensure tests run in the future
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 2);
@@ -267,7 +267,7 @@ public class ContactManagerTester{
      * Tests if new past meetings can be added and retrieved.
      */
     @Test
-    public void testAddingAndGettingPastMeetings() {
+    public void testAddAndGetPastMeetings() {
         // Date assignments are dynamic to ensure tests run in the future
         Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
         pastDate2.add(1, -2);
