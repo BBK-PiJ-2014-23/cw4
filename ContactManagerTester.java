@@ -33,6 +33,7 @@ public class ContactManagerTester{
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
+        manager.addNewPastMeeting(allContacts, pastDate, "");
     }
 
     /**
@@ -191,10 +192,10 @@ public class ContactManagerTester{
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 2);
         manager.addFutureMeeting(allContacts, futureDate2);
-        assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
-        assertEquals(futureDate, manager.getMeeting(1).getDate());
-        assertEquals(futureDate2, manager.getMeeting(2).getDate());
+        assertEquals(3, manager.getMeeting(3).getId());
+        assertEquals(futureDate, manager.getMeeting(2).getDate());
+        assertEquals(futureDate2, manager.getMeeting(3).getDate());
     }
 
     /**
@@ -252,7 +253,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingPastMeetings() {
-        manager.addNewPastMeeting(allContacts, pastDate, "");
         // Date assignments are dynamic to ensure tests run in the future
         Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
         pastDate2.add(1, -2);
@@ -268,7 +268,6 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingException() {
-        manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
         manager.getPastMeeting(2);
     }
@@ -286,9 +285,8 @@ public class ContactManagerTester{
     */
     @Test
     public void testGetPastMeeting() {
-        manager.addFutureMeeting(allContacts, futureDate);
-        manager.addNewPastMeeting(allContacts, pastDate, "Desired meeting");   
-        assertEquals("Desired meeting", manager.getPastMeeting(2).getNotes());
+        manager.addFutureMeeting(allContacts, futureDate);  
+        assertEquals(pastDate, manager.getPastMeeting(1).getDate());
     }
     
     /**
@@ -297,8 +295,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingException() {
         manager.addFutureMeeting(allContacts, futureDate);
-        manager.addNewPastMeeting(allContacts, pastDate, "");
-        manager.getFutureMeeting(2);
+        manager.getFutureMeeting(1);
     }
     
     /**
@@ -314,7 +311,6 @@ public class ContactManagerTester{
     */
     @Test
     public void testGetFutureMeeting() {
-        manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
         assertEquals(futureDate, manager.getFutureMeeting(2).getDate());
     }
