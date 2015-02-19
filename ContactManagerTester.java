@@ -15,8 +15,7 @@ public class ContactManagerTester{
     ContactManager manager;
     Set<Contact> allContacts;
     Calendar pastDate;
-    Calendar future;
-    
+    Calendar futureDate;
     /**
      * Sets up the test fixture.
      *
@@ -32,8 +31,8 @@ public class ContactManagerTester{
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         pastDate = new GregorianCalendar();
         pastDate.add(1, -1);
-        future = new GregorianCalendar();
-        future.add(1, 1);
+        futureDate = new GregorianCalendar();
+        futureDate.add(1, 1);
     }
 
     /**
@@ -46,7 +45,7 @@ public class ContactManagerTester{
         manager = null;
         allContacts = null;
         pastDate = null;
-        future = null;
+        futureDate = null;
     }
 
     /**
@@ -179,7 +178,7 @@ public class ContactManagerTester{
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
         unknown.add(new ContactImpl(99, "unknown"));
-        manager.addFutureMeeting(unknown, future);
+        manager.addFutureMeeting(unknown, futureDate);
     }
 
     /**
@@ -187,15 +186,15 @@ public class ContactManagerTester{
      */
     @Test
     public void testAddingAndGettingFutureMeetings() {
-        manager.addFutureMeeting(allContacts, future);
+        manager.addFutureMeeting(allContacts, futureDate);
         // Date assignments are dynamic to ensure tests run in the future
-        Calendar future2 = new GregorianCalendar();
-        future2.add(1, 2);
-        manager.addFutureMeeting(allContacts, future2);
+        Calendar futureDate2 = new GregorianCalendar();
+        futureDate2.add(1, 2);
+        manager.addFutureMeeting(allContacts, futureDate2);
         assertEquals(1, manager.getMeeting(1).getId());
         assertEquals(2, manager.getMeeting(2).getId());
-        assertEquals(future, manager.getMeeting(1).getDate());
-        assertEquals(future2, manager.getMeeting(2).getDate());
+        assertEquals(futureDate, manager.getMeeting(1).getDate());
+        assertEquals(futureDate2, manager.getMeeting(2).getDate());
     }
 
     /**
