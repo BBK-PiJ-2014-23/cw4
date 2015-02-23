@@ -334,4 +334,13 @@ public class ContactManagerTester{
         assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
         assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
     }
+    
+    /**
+    * Tests if getting future meetings with an unkonwn contact throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetFutureMeetingListUnknownContactException() {
+        Contact unknown = new ContactImpl(99, "unknown");
+        manager.getFutureMeetingList(unknown);
+    }
 }
