@@ -37,7 +37,7 @@ public class ContactManagerTester{
 
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         pastDate = new GregorianCalendar();
-        pastDate.add(1, -1);
+        pastDate.add(1, -2);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 2);
 
@@ -373,7 +373,7 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests if getting future meetings with a contact who has no meetings returns an empty list.
+     * Tests if getting future meetings of a contact returns a chronologically sorted list.
      */
     @Test
     public void testGetFutureMeetingListWithContact() {
@@ -392,5 +392,48 @@ public class ContactManagerTester{
         assertEquals(futureDate2, meetings.get(0).getDate());
         assertEquals(futureDate, meetings.get(1).getDate());
         assertEquals(futureDate3, meetings.get(2).getDate());
+    }
+    
+    /**
+    * Tests if getting past meetings with an unkonwn contact throws an exception.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPastMeetingListUnknownContactException() {
+        Contact unknown = new ContactImpl(99, "unknown");
+        manager.getPastMeetingList(unknown);
+    }
+
+    /**
+     * Tests if getting past meetings with a contact who has no meetings returns an empty list.
+     */
+    @Test
+    public void testGetEmptyPastMeetingListWithContact() {
+        manager.addNewContact("Lazy", "He is so lazy");
+        Set<Contact> hasLazy = manager.getContacts("Lazy");
+        Contact lazy = getContact(hasLazy, "Lazy");
+        List<PastMeeting> meetings = manager.getPastMeetingList(lazy);
+        assertEquals(0, meetings.size());
+    }
+    
+    /**
+     * Tests if getting past meetings of a contact returns a chronologically sorted list.
+     */
+    @Test
+    public void testGetPastMeetingListWithContact() {
+        Calendar pastDate2 = new GregorianCalendar();
+        pastDate2.add(1, -1);
+        Calendar pastDate3 = new GregorianCalendar();
+        pastDate3.add(1, -3);
+
+        Set<Contact> hasC2 = manager.getContacts("c2");
+        manager.addFutureMeeting(hasC2, pastDate2);
+        manager.addFutureMeeting(hasC2, pastDate3);
+
+        Contact c2 = getContact(hasC2, "c2");
+        List<Meeting> meetings = manager.getFutureMeetingList(c2);
+        assertEquals(3, meetings.size());
+        assertEquals(pastDate3, meetings.get(0).getDate());
+        assertEquals(pastDate, meetings.get(1).getDate());
+        assertEquals(pastDate2, meetings.get(2).getDate());
     }
 }
