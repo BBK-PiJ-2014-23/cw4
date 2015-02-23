@@ -40,7 +40,7 @@ public class ContactManagerTester{
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 1);
-        
+
         // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, pastDate, "");
         manager.addFutureMeeting(allContacts, futureDate);
@@ -334,7 +334,7 @@ public class ContactManagerTester{
         assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
         assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
     }
-    
+
     /**
     * Tests if getting future meetings with an unkonwn contact throws an exception.
     */
@@ -342,5 +342,33 @@ public class ContactManagerTester{
     public void testGetFutureMeetingListUnknownContactException() {
         Contact unknown = new ContactImpl(99, "unknown");
         manager.getFutureMeetingList(unknown);
+    }
+
+    /**
+     * Tests if getting future meetings with a contact who has no meetings returns an empty list.
+     */
+    @Test
+    public void testGetEmptyFutureMeetingListWithContact() {
+        manager.addNewContact("Lazy", "He is so lazy");
+        Set<Contact> hasLazy = manager.getContacts("Lazy");
+        Contact lazy = getContact(hasLazy, "Lazy");
+        List<Meeting> meetings = manager.getFutureMeetingList(lazy);
+        assertEquals(0, meetings.size());
+    }
+    
+    /**
+     * Helper method that finds a contact in a set of contacts.
+     * 
+     * @param contacts the set of contacts that will be searched
+     * @param name the name of the contact
+     * @return the contact or null if not found
+     */
+    private Contact getContact(Set<Contact> contacts, String name) {
+        for (Contact contact : contacts) {
+            if (contact.getName().equals(name)) {
+                return contact;
+            }
+        }
+        return null;
     }
 }
