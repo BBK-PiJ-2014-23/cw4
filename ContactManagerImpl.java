@@ -100,12 +100,6 @@ public class ContactManagerImpl implements ContactManager {
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
-     * 
-     * FORUM:
-     * The method must return also past meetings if it is called with a 
-     * past date as parameter.
-     * The name is confusing, a better name would have been getMeetingList(Calendar) 
-     * or even getMeetingListOn(Calendar). We apologise for the confusion.
      *
      * @param contact one of the user’s contacts
      * @return the list of future meeting(s) scheduled with this contact (maybe empty).
@@ -122,6 +116,12 @@ public class ContactManagerImpl implements ContactManager {
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
+     * 
+     * FORUM:
+     * The method must return also past meetings if it is called with a 
+     * past date as parameter.
+     * The name is confusing, a better name would have been getMeetingList(Calendar) 
+     * or even getMeetingListOn(Calendar). We apologise for the confusion.
      *
      * @param date the date
      * @return the list of meetings
