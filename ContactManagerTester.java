@@ -426,11 +426,11 @@ public class ContactManagerTester{
         pastDate3.add(1, -3);
 
         Set<Contact> hasC2 = manager.getContacts("c2");
-        manager.addFutureMeeting(hasC2, pastDate2);
-        manager.addFutureMeeting(hasC2, pastDate3);
+        manager.addNewPastMeeting(hasC2, pastDate2, "");
+        manager.addNewPastMeeting(hasC2, pastDate3, "");
 
         Contact c2 = getContact(hasC2, "c2");
-        List<Meeting> meetings = manager.getFutureMeetingList(c2);
+        List<PastMeeting> meetings = manager.getPastMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(pastDate3, meetings.get(0).getDate());
         assertEquals(pastDate, meetings.get(1).getDate());
