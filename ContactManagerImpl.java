@@ -109,13 +109,13 @@ public class ContactManagerImpl implements ContactManager {
         if (!allContacts.contains(contact)) {
             throw new IllegalArgumentException("Contact is unknown!");
         }
-        List<Meeting> meetings = new ArrayList<Meeting>();
+        List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
             if (meeting.getContacts().contains(contact) && meeting.getClass() == FutureMeetingImpl.class) {
-                meetings.add(meeting);
+                searchedMeetings.add(meeting);
             }
         }
-        return meetings;
+        return searchedMeetings;
     }
 
     /**
