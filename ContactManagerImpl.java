@@ -158,7 +158,21 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if the contact does not exist
      */
     public List<PastMeeting> getPastMeetingList(Contact contact) {
-        return null;
+        if (!allContacts.contains(contact)) {
+            throw new IllegalArgumentException("Contact is unknown!");
+        }
+        List<PastMeeting> searchedMeetings = new ArrayList<PastMeeting>();
+        for (Meeting meeting : allMeetings) {
+            if (meeting.getContacts().contains(contact) && meeting.getClass() == PastMeetingImpl.class) {
+                // This block inserts meetings in a chronological fashion.
+                int i = 0;
+                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                    i++;
+                }
+                searchedMeetings.add(i, (PastMeeting)meeting);
+            }
+        }
+        return searchedMeetings;
     }
 
     /**
