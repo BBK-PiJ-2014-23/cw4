@@ -112,7 +112,11 @@ public class ContactManagerImpl implements ContactManager {
         List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
             if (meeting.getContacts().contains(contact) && meeting.getClass() == FutureMeetingImpl.class) {
-                searchedMeetings.add(meeting);
+                int i = 0;
+                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                    i++;
+                }
+                searchedMeetings.add(i, meeting);
             }
         }
         return searchedMeetings;
