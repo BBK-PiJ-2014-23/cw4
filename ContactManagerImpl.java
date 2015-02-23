@@ -106,6 +106,9 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if the contact does not exist
      */
     public List<Meeting> getFutureMeetingList(Contact contact) {
+        if (!allContacts.contains(contact)) {
+            throw new IllegalArgumentException("Contact is unknown!");
+        }
         return new ArrayList<Meeting>();
     }
 
