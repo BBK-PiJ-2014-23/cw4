@@ -371,4 +371,22 @@ public class ContactManagerTester{
         }
         return null;
     }
+    
+    /**
+     * Tests if getting future meetings with a contact who has no meetings returns an empty list.
+     */
+    @Test
+    public void testGetFutureMeetingListWithContact() {
+        Calendar futureDate2 = new GregorianCalendar();
+        futureDate2.add(1, 2);
+        Set<Contact> contacts = manager.getContacts("c2");
+        manager.addFutureMeeting(contacts, futureDate2);
+        
+        Set<Contact> hasC2 = manager.getContacts("c2");
+        Contact c2 = getContact(hasC2, "c2");
+        List<Meeting> meetings = manager.getFutureMeetingList(c2);
+        assertEquals(2, meetings.size());
+        assertEquals(FUTURE_MEETING_ID, meetings.get(0).getId());
+        assertEquals(3, meetings.get(1).getId());
+    }
 }
