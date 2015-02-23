@@ -436,4 +436,21 @@ public class ContactManagerTester{
         assertEquals(pastDate, meetings.get(1).getDate());
         assertEquals(pastDate2, meetings.get(2).getDate());
     }
+    
+    /**
+     * Test if getting a meeting via date that had no meeting returns en empty list.
+     */
+    @Test
+    public void testGetEmptyMeetingListWithDate() {
+        Calendar pastDate2 = new GregorianCalendar();
+        pastDate2.add(1, -1);
+        Calendar futureDate2 = new GregorianCalendar();
+        futureDate2.add(1, 1);
+        
+        List<Meeting> pastEmpty = manager.getFutureMeetingList(pastDate2);
+        List<Meeting> futureEmpty = manager.getFutureMeetingList(futureDate2);
+        
+        assertEquals(0, pastEmpty.size());
+        assertEquals(0, pastEmpty.size());
+    }
 }
