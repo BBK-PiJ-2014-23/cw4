@@ -109,7 +109,7 @@ public class ContactManagerImpl implements ContactManager {
         if (!allContacts.contains(contact)) {
             throw new IllegalArgumentException("Contact is unknown!");
         }
-        return new ArrayList<Meeting>();
+        return null;
     }
 
     /**
@@ -130,7 +130,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return the list of meetings
      */
     public List<Meeting> getFutureMeetingList(Calendar date) {
-        return new ArrayList<Meeting>();
+        return null;
     }
 
     /**
@@ -147,7 +147,7 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if the contact does not exist
      */
     public List<PastMeeting> getPastMeetingList(Contact contact) {
-        return new ArrayList<PastMeeting>();
+        return null;
     }
 
     /**
