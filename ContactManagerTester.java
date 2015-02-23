@@ -39,7 +39,7 @@ public class ContactManagerTester{
         pastDate = new GregorianCalendar();
         pastDate.add(1, -1);
         futureDate = new GregorianCalendar();
-        futureDate.add(1, 1);
+        futureDate.add(1, 2);
 
         // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, pastDate, "");
@@ -355,7 +355,7 @@ public class ContactManagerTester{
         List<Meeting> meetings = manager.getFutureMeetingList(lazy);
         assertEquals(0, meetings.size());
     }
-    
+
     /**
      * Helper method that finds a contact in a set of contacts.
      * 
@@ -371,22 +371,26 @@ public class ContactManagerTester{
         }
         return null;
     }
-    
+
     /**
      * Tests if getting future meetings with a contact who has no meetings returns an empty list.
      */
     @Test
     public void testGetFutureMeetingListWithContact() {
         Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(1, 2);
-        Set<Contact> contacts = manager.getContacts("c2");
-        manager.addFutureMeeting(contacts, futureDate2);
-        
+        futureDate2.add(1, 1);
+        Calendar futureDate3 = new GregorianCalendar();
+        futureDate3.add(1, 3);
+
         Set<Contact> hasC2 = manager.getContacts("c2");
+        manager.addFutureMeeting(hasC2, futureDate2);
+        manager.addFutureMeeting(hasC2, futureDate3);
+
         Contact c2 = getContact(hasC2, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
-        assertEquals(2, meetings.size());
-        assertEquals(FUTURE_MEETING_ID, meetings.get(0).getId());
-        assertEquals(3, meetings.get(1).getId());
+        assertEquals(3, meetings.size());
+        assertEquals(futureDate2, meetings.get(0).getDate());
+        assertEquals(futureDate, meetings.get(1).getDate());
+        assertEquals(futureDate3, meetings.get(2).getDate());
     }
 }
