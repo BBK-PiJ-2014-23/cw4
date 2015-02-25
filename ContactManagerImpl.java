@@ -243,12 +243,12 @@ public class ContactManagerImpl implements ContactManager {
      */
     public Set<Contact> getContacts(int... ids) {
         Set<Contact> searched = new HashSet<Contact>();
-        for (int i = 0; i < ids.length; i++) {
-            if (ids[i] <= 0 || ids[i] > lastContactId) {
+        for (int id : ids) {
+            if (id <= 0 || id > lastContactId) {
                 throw new IllegalArgumentException("ID is not valid");
             }
             for (Contact member : allContacts) {
-                if (member.getId() == ids[i]) {
+                if (member.getId() == id) {
                     searched.add(member);
                 }
             }
