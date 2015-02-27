@@ -103,7 +103,7 @@ public class ContactManagerTester{
         ContactManager empty = new ContactManagerImpl();
 
         assertTrue(empty.getContacts("").isEmpty());
-        assertTrue(empty.getContacts("Tom").isEmpty());
+        assertTrue(empty.getContacts("UnknownContact").isEmpty());
     }
 
     /**
