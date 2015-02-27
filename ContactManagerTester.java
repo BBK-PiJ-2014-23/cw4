@@ -204,10 +204,8 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
-        Set<Contact> unknown = manager.getContacts("c1");
-        
-        unknown.add(new ContactImpl(3, "unknown"));
-        manager.addFutureMeeting(unknown, twoHoursLater);
+        allContacts.add(new ContactImpl(3, "unknown"));
+        manager.addFutureMeeting(allContacts, twoHoursLater);
     }
 
     /**
