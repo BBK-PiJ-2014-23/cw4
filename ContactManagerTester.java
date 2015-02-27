@@ -18,6 +18,8 @@ public class ContactManagerTester{
 
     ContactManager manager;
     Set<Contact> allContacts;
+    
+    Calendar threeHoursEarlier;
     Calendar twoHoursEarlier;
     Calendar twoHoursLater;
 
@@ -36,6 +38,8 @@ public class ContactManagerTester{
         allContacts = manager.getContacts(1, 2, 3);
 
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
+        threeHoursEarlier = new GregorianCalendar();
+        threeHoursEarlier.add(Calendar.HOUR_OF_DAY, -3);
         twoHoursEarlier = new GregorianCalendar();
         twoHoursEarlier.add(Calendar.HOUR_OF_DAY, -2);
         twoHoursLater = new GregorianCalendar();
@@ -420,20 +424,18 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetPastMeetingListWithContact() {
-        Calendar pastDate2 = new GregorianCalendar();
-        pastDate2.add(1, -1);
         Calendar pastDate3 = new GregorianCalendar();
         pastDate3.add(1, -3);
 
         Set<Contact> hasC2 = manager.getContacts("c2");
-        manager.addNewPastMeeting(hasC2, pastDate2, "");
+        manager.addNewPastMeeting(hasC2, threeHoursEarlier, "");
         manager.addNewPastMeeting(hasC2, pastDate3, "");
 
         Contact c2 = getContact(hasC2, "c2");
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(pastDate3, meetings.get(0).getDate());
-        assertEquals(pastDate2, meetings.get(1).getDate());
+        assertEquals(threeHoursEarlier, meetings.get(1).getDate());
         assertEquals(twoHoursEarlier, meetings.get(2).getDate());
     }
     
