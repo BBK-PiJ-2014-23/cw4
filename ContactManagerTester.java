@@ -13,6 +13,7 @@ import java.util.*;
  */
 public class ContactManagerTester{
     final static int INVALID_ID = 99;
+    final static int NEGATIVE_ID = -1;
     final static int TWO_HOURS_EARLIER_ID = 1;
     final static int TWO_HOURS_LATER_ID = 2;
 
@@ -169,7 +170,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNegativeIdException() {
-        manager.getContacts(1, 2, -1);
+        manager.getContacts(1, 2, NEGATIVE_ID);
     }
 
     /**
