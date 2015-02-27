@@ -143,7 +143,7 @@ public class ContactManagerImpl implements ContactManager {
     public List<Meeting> getFutureMeetingList(Calendar date) {
         List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
-            if (meeting.getDate().equals(date)) {
+            if (isSameDay(meeting.getDate(), date)) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
                 while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
@@ -313,5 +313,23 @@ public class ContactManagerImpl implements ContactManager {
             }
         }
         return false;
+    }
+    
+    /**
+     * Helper method that checks if two calendars share the same date.
+     * 
+     * @param one the first calendar object
+     * @param two the second calendar object
+     * @return true if the dates of both calendar objects match, false otherwise
+     */
+    private boolean isSameDay(Calendar one, Calendar two) {
+        if (one.get(Calendar.YEAR) != two.get(Calendar.YEAR)) {
+            return false;
+        } else if (one.get(Calendar.MONTH) != two.get(Calendar.MONTH)) {
+            return false;
+        } else if (one.get(Calendar.DATE) != two.get(Calendar.DATE)) {
+            return false;
+        }
+        return true;
     }
 }
