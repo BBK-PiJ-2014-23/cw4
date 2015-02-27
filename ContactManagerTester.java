@@ -18,10 +18,11 @@ public class ContactManagerTester{
 
     ContactManager manager;
     Set<Contact> allContacts;
-    
+
     Calendar threeHoursEarlier;
     Calendar twoHoursEarlier;
     Calendar twoHoursLater;
+    Calendar threeHoursLater;
 
     /**
      * Sets up the test fixture.
@@ -44,6 +45,8 @@ public class ContactManagerTester{
         twoHoursEarlier.add(Calendar.HOUR_OF_DAY, -2);
         twoHoursLater = new GregorianCalendar();
         twoHoursLater.add(Calendar.HOUR_OF_DAY, 2);
+        threeHoursLater = new GregorianCalendar();
+        threeHoursLater.add(Calendar.HOUR_OF_DAY, 3);
 
         // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
@@ -381,23 +384,21 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetFutureMeetingListWithContact() {
-        Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(1, 1);
         Calendar futureDate3 = new GregorianCalendar();
         futureDate3.add(1, 3);
 
         Set<Contact> hasC2 = manager.getContacts("c2");
-        manager.addFutureMeeting(hasC2, futureDate2);
+        manager.addFutureMeeting(hasC2, threeHoursLater);
         manager.addFutureMeeting(hasC2, futureDate3);
 
         Contact c2 = getContact(hasC2, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(twoHoursLater, meetings.get(0).getDate());
-        assertEquals(futureDate2, meetings.get(1).getDate());
+        assertEquals(threeHoursLater, meetings.get(1).getDate());
         assertEquals(futureDate3, meetings.get(2).getDate());
     }
-    
+
     /**
     * Tests if getting past meetings with an unkonwn contact throws an exception.
     */
@@ -418,7 +419,7 @@ public class ContactManagerTester{
         List<PastMeeting> meetings = manager.getPastMeetingList(lazy);
         assertEquals(0, meetings.size());
     }
-    
+
     /**
      * Tests if getting past meetings of a contact returns a chronologically sorted list.
      */
@@ -438,7 +439,7 @@ public class ContactManagerTester{
         assertEquals(threeHoursEarlier, meetings.get(1).getDate());
         assertEquals(twoHoursEarlier, meetings.get(2).getDate());
     }
-    
+
     /**
      * Test if getting a meeting via date that had no meeting returns en empty list.
      */
@@ -448,14 +449,14 @@ public class ContactManagerTester{
         pastDate2.add(1, -1);
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(1, 1);
-        
+
         List<Meeting> pastEmpty = manager.getFutureMeetingList(pastDate2);
         List<Meeting> futureEmpty = manager.getFutureMeetingList(futureDate2);
-        
+
         assertEquals(0, pastEmpty.size());
         assertEquals(0, pastEmpty.size());
     }
-    
+
     /**
      * Test if getting meetings via date returns a chronological list of meetings from that day.
      */
@@ -465,14 +466,14 @@ public class ContactManagerTester{
         assertEquals(2, future.size());
         assertEquals(twoHoursEarlier, future.get(0).getDate());
         assertEquals(twoHoursLater, future.get(1).getDate());
-        
+
         Set<Contact> one = manager.getContacts(1);
         Calendar futureDate2 = new GregorianCalendar();
         futureDate2.add(Calendar.HOUR_OF_DAY, 1);
         manager.addFutureMeeting(one, futureDate2);
-        
+
         future = manager.getFutureMeetingList(twoHoursLater);
-        
+
         assertEquals(3, future.size());
         assertEquals(twoHoursEarlier, future.get(0).getDate());
         assertEquals(futureDate2, future.get(1).getDate());
