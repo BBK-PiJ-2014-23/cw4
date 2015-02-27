@@ -141,7 +141,18 @@ public class ContactManagerImpl implements ContactManager {
      * @return the list of meetings
      */
     public List<Meeting> getFutureMeetingList(Calendar date) {
-        return null;
+        List<Meeting> searchedMeetings = new ArrayList<Meeting>();
+        for (Meeting meeting : allMeetings) {
+            if (meeting.getDate().equals(date)) {
+                // This block inserts meetings in a chronological fashion.
+                int i = 0;
+                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                    i++;
+                }
+                searchedMeetings.add(i, meeting);
+            }
+        }
+        return searchedMeetings;
     }
 
     /**
