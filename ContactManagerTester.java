@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class ContactManagerTester{
     final static int INVALID_ID = 99;
-    final static int PAST_MEETING_ID = 1;
+    final static int TWO_HOURS_EARLIER_ID = 1;
     final static int FUTURE_MEETING_ID = 2;
 
     ContactManager manager;
@@ -274,7 +274,7 @@ public class ContactManagerTester{
 
         manager.addNewPastMeeting(allContacts, pastDate2, "");
 
-        assertEquals(twoHoursEarlier, manager.getMeeting(PAST_MEETING_ID).getDate());
+        assertEquals(twoHoursEarlier, manager.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
         assertEquals(pastDate2, manager.getMeeting(3).getDate());
     }
 
@@ -299,7 +299,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetPastMeeting() {
-        assertEquals(twoHoursEarlier, manager.getPastMeeting(PAST_MEETING_ID).getDate());
+        assertEquals(twoHoursEarlier, manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getDate());
     }
 
     /**
@@ -307,7 +307,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingException() {
-        manager.getFutureMeeting(PAST_MEETING_ID);
+        manager.getFutureMeeting(TWO_HOURS_EARLIER_ID);
     }
 
     /**
@@ -331,7 +331,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testMeetingIds() {
-        assertEquals(1, manager.getMeeting(PAST_MEETING_ID).getId());
+        assertEquals(1, manager.getMeeting(TWO_HOURS_EARLIER_ID).getId());
         assertEquals(2, manager.getMeeting(FUTURE_MEETING_ID).getId());
     }
 
