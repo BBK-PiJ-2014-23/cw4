@@ -40,7 +40,7 @@ public class ContactManagerTester{
         allContacts = manager.getContacts(1, 2, 3);
         onlyOneContact = manager.getContacts("c2");
 
-        // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
+        // Date assignments are dynamic to ensure tests run in the future
         threeHoursEarlier = new GregorianCalendar();
         threeHoursEarlier.add(Calendar.HOUR_OF_DAY, -3);
         twoHoursEarlier = new GregorianCalendar();
