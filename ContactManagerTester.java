@@ -139,7 +139,7 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests retrieving a contact without a name.
+     * Tests retrieving a contact without a name which should retrieve all contacts.
      */
     @Test
     public void testGettingEmptyNamedContact() {
