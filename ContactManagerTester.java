@@ -352,7 +352,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "unknown");
+        Contact unknown = new ContactImpl(99, "UnknownContact");
         manager.getFutureMeetingList(unknown);
     }
 
