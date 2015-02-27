@@ -311,7 +311,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetPastMeeting() {
-        assertEquals(twoHoursEarlier, manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getDate());
+        assertEquals(TWO_HOURS_EARLIER_ID, manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getId());
     }
 
     /**
