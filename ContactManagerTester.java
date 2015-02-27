@@ -211,18 +211,18 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests if future meetings can be added and retrieved.
+     * Tests if future meetings can be retrieved via ID..
      */
     @Test
     public void testAddAndGetFutureMeetings() {
         // Date assignments are dynamic to ensure tests run in the future
-        Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(1, 2);
+        Calendar oneHourLater = new GregorianCalendar();
+        oneHourLater.add(Calendar.HOUR_OF_DAY, 1);
 
-        manager.addFutureMeeting(allContacts, futureDate2);
+        manager.addFutureMeeting(allContacts, oneHourLater);
 
         assertEquals(twoHoursLater, manager.getMeeting(TWO_HOURS_LATER_ID).getDate());
-        assertEquals(futureDate2, manager.getMeeting(3).getDate());
+        assertEquals(oneHourLater, manager.getMeeting(3).getDate());
     }
 
     /**
