@@ -143,8 +143,12 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingEmptyNamedContact() {
-        Set<Contact> none = manager.getContacts("");
-        assertEquals(0, none.size());
+        Set<Contact> all = manager.getContacts("");
+
+        assertEquals(3, all.size());
+        assertTrue(hasContact(all, "c1"));
+        assertTrue(hasContact(all, "c2"));
+        assertTrue(hasContact(all, "c3"));
     }
 
     /**
