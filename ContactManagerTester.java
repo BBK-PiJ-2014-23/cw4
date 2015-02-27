@@ -364,8 +364,7 @@ public class ContactManagerTester{
         manager.addNewContact("Lazy", "He is so lazy");
         Set<Contact> hasLazy = manager.getContacts("Lazy");
         Contact lazy = getContact(hasLazy, "Lazy");
-        List<Meeting> meetings = manager.getFutureMeetingList(lazy);
-        assertTrue(meetings.isEmpty());
+        assertTrue(manager.getFutureMeetingList(lazy).isEmpty());
     }
 
     /**
