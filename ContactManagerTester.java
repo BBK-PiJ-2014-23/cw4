@@ -388,18 +388,13 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetFutureMeetingListWithContact() {
-        Calendar futureDate3 = new GregorianCalendar();
-        futureDate3.add(1, 3);
-
         manager.addFutureMeeting(onlyOneContact, threeHoursLater);
-        manager.addFutureMeeting(onlyOneContact, futureDate3);
-
         Contact c2 = getContact(onlyOneContact, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
-        assertEquals(3, meetings.size());
+        
+        assertEquals(2, meetings.size());
         assertEquals(twoHoursLater, meetings.get(0).getDate());
         assertEquals(threeHoursLater, meetings.get(1).getDate());
-        assertEquals(futureDate3, meetings.get(2).getDate());
     }
 
     /**
