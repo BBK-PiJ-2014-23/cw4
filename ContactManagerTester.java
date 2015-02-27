@@ -62,8 +62,10 @@ public class ContactManagerTester{
     public void tearDown() {
         manager = null;
         allContacts = null;
+        threeHoursEarlier = null;
         twoHoursEarlier = null;
         twoHoursLater = null;
+        threeHoursLater = null;
     }
 
     /**
