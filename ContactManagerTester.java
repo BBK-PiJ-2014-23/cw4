@@ -348,7 +348,7 @@ public class ContactManagerTester{
     }
 
     /**
-    * Tests if getting future meetings with an unkonwn contact throws an exception.
+    * Tests if getting future meetings of an unkonwn contact throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
