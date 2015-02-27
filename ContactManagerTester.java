@@ -437,13 +437,13 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetEmptyMeetingListWithDate() {
-        Calendar pastDate2 = new GregorianCalendar();
-        pastDate2.add(1, -1);
-        Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(1, 1);
+        Calendar longAgo = new GregorianCalendar();
+        longAgo.add(1, -1);
+        Calendar farAhead = new GregorianCalendar();
+        farAhead.add(1, 1);
 
-        List<Meeting> pastEmpty = manager.getFutureMeetingList(pastDate2);
-        List<Meeting> futureEmpty = manager.getFutureMeetingList(futureDate2);
+        List<Meeting> pastEmpty = manager.getFutureMeetingList(longAgo);
+        List<Meeting> futureEmpty = manager.getFutureMeetingList(farAhead);
 
         assertTrue(pastEmpty.isEmpty());
         assertTrue(futureEmpty.isEmpty());
