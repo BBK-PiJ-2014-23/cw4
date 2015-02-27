@@ -20,6 +20,7 @@ public class ContactManagerTester{
     ContactManager manager;
     Set<Contact> allContacts;
     Set<Contact> onlyOneContact;
+    Set<Contact> onlyLazy;
 
     Calendar threeHoursEarlier;
     Calendar twoHoursEarlier;
@@ -56,6 +57,10 @@ public class ContactManagerTester{
         // Providing a past and a future meeting. This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, twoHoursLater);
+        
+        // Adding another contact who does not attent meetings and a set containing this contact
+        manager.addNewContact("Lazy", "");
+        onlyLazy = manager.getContacts("Lazy");
     }
 
     /**
@@ -148,10 +153,11 @@ public class ContactManagerTester{
     public void testGettingEmptyNamedContact() {
         Set<Contact> all = manager.getContacts("");
 
-        assertEquals(3, all.size());
+        assertEquals(4, all.size());
         assertTrue(hasContact(all, "c1"));
         assertTrue(hasContact(all, "c2"));
         assertTrue(hasContact(all, "c3"));
+        assertTrue(hasContact(all, "Lazy"));
     }
 
     /**
@@ -363,14 +369,14 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetEmptyFutureMeetingListWithContact() {
-        manager.addNewContact("Lazy", "He is so lazy");
-        Set<Contact> hasLazy = manager.getContacts("Lazy");
-        Contact lazy = getContact(hasLazy, "Lazy");
+        Contact lazy = getContact(onlyLazy, "Lazy");
         assertTrue(manager.getFutureMeetingList(lazy).isEmpty());
     }
 
     /**
      * Helper method that finds a contact in a set of contacts.
+     * 
+     * THIS IS BUGGY. DOES NOT ITTERATE(?)
      * 
      * @param contacts the set of contacts that will be searched
      * @param name the name of the contact
@@ -413,11 +419,8 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetEmptyPastMeetingListWithContact() {
-        manager.addNewContact("Lazy", "He is so lazy");
-        Set<Contact> hasLazy = manager.getContacts("Lazy");
-        Contact lazy = getContact(hasLazy, "Lazy");
-        List<PastMeeting> meetings = manager.getPastMeetingList(lazy);
-        assertTrue(meetings.isEmpty());
+        Contact lazy = getContact(onlyLazy, "Lazy");
+        assertTrue(manager.getPastMeetingList(lazy).isEmpty());
     }
 
     /**
