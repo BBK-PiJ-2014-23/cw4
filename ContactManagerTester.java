@@ -73,6 +73,7 @@ public class ContactManagerTester{
         manager = null;
         allContacts = null;
         onlyOneContact = null;
+        onlyLazy = null;
         threeHoursEarlier = null;
         twoHoursEarlier = null;
         twoHoursLater = null;
