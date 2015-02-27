@@ -453,4 +453,19 @@ public class ContactManagerTester{
         assertEquals(0, pastEmpty.size());
         assertEquals(0, pastEmpty.size());
     }
+    
+    /**
+     * Test if getting meetings via date returns the list of meetings.
+     */
+    @Test
+    public void testGetMeetingListWithDate() {
+        List<Meeting> future = manager.getFutureMeetingList(futureDate);
+        assertEquals(1, future.size());
+        
+        Set<Contact> one = manager.getContacts(0);
+        manager.addFutureMeeting(one, futureDate);
+        
+        future = manager.getFutureMeetingList(futureDate);
+        assertEquals(2, future.size());
+    }
 }
