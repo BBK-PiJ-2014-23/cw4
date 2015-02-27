@@ -33,14 +33,6 @@ public class ContactManagerTester{
      */
     @Before
     public void setUp() {
-        manager = new ContactManagerImpl();
-
-        manager.addNewContact("c1", "notes1");
-        manager.addNewContact("c2", "notes2");
-        manager.addNewContact("c3", "notes3");
-        allContacts = manager.getContacts(1, 2, 3);
-        onlyOneContact = manager.getContacts("c2");
-
         // Date assignments are dynamic to ensure tests run in the future
         threeHoursEarlier = new GregorianCalendar();
         threeHoursEarlier.add(Calendar.HOUR_OF_DAY, -3);
@@ -50,8 +42,18 @@ public class ContactManagerTester{
         twoHoursLater.add(Calendar.HOUR_OF_DAY, 2);
         threeHoursLater = new GregorianCalendar();
         threeHoursLater.add(Calendar.HOUR_OF_DAY, 3);
-
-        // This ensures that the static variables form before are correct.
+        
+        // Creating a new contact manager with some contacts
+        manager = new ContactManagerImpl();
+        manager.addNewContact("c1", "notes1");
+        manager.addNewContact("c2", "notes2");
+        manager.addNewContact("c3", "notes3");
+        
+        // Getting some sets of contacts to work with
+        allContacts = manager.getContacts(1, 2, 3);
+        onlyOneContact = manager.getContacts("c2");
+        
+        // Providing a past and a future meeting. This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, twoHoursLater);
     }
