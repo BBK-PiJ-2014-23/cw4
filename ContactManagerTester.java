@@ -335,7 +335,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetFutureMeeting() {
-        assertEquals(twoHoursLater, manager.getFutureMeeting(TWO_HOURS_LATER_ID).getDate());
+        assertEquals(TWO_HOURS_LATER_ID, manager.getFutureMeeting(TWO_HOURS_LATER_ID).getId());
     }
 
     /**
