@@ -19,7 +19,7 @@ public class ContactManagerTester{
     ContactManager manager;
     Set<Contact> allContacts;
     Calendar twoHoursEarlier;
-    Calendar futureDate;
+    Calendar twoHoursLater;
 
     /**
      * Sets up the test fixture.
@@ -38,12 +38,12 @@ public class ContactManagerTester{
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         twoHoursEarlier = new GregorianCalendar();
         twoHoursEarlier.add(Calendar.HOUR_OF_DAY, -2);
-        futureDate = new GregorianCalendar();
-        futureDate.add(1, 2);
+        twoHoursLater = new GregorianCalendar();
+        twoHoursLater.add(Calendar.HOUR_OF_DAY, 2);
 
         // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
-        manager.addFutureMeeting(allContacts, futureDate);
+        manager.addFutureMeeting(allContacts, twoHoursLater);
     }
 
     /**
@@ -56,7 +56,7 @@ public class ContactManagerTester{
         manager = null;
         allContacts = null;
         twoHoursEarlier = null;
-        futureDate = null;
+        twoHoursLater = null;
     }
 
     /**
@@ -195,7 +195,7 @@ public class ContactManagerTester{
         Set<Contact> unknown = manager.getContacts("c1");
 
         unknown.add(new ContactImpl(3, "unknown"));
-        manager.addFutureMeeting(unknown, futureDate);
+        manager.addFutureMeeting(unknown, twoHoursLater);
     }
 
     /**
@@ -209,7 +209,7 @@ public class ContactManagerTester{
 
         manager.addFutureMeeting(allContacts, futureDate2);
 
-        assertEquals(futureDate, manager.getMeeting(FUTURE_MEETING_ID).getDate());
+        assertEquals(twoHoursLater, manager.getMeeting(FUTURE_MEETING_ID).getDate());
         assertEquals(futureDate2, manager.getMeeting(3).getDate());
     }
 
@@ -323,7 +323,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetFutureMeeting() {
-        assertEquals(futureDate, manager.getFutureMeeting(FUTURE_MEETING_ID).getDate());
+        assertEquals(twoHoursLater, manager.getFutureMeeting(FUTURE_MEETING_ID).getDate());
     }
 
     /**
@@ -389,8 +389,8 @@ public class ContactManagerTester{
         Contact c2 = getContact(hasC2, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
         assertEquals(3, meetings.size());
-        assertEquals(futureDate2, meetings.get(0).getDate());
-        assertEquals(futureDate, meetings.get(1).getDate());
+        assertEquals(twoHoursLater, meetings.get(0).getDate());
+        assertEquals(futureDate2, meetings.get(1).getDate());
         assertEquals(futureDate3, meetings.get(2).getDate());
     }
     
@@ -459,19 +459,21 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetMeetingListWithDate() {
-        List<Meeting> future = manager.getFutureMeetingList(futureDate);
-        assertEquals(1, future.size());
+        List<Meeting> future = manager.getFutureMeetingList(twoHoursLater);
+        assertEquals(2, future.size());
+        assertEquals(twoHoursEarlier, future.get(0).getDate());
+        assertEquals(twoHoursLater, future.get(1).getDate());
         
         Set<Contact> one = manager.getContacts(1);
         Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(1, 2);
-        futureDate2.add(Calendar.HOUR_OF_DAY, -1);
-        
+        futureDate2.add(Calendar.HOUR_OF_DAY, 1);
         manager.addFutureMeeting(one, futureDate2);
-        future = manager.getFutureMeetingList(futureDate);
         
-        assertEquals(2, future.size());
-        assertEquals(futureDate2, future.get(0).getDate());
-        assertEquals(futureDate, future.get(1).getDate());
+        future = manager.getFutureMeetingList(twoHoursLater);
+        
+        assertEquals(3, future.size());
+        assertEquals(twoHoursEarlier, future.get(0).getDate());
+        assertEquals(futureDate2, future.get(1).getDate());
+        assertEquals(twoHoursLater, future.get(2).getDate());
     }
 }
