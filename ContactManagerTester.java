@@ -462,7 +462,7 @@ public class ContactManagerTester{
         List<Meeting> future = manager.getFutureMeetingList(futureDate);
         assertEquals(1, future.size());
         
-        Set<Contact> one = manager.getContacts(0);
+        Set<Contact> one = manager.getContacts(1);
         manager.addFutureMeeting(one, futureDate);
         
         future = manager.getFutureMeetingList(futureDate);
