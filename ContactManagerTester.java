@@ -226,7 +226,7 @@ public class ContactManagerTester{
     }
 
     /**
-     * Tests if null is returned when getting a non-existing meeting.
+     * Tests if null is returned when getting a meeting via a non-existing ID.
      */
     @Test
     public void testGettingNonExistingMeeting() {
