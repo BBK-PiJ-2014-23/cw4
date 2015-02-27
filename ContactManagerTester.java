@@ -18,6 +18,7 @@ public class ContactManagerTester{
 
     ContactManager manager;
     Set<Contact> allContacts;
+    Set<Contact> onlyOneContact;
 
     Calendar threeHoursEarlier;
     Calendar twoHoursEarlier;
@@ -37,6 +38,7 @@ public class ContactManagerTester{
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
         allContacts = manager.getContacts(1, 2, 3);
+        onlyOneContact = manager.getContacts("c2");
 
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
         threeHoursEarlier = new GregorianCalendar();
@@ -62,6 +64,7 @@ public class ContactManagerTester{
     public void tearDown() {
         manager = null;
         allContacts = null;
+        onlyOneContact = null;
         threeHoursEarlier = null;
         twoHoursEarlier = null;
         twoHoursLater = null;
@@ -202,7 +205,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
         Set<Contact> unknown = manager.getContacts("c1");
-
+        
         unknown.add(new ContactImpl(3, "unknown"));
         manager.addFutureMeeting(unknown, twoHoursLater);
     }
@@ -389,11 +392,10 @@ public class ContactManagerTester{
         Calendar futureDate3 = new GregorianCalendar();
         futureDate3.add(1, 3);
 
-        Set<Contact> hasC2 = manager.getContacts("c2");
-        manager.addFutureMeeting(hasC2, threeHoursLater);
-        manager.addFutureMeeting(hasC2, futureDate3);
+        manager.addFutureMeeting(onlyOneContact, threeHoursLater);
+        manager.addFutureMeeting(onlyOneContact, futureDate3);
 
-        Contact c2 = getContact(hasC2, "c2");
+        Contact c2 = getContact(onlyOneContact, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(twoHoursLater, meetings.get(0).getDate());
@@ -430,11 +432,10 @@ public class ContactManagerTester{
         Calendar pastDate3 = new GregorianCalendar();
         pastDate3.add(1, -3);
 
-        Set<Contact> hasC2 = manager.getContacts("c2");
-        manager.addNewPastMeeting(hasC2, threeHoursEarlier, "");
-        manager.addNewPastMeeting(hasC2, pastDate3, "");
+        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
+        manager.addNewPastMeeting(onlyOneContact, pastDate3, "");
 
-        Contact c2 = getContact(hasC2, "c2");
+        Contact c2 = getContact(onlyOneContact, "c2");
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(pastDate3, meetings.get(0).getDate());
