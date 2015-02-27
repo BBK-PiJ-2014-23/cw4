@@ -18,7 +18,7 @@ public class ContactManagerTester{
 
     ContactManager manager;
     Set<Contact> allContacts;
-    Calendar pastDate;
+    Calendar twoHoursEarlier;
     Calendar futureDate;
 
     /**
@@ -36,13 +36,13 @@ public class ContactManagerTester{
         allContacts = manager.getContacts(1, 2, 3);
 
         // Date assignments are dynamic - one year subtracted for past, one year added for future - to ensure tests run in the future
-        pastDate = new GregorianCalendar();
-        pastDate.add(1, -2);
+        twoHoursEarlier = new GregorianCalendar();
+        twoHoursEarlier.add(Calendar.HOUR_OF_DAY, -2);
         futureDate = new GregorianCalendar();
         futureDate.add(1, 2);
 
         // This ensures that the static variables form before are correct.
-        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, futureDate);
     }
 
@@ -55,7 +55,7 @@ public class ContactManagerTester{
     public void tearDown() {
         manager = null;
         allContacts = null;
-        pastDate = null;
+        twoHoursEarlier = null;
         futureDate = null;
     }
 
@@ -184,7 +184,7 @@ public class ContactManagerTester{
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddFutureMeetingTimeException() {
-        manager.addFutureMeeting(allContacts, pastDate);
+        manager.addFutureMeeting(allContacts, twoHoursEarlier);
     }
 
     /**
@@ -227,7 +227,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
         allContacts.add(new ContactImpl(99, "unknown"));
-        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
     }
 
     /**
@@ -236,7 +236,7 @@ public class ContactManagerTester{
     @Test(expected = IllegalArgumentException.class)
     public void testAddEmptyContactListToPastMeetingException() {
         Set<Contact> empty = new HashSet<Contact>();
-        manager.addNewPastMeeting(empty, pastDate, "");
+        manager.addNewPastMeeting(empty, twoHoursEarlier, "");
     }
 
     /**
@@ -244,7 +244,7 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForContactListToPastMeetingException() {
-        manager.addNewPastMeeting(null, pastDate, "");
+        manager.addNewPastMeeting(null, twoHoursEarlier, "");
     }
 
     /**
@@ -260,7 +260,7 @@ public class ContactManagerTester{
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
-        manager.addNewPastMeeting(allContacts, pastDate, null);
+        manager.addNewPastMeeting(allContacts, twoHoursEarlier, null);
     }
 
     /**
@@ -274,7 +274,7 @@ public class ContactManagerTester{
 
         manager.addNewPastMeeting(allContacts, pastDate2, "");
 
-        assertEquals(pastDate, manager.getMeeting(PAST_MEETING_ID).getDate());
+        assertEquals(twoHoursEarlier, manager.getMeeting(PAST_MEETING_ID).getDate());
         assertEquals(pastDate2, manager.getMeeting(3).getDate());
     }
 
@@ -299,7 +299,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetPastMeeting() {
-        assertEquals(pastDate, manager.getPastMeeting(PAST_MEETING_ID).getDate());
+        assertEquals(twoHoursEarlier, manager.getPastMeeting(PAST_MEETING_ID).getDate());
     }
 
     /**
@@ -433,8 +433,8 @@ public class ContactManagerTester{
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
         assertEquals(3, meetings.size());
         assertEquals(pastDate3, meetings.get(0).getDate());
-        assertEquals(pastDate, meetings.get(1).getDate());
-        assertEquals(pastDate2, meetings.get(2).getDate());
+        assertEquals(pastDate2, meetings.get(1).getDate());
+        assertEquals(twoHoursEarlier, meetings.get(2).getDate());
     }
     
     /**
