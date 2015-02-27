@@ -30,6 +30,7 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if the meeting is set for a time in the past,
      * of if any contact is unknown / non-existent
      */
+    @Override
     public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
         Calendar now = new GregorianCalendar();
         if (date.before(now)) {
@@ -50,6 +51,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return the meeting with the requested ID, or null if it there is none.
      * @throws IllegalArgumentException if there is a meeting with that ID happening in the future
      */
+    @Override
     public PastMeeting getPastMeeting(int id) {
         Meeting meeting = getMeeting(id);
         if (meeting == null) {
@@ -68,6 +70,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return the meeting with the requested ID, or null if it there is none.
      * @throws IllegalArgumentException if there is a meeting with that ID happening in the past
      */
+    @Override
     public FutureMeeting getFutureMeeting(int id) {
         Meeting meeting = getMeeting(id);
         if (meeting == null) {
@@ -85,6 +88,7 @@ public class ContactManagerImpl implements ContactManager {
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
      */
+    @Override
     public Meeting getMeeting(int id) {
         for (Meeting meeting : allMeetings) {
             if (meeting.getId() == id) {
@@ -105,6 +109,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return the list of future meeting(s) scheduled with this contact (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
      */
+    @Override
     public List<Meeting> getFutureMeetingList(Contact contact) {
         if (!allContacts.contains(contact)) {
             throw new IllegalArgumentException("Contact is unknown!");
@@ -140,6 +145,7 @@ public class ContactManagerImpl implements ContactManager {
      * @param date the date
      * @return the list of meetings
      */
+    @Override
     public List<Meeting> getFutureMeetingList(Calendar date) {
         List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
@@ -168,6 +174,7 @@ public class ContactManagerImpl implements ContactManager {
      * 'future' should be a typo, should be 'past'.
      * @throws IllegalArgumentException if the contact does not exist
      */
+    @Override
     public List<PastMeeting> getPastMeetingList(Contact contact) {
         if (!allContacts.contains(contact)) {
             throw new IllegalArgumentException("Contact is unknown!");
@@ -196,6 +203,7 @@ public class ContactManagerImpl implements ContactManager {
      * empty, or any of the contacts does not exist
      * @throws NullPointerException if any of the arguments is null
      */
+    @Override
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
         if (contacts == null || date == null || text == null) {
             throw new NullPointerException("Illegal arguement(s)!");
@@ -224,6 +232,7 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalStateException if the meeting is set for a date in the future
      * @throws NullPointerException if the notes are null
      */
+    @Override
     public void addMeetingNotes(int id, String text) {
 
     }
@@ -235,6 +244,7 @@ public class ContactManagerImpl implements ContactManager {
      * @param notes notes to be added about the contact.
      * @throws NullPointerException if the name or the notes are null
      */
+    @Override
     public void addNewContact(String name, String notes) {
         if (name == null || notes == null) {
             throw new NullPointerException("'null' is invalid for either parameter!");
@@ -252,6 +262,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return a list containing the contacts that correspond to the IDs.
      * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
      */
+    @Override
     public Set<Contact> getContacts(int... ids) {
         Set<Contact> searched = new HashSet<Contact>();
         for (int id : ids) {
@@ -274,6 +285,7 @@ public class ContactManagerImpl implements ContactManager {
      * @return a list with the contacts whose name contains that string.
      * @throws NullPointerException if the parameter is null
      */
+    @Override
     public Set<Contact> getContacts(String name) {
         if (name == null) {
             throw new NullPointerException("'null' is invalid as parameter!");
@@ -296,6 +308,7 @@ public class ContactManagerImpl implements ContactManager {
      * This method must be executed when the program is
      * closed and when/if the user requests it.
      */
+    @Override
     public void flush() {
 
     }
