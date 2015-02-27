@@ -463,9 +463,15 @@ public class ContactManagerTester{
         assertEquals(1, future.size());
         
         Set<Contact> one = manager.getContacts(1);
-        manager.addFutureMeeting(one, futureDate);
+        Calendar futureDate2 = new GregorianCalendar();
+        futureDate2.add(1, 2);
+        futureDate2.add(Calendar.HOUR_OF_DAY, -1);
         
+        manager.addFutureMeeting(one, futureDate2);
         future = manager.getFutureMeetingList(futureDate);
+        
         assertEquals(2, future.size());
+        assertEquals(futureDate2, future.get(0).getDate());
+        assertEquals(futureDate, future.get(1).getDate());
     }
 }
