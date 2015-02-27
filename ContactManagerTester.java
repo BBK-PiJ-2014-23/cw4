@@ -363,7 +363,7 @@ public class ContactManagerTester{
         Set<Contact> hasLazy = manager.getContacts("Lazy");
         Contact lazy = getContact(hasLazy, "Lazy");
         List<Meeting> meetings = manager.getFutureMeetingList(lazy);
-        assertEquals(0, meetings.size());
+        assertTrue(meetings.isEmpty());
     }
 
     /**
@@ -419,7 +419,7 @@ public class ContactManagerTester{
         Set<Contact> hasLazy = manager.getContacts("Lazy");
         Contact lazy = getContact(hasLazy, "Lazy");
         List<PastMeeting> meetings = manager.getPastMeetingList(lazy);
-        assertEquals(0, meetings.size());
+        assertTrue(meetings.isEmpty());
     }
 
     /**
@@ -454,8 +454,8 @@ public class ContactManagerTester{
         List<Meeting> pastEmpty = manager.getFutureMeetingList(pastDate2);
         List<Meeting> futureEmpty = manager.getFutureMeetingList(futureDate2);
 
-        assertEquals(0, pastEmpty.size());
-        assertEquals(0, pastEmpty.size());
+        assertTrue(pastEmpty.isEmpty());
+        assertTrue(futureEmpty.isEmpty());
     }
 
     /**
