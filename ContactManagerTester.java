@@ -423,18 +423,13 @@ public class ContactManagerTester{
      */
     @Test
     public void testGetPastMeetingListWithContact() {
-        Calendar pastDate3 = new GregorianCalendar();
-        pastDate3.add(1, -3);
-
         manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
-        manager.addNewPastMeeting(onlyOneContact, pastDate3, "");
-
         Contact c2 = getContact(onlyOneContact, "c2");
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
-        assertEquals(3, meetings.size());
-        assertEquals(pastDate3, meetings.get(0).getDate());
-        assertEquals(threeHoursEarlier, meetings.get(1).getDate());
-        assertEquals(twoHoursEarlier, meetings.get(2).getDate());
+        
+        assertEquals(2, meetings.size());
+        assertEquals(threeHoursEarlier, meetings.get(0).getDate());
+        assertEquals(twoHoursEarlier, meetings.get(1).getDate());
     }
 
     /**
