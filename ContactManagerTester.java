@@ -455,7 +455,7 @@ public class ContactManagerTester{
     }
     
     /**
-     * Test if getting meetings via date returns the list of meetings.
+     * Test if getting meetings via date returns a chronological list of meetings from that day.
      */
     @Test
     public void testGetMeetingListWithDate() {
