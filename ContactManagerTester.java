@@ -391,7 +391,7 @@ public class ContactManagerTester{
         manager.addFutureMeeting(onlyOneContact, threeHoursLater);
         Contact c2 = getContact(onlyOneContact, "c2");
         List<Meeting> meetings = manager.getFutureMeetingList(c2);
-        
+
         assertEquals(2, meetings.size());
         assertEquals(twoHoursLater, meetings.get(0).getDate());
         assertEquals(threeHoursLater, meetings.get(1).getDate());
@@ -426,7 +426,7 @@ public class ContactManagerTester{
         manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
         Contact c2 = getContact(onlyOneContact, "c2");
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
-        
+
         assertEquals(2, meetings.size());
         assertEquals(threeHoursEarlier, meetings.get(0).getDate());
         assertEquals(twoHoursEarlier, meetings.get(1).getDate());
@@ -459,16 +459,15 @@ public class ContactManagerTester{
         assertEquals(twoHoursEarlier, future.get(0).getDate());
         assertEquals(twoHoursLater, future.get(1).getDate());
 
-        Set<Contact> one = manager.getContacts(1);
-        Calendar futureDate2 = new GregorianCalendar();
-        futureDate2.add(Calendar.HOUR_OF_DAY, 1);
-        manager.addFutureMeeting(one, futureDate2);
+        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
+        manager.addFutureMeeting(onlyOneContact, threeHoursLater);
 
         future = manager.getFutureMeetingList(twoHoursLater);
 
-        assertEquals(3, future.size());
-        assertEquals(twoHoursEarlier, future.get(0).getDate());
-        assertEquals(futureDate2, future.get(1).getDate());
+        assertEquals(4, future.size());
+        assertEquals(threeHoursEarlier, future.get(0).getDate());
+        assertEquals(twoHoursEarlier, future.get(1).getDate());
         assertEquals(twoHoursLater, future.get(2).getDate());
+        assertEquals(threeHoursLater, future.get(3).getDate());
     }
 }
