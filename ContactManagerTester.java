@@ -135,8 +135,7 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingNonExistingContact() {
-        Set<Contact> none = manager.getContacts("UnknownContact");
-        assertTrue(none.isEmpty());
+        assertTrue(manager.getContacts("UnknownContact").isEmpty());
     }
 
     /**
