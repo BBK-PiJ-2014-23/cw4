@@ -101,11 +101,9 @@ public class ContactManagerTester{
     @Test
     public void testGettingContactByNameFromEmptyList() {
         ContactManager empty = new ContactManagerImpl();
-        Set<Contact> emptySet1 = empty.getContacts("");
-        Set<Contact> emptySet2 = empty.getContacts("Tom");
 
-        assertTrue(emptySet1.isEmpty());
-        assertTrue(emptySet2.isEmpty());
+        assertTrue(empty.getContacts("").isEmpty());
+        assertTrue(empty.getContacts("Tom").isEmpty());
     }
 
     /**
