@@ -291,12 +291,9 @@ public class ContactManagerImpl implements ContactManager {
             throw new NullPointerException("'null' is invalid as parameter!");
         }
         Set<Contact> searched = new HashSet<Contact>();
-        // Empty name must be excluded, otherwise all contacts are returned.
-        if (name.length() > 0) {
-            for (Contact member : allContacts) {
-                if (member.getName().contains(name)) {
-                    searched.add(member);
-                }
+        for (Contact member : allContacts) {
+            if (member.getName().contains(name)) {
+                searched.add(member);
             }
         }
         return searched;
@@ -327,7 +324,7 @@ public class ContactManagerImpl implements ContactManager {
         }
         return false;
     }
-    
+
     /**
      * Helper method that checks if two calendars share the same date.
      * 
