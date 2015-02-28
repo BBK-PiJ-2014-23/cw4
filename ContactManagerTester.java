@@ -476,4 +476,28 @@ public class ContactManagerTester{
         assertEquals(twoHoursLater, future.get(2).getDate());
         assertEquals(threeHoursLater, future.get(3).getDate());
     }
+    
+    /**
+     * Tests if adding notes to an unknown meeting throws an exception.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddMeetingNotesMeetingNotExistsException() {
+        manager.addMeetingNotes(INVALID_ID, "notes");
+    }
+    
+     /**
+     * Tests if adding notes to a future meeting throws an exception.
+     */
+    @Test(expected = IllegalStateException.class)
+    public void testAddMeetingNotesToFutureMeetingException() {
+        manager.addMeetingNotes(TWO_HOURS_LATER_ID, "notes");
+    }
+    
+     /**
+     * Tests if adding null to a meeting's notes throws an exception.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testAddMeetingNotesNullException() {
+        manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, null);
+    }
 }
