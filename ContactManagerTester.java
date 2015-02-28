@@ -514,4 +514,13 @@ public class ContactManagerTester{
         assertTrue(manager.getMeeting(3).getClass() == PastMeetingImpl.class);
         assertEquals("Just happened", manager.getPastMeeting(3).getNotes());
     }
+    
+    /**
+     * Test if notes are added to past meetings.
+     */
+    @Test
+    public void testAddMeetingNotesToPastMeeting() {
+        manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
+        assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
+    }
 }
