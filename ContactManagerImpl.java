@@ -237,6 +237,9 @@ public class ContactManagerImpl implements ContactManager {
         if (id <= 0 || id > lastContactId) {
             throw new IllegalArgumentException("ID is not valid");
         }
+        if (text == null) {
+            throw new NullPointerException("'null' is invalid as text parameter!");
+        }
     }
 
     /**
