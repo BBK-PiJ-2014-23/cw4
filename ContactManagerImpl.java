@@ -245,6 +245,10 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting.getDate().after(now)) {
             throw new IllegalStateException("Meeting with that ID happens in the future");
         }
+        Set<Contact> contacts = meeting.getContacts();
+        Calendar date = meeting.getDate();
+        allMeetings.remove(meeting);
+        allMeetings.add(id-1, new PastMeetingImpl(id, contacts, date, text));
     }
 
     /**
