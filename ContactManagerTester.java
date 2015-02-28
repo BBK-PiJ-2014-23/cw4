@@ -43,21 +43,21 @@ public class ContactManagerTester{
         twoHoursLater.add(Calendar.HOUR_OF_DAY, 2);
         threeHoursLater = new GregorianCalendar();
         threeHoursLater.add(Calendar.HOUR_OF_DAY, 3);
-        
+
         // Creating a new contact manager with some contacts
         manager = new ContactManagerImpl();
         manager.addNewContact("c1", "notes1");
         manager.addNewContact("c2", "notes2");
         manager.addNewContact("c3", "notes3");
-        
+
         // Getting some sets of contacts to work with
         allContacts = manager.getContacts(1, 2, 3);
         onlyOneContact = manager.getContacts("c2");
-        
+
         // Providing a past and a future meeting. This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, twoHoursLater);
-        
+
         // Adding another contact who does not attent meetings and a set containing this contact
         manager.addNewContact("Lazy", "");
         onlyLazy = manager.getContacts("Lazy");
@@ -476,31 +476,31 @@ public class ContactManagerTester{
         assertEquals(twoHoursLater, future.get(2).getDate());
         assertEquals(threeHoursLater, future.get(3).getDate());
     }
-    
+
     /**
-     * Tests if adding notes to an unknown meeting throws an exception.
-     */
+    * Tests if adding notes to an unknown meeting throws an exception.
+    */
     @Test(expected = IllegalArgumentException.class)
     public void testAddMeetingNotesMeetingNotExistsException() {
         manager.addMeetingNotes(INVALID_ID, "notes");
     }
-    
-     /**
-     * Tests if adding notes to a future meeting throws an exception.
-     */
+
+    /**
+    * Tests if adding notes to a future meeting throws an exception.
+    */
     @Test(expected = IllegalStateException.class)
     public void testAddMeetingNotesToFutureMeetingException() {
         manager.addMeetingNotes(TWO_HOURS_LATER_ID, "notes");
     }
-    
-     /**
-     * Tests if adding null to a meeting's notes throws an exception.
-     */
+
+    /**
+    * Tests if adding null to a meeting's notes throws an exception.
+    */
     @Test(expected = NullPointerException.class)
     public void testAddMeetingNotesNullException() {
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, null);
     }
-    
+
     /**
      * Test if formerly future meetings that took place are converted and if notes are added.
      */
@@ -510,11 +510,11 @@ public class ContactManagerTester{
         manager.addFutureMeeting(allContacts, now);
 
         manager.addMeetingNotes(3, "Just happened");
-        
+
         assertTrue(manager.getMeeting(3).getClass() == PastMeetingImpl.class);
         assertEquals("Just happened", manager.getPastMeeting(3).getNotes());
     }
-    
+
     /**
      * Test if notes are added to past meetings.
      */
