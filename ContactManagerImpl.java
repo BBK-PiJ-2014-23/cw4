@@ -234,11 +234,16 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void addMeetingNotes(int id, String text) {
-        if (id <= 0 || id > lastContactId) {
+        Meeting meeting = getMeeting(id);
+        if (meeting == null) {
             throw new IllegalArgumentException("ID is not valid");
         }
         if (text == null) {
             throw new NullPointerException("'null' is invalid as text parameter!");
+        }
+        Calendar now = new GregorianCalendar();
+        if (meeting.getDate().after(now)) {
+            throw new IllegalStateException("Meeting with that ID happens in the future");
         }
     }
 
