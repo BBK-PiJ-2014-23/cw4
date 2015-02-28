@@ -500,4 +500,18 @@ public class ContactManagerTester{
     public void testAddMeetingNotesNullException() {
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, null);
     }
+    
+    /**
+     * Test if formerly future meetings that took place are converted and if notes are added.
+     */
+    @Test
+    public void testAddMeetingNotesConvertToPastMeeting() {
+        Calendar now = new GregorianCalendar();
+        manager.addFutureMeeting(allContacts, now);
+
+        manager.addMeetingNotes(3, "Just happened");
+        
+        assertTrue(manager.getMeeting(3).getClass() == PastMeetingImpl.class);
+        assertEquals("Just happened", manager.getPastMeeting(3).getNotes());
+    }
 }
