@@ -234,7 +234,9 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void addMeetingNotes(int id, String text) {
-
+        if (id <= 0 || id > lastContactId) {
+            throw new IllegalArgumentException("ID is not valid");
+        }
     }
 
     /**
