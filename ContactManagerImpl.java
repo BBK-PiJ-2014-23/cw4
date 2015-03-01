@@ -1,6 +1,3 @@
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
 import java.util.*;
 /**
  * A class to manage your contacts and meetings.
