@@ -9,24 +9,25 @@ public class ContactManagerImpl implements ContactManager {
     private List<Meeting> allMeetings;
     private int lastMeetingId;
     private File config;
-    
+
     /**
      * Create a new contact manager.
      */
     public ContactManagerImpl() {
-        allContacts = new HashSet<Contact>();
-        lastContactId = 0;
-        allMeetings = new ArrayList<Meeting>();
-        lastMeetingId = 0;
         config = new File("contacts.txt");
+        
         if (config.exists()) {
-            
+
         } else {
             try {
                 config.createNewFile();
             } catch (IOException newFile) {
                 System.out.println("Cannot create config file");
             }
+            allContacts = new HashSet<Contact>();
+            lastContactId = 0;
+            allMeetings = new ArrayList<Meeting>();
+            lastMeetingId = 0;
         }
     }
 
