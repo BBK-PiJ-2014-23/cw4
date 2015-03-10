@@ -116,6 +116,11 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingContactByNameFromEmptyList() {
+        // This block is necessary because another contact manager already created a config file.
+        try {
+            config.delete();
+        } catch (NullPointerException ex) {}
+        
         ContactManager empty = new ContactManagerImpl();
 
         assertTrue(empty.getContacts("").isEmpty());
