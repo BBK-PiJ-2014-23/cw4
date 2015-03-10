@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * A class to manage your contacts and meetings.
  */
@@ -7,7 +8,8 @@ public class ContactManagerImpl implements ContactManager {
     private int lastContactId;
     private List<Meeting> allMeetings;
     private int lastMeetingId;
-
+    private File config;
+    
     /**
      * Create a new contact manager.
      */
@@ -16,6 +18,16 @@ public class ContactManagerImpl implements ContactManager {
         lastContactId = 0;
         allMeetings = new ArrayList<Meeting>();
         lastMeetingId = 0;
+        config = new File("contacts.txt");
+        if (config.exists()) {
+            
+        } else {
+            try {
+                config.createNewFile();
+            } catch (IOException newFile) {
+                System.out.println("Cannot create config file");
+            }
+        }
     }
 
     /**
