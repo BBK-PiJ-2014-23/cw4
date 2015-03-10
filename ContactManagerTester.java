@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
+import java.io.*;
 
 /**
  * The test class ContactManagerTester.
@@ -16,7 +17,8 @@ public class ContactManagerTester{
     final static int NEGATIVE_ID = -1;
     final static int TWO_HOURS_EARLIER_ID = 1;
     final static int TWO_HOURS_LATER_ID = 2;
-
+    static File config = new File("contacts.txt");
+    
     ContactManager manager;
     Set<Contact> allContacts;
     Set<Contact> onlyOneContact;
@@ -26,6 +28,8 @@ public class ContactManagerTester{
     Calendar twoHoursEarlier;
     Calendar twoHoursLater;
     Calendar threeHoursLater;
+
+    
 
     /**
      * Sets up the test fixture.
@@ -78,6 +82,9 @@ public class ContactManagerTester{
         twoHoursEarlier = null;
         twoHoursLater = null;
         threeHoursLater = null;
+        try {
+            config.delete();
+        } catch (NullPointerException ex) {}
     }
 
     /**
@@ -522,5 +529,13 @@ public class ContactManagerTester{
     public void testAddMeetingNotesToPastMeeting() {
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
         assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
+    }
+
+    /**
+     * Test if launching the application without existing config file creates the file.
+     */
+    @Test
+    public void testConstructorCreateConfigFile() {
+        assertTrue(config.exists());
     }
 }
