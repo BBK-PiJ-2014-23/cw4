@@ -529,5 +529,13 @@ public class ContactManagerTester{
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
         assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
     }
-
+    
+    /**
+     * Test if a config file is created when there isn't one.
+     */
+    @Test
+    public void testFlushCreateConfigFile() {
+        manager.flush();
+        assertTrue(config.exists());
+    }
 }
