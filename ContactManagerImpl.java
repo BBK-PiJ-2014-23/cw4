@@ -19,11 +19,6 @@ public class ContactManagerImpl implements ContactManager {
         if (config.exists()) {
 
         } else {
-            try {
-                config.createNewFile();
-            } catch (IOException newFile) {
-                System.out.println("Cannot create config file");
-            }
             allContacts = new HashSet<Contact>();
             lastContactId = 0;
             allMeetings = new ArrayList<Meeting>();
@@ -331,7 +326,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void flush() {
-
+        
     }
 
     /**
