@@ -15,7 +15,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     public ContactManagerImpl() {
         config = new File("contacts.txt");
-        
+
         if (config.exists()) {
 
         } else {
@@ -326,7 +326,18 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void flush() {
-        
+        config = new File("contacts.txt");
+        try {
+            FileOutputStream fos = new FileOutputStream(config);
+            ObjectOutput out = new ObjectOutputStream(fos);
+            out.flush();
+            out.close();
+        } catch (FileNotFoundException fileNotFound) {
+            System.out.println("Config file cannot be created");
+            fileNotFound.printStackTrace();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
     /**
