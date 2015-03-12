@@ -326,7 +326,6 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void flush() {
-        config = new File("contacts.txt");
         try {
             FileOutputStream fos = new FileOutputStream(config);
             ObjectOutput out = new ObjectOutputStream(fos);
