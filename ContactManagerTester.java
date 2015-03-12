@@ -537,7 +537,7 @@ public class ContactManagerTester{
         manager.flush();
         assertTrue(config.exists());
     }
-    
+
     /**
      * Test if objects are loaded properly if a config file exists.
      */
@@ -545,9 +545,9 @@ public class ContactManagerTester{
     public void testConstructorLoadConfig() {
         // This ensures that new contact manager 'configured' will find a config file.
         manager.flush();
-        
+
         ContactManager configured = new ContactManagerImpl();
-        
+
         // There should be four contacts
         Set<Contact> all = configured.getContacts("");
         assertEquals(4, all.size());
@@ -555,7 +555,7 @@ public class ContactManagerTester{
         assertTrue(hasContact(all, "c2"));
         assertTrue(hasContact(all, "c3"));
         assertTrue(hasContact(all, "Lazy"));
-        
+
         // There should be one past and one future meeting
         assertEquals(twoHoursEarlier, configured.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
         assertEquals(twoHoursLater, configured.getMeeting(TWO_HOURS_LATER_ID).getDate());
