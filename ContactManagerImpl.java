@@ -339,6 +339,9 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void flush() {
+        if (config.exists()) {
+            config.delete();
+        }
         try (FileOutputStream fos = new FileOutputStream(config)) {
             ObjectOutputStream out = new ObjectOutputStream(fos);
             out.writeObject(allContacts);
