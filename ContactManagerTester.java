@@ -115,11 +115,6 @@ public class ContactManagerTester{
      */
     @Test
     public void testGettingContactByNameFromEmptyList() {
-        // This block is necessary because another contact manager already created a config file.
-        try {
-            config.delete();
-        } catch (NullPointerException ex) {}
-
         ContactManager empty = new ContactManagerImpl();
 
         assertTrue(empty.getContacts("").isEmpty());
@@ -534,4 +529,5 @@ public class ContactManagerTester{
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
         assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
     }
+
 }
