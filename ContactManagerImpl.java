@@ -6,8 +6,10 @@ import java.io.*;
 public class ContactManagerImpl implements ContactManager {
     private Set<Contact> allContacts;
     private int lastContactId;
+    
     private List<Meeting> allMeetings;
     private int lastMeetingId;
+    
     private File config;
 
     /**
@@ -15,7 +17,6 @@ public class ContactManagerImpl implements ContactManager {
      */
     public ContactManagerImpl() {
         config = new File("contacts.txt");
-
         if (config.exists()) {
             try (FileInputStream fis = new FileInputStream(config)) {
                 ObjectInputStream in = new ObjectInputStream(fis);
