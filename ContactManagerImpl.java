@@ -17,7 +17,20 @@ public class ContactManagerImpl implements ContactManager {
         config = new File("contacts.txt");
 
         if (config.exists()) {
-            
+            try (FileInputStream fis = new FileInputStream(config)) {
+                ObjectInputStream in = new ObjectInputStream(fis);
+                allContacts = (HashSet)in.readObject();
+                lastContactId = (int)in.readObject();
+                allMeetings = (ArrayList)in.readObject();
+                lastMeetingId = (int)in.readObject();
+                in.close();
+            } catch (FileNotFoundException fileNotFound) {
+                fileNotFound.printStackTrace();
+            } catch (IOException io) {
+                io.printStackTrace();
+            } catch (ClassNotFoundException classNotFound) {
+                classNotFound.printStackTrace();
+            }
         } else {
             allContacts = new HashSet<Contact>();
             lastContactId = 0;
