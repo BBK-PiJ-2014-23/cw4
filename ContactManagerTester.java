@@ -18,7 +18,7 @@ public class ContactManagerTester{
     final static int TWO_HOURS_EARLIER_ID = 1;
     final static int TWO_HOURS_LATER_ID = 2;
     static File config = new File("contacts.txt");
-    
+
     ContactManager manager;
     Set<Contact> allContacts;
     Set<Contact> onlyOneContact;
@@ -29,7 +29,6 @@ public class ContactManagerTester{
     Calendar twoHoursLater;
     Calendar threeHoursLater;
 
-    
 
     /**
      * Sets up the test fixture.
@@ -120,7 +119,7 @@ public class ContactManagerTester{
         try {
             config.delete();
         } catch (NullPointerException ex) {}
-        
+
         ContactManager empty = new ContactManagerImpl();
 
         assertTrue(empty.getContacts("").isEmpty());
@@ -535,5 +534,4 @@ public class ContactManagerTester{
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
         assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
     }
-    
 }
