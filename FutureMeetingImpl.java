@@ -1,8 +1,9 @@
 import java.util.*;
+import java.io.Serializable;
 /**
  * A meeting to be held in the future
  */
-public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting {
+public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting, Serializable {
     /**
      * Constructor for a future meeting.
      *

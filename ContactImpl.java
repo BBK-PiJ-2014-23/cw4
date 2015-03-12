@@ -1,10 +1,11 @@
+import java.io.Serializable;
 /**
  * A contact is a person we are making business with or may do in the future.
  *
  * Contacts have an ID (unique), a name (probably unique, but maybe
  * not), and notes that the user may want to save about them.
  */
-public class ContactImpl implements Contact {
+public class ContactImpl implements Contact, Serializable {
     private int id;
     private String name;
     private String notes;
