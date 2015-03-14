@@ -121,19 +121,6 @@ public class ContactManagerTester {
     }
 
     /**
-     * Helper method to find contacts in sets via name.
-     */
-    private boolean hasContact(Set<Contact> set, String name) {
-        boolean found = false;
-        for (Contact member : set) {
-            if (member.getName().equals(name)) {
-                found = true;
-            }
-        }
-        return found;
-    }
-
-    /**
      * Tests if a uniquely named contact can be retrieved.
      */
     @Test
@@ -577,5 +564,18 @@ public class ContactManagerTester {
         assertEquals(0, all.size());
 
         assertNull(anotherEmpty.getMeeting(0));
+    }
+
+    /**
+     * Helper method to find contacts in sets via name.
+     */
+    private boolean hasContact(Set<Contact> set, String name) {
+        boolean found = false;
+        for (Contact member : set) {
+            if (member.getName().equals(name)) {
+                found = true;
+            }
+        }
+        return found;
     }
 }
