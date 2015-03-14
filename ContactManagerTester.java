@@ -80,9 +80,8 @@ public class ContactManagerTester{
         twoHoursEarlier = null;
         twoHoursLater = null;
         threeHoursLater = null;
-        try {
-            config.delete();
-        } catch (NullPointerException ex) {}
+        // Ensure that following tests start with a clean config file.
+        config.delete();
     }
 
     /**
