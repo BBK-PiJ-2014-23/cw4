@@ -566,9 +566,6 @@ public class ContactManagerTester {
      */
     @Test
     public void testFlushEmptyManager() {
-        // Delte present config file so it won't be loaded.
-        config.delete();
-
         // Create a new contact manager and save an empty state
         ContactManager empty = new ContactManagerImpl();
         empty.flush();
