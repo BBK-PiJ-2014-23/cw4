@@ -12,7 +12,7 @@ import java.io.*;
  * @author  Stefan E. Mayer
  * @version 1.0
  */
-public class ContactManagerTester{
+public class ContactManagerTester {
     final static int INVALID_ID = 99;
     final static int NEGATIVE_ID = -1;
     final static int TWO_HOURS_EARLIER_ID = 1;
