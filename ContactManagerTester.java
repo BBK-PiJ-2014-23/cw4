@@ -561,4 +561,24 @@ public class ContactManagerTester{
         assertEquals(twoHoursLater, configured.getMeeting(TWO_HOURS_LATER_ID).getDate());
         assertNull(configured.getMeeting(3));
     }
+
+    /**
+     * Test if loading from an empty config files causes issues.
+     */
+    @Test
+    public void testFlushEmptyManager() {
+        // Delte present config file so it won't be loaded.
+        config.delete();
+
+        // Create a new contact manager and save an empty state
+        ContactManager empty = new ContactManagerImpl();
+        empty.flush();
+
+        // Creat another contact manager that loads an empty state
+        ContactManager anotherEmpty = new ContactManagerImpl();
+        Set<Contact> all = anotherEmpty.getContacts("");
+        assertEquals(0, all.size());
+
+        assertNull(anotherEmpty.getMeeting(0));
+    }
 }
