@@ -16,10 +16,10 @@ public class ContactImpl implements Contact, Serializable {
      * @param name the name of the contact.
      * @param notes notes to be added about the contact.
      */
-    public ContactImpl(int id, String name) {
+    public ContactImpl(int id, String name, String notes) {
         this.id = id;
         this.name = name;
-        this.notes = "";
+        this.notes = notes;
     }
     
     /**
