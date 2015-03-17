@@ -283,8 +283,7 @@ public class ContactManagerImpl implements ContactManager {
             throw new NullPointerException("'null' is invalid for either parameter!");
         }
         lastContactId++;
-        Contact newGuy = new ContactImpl(lastContactId, name);
-        newGuy.addNotes(notes);
+        Contact newGuy = new ContactImpl(lastContactId, name, notes);
         allContacts.add(newGuy);
     }
 
