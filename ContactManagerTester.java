@@ -13,22 +13,22 @@ import java.io.*;
  * @version 1.0
  */
 public class ContactManagerTester {
-    final static int INVALID_ID = 99;
-    final static int NEGATIVE_ID = -1;
-    final static int TWO_HOURS_EARLIER_ID = 1;
-    final static int TWO_HOURS_LATER_ID = 2;
-    final static int ADDED_MEETING_ID = 3;
-    final static File config = new File("contacts.txt");
+    private final static int INVALID_ID = 99;
+    private final static int NEGATIVE_ID = -1;
+    private final static int TWO_HOURS_EARLIER_ID = 1;
+    private final static int TWO_HOURS_LATER_ID = 2;
+    private final static int ADDED_MEETING_ID = 3;
+    private final static File config = new File("contacts.txt");
 
-    ContactManager manager;
-    Set<Contact> allContacts;
-    Set<Contact> onlyOneContact;
-    Set<Contact> onlyLazy;
+    private ContactManager manager;
+    private Set<Contact> allContacts;
+    private Set<Contact> onlyOneContact;
+    private Set<Contact> onlyLazy;
 
-    Calendar threeHoursEarlier;
-    Calendar twoHoursEarlier;
-    Calendar twoHoursLater;
-    Calendar threeHoursLater;
+    private Calendar threeHoursEarlier;
+    private Calendar twoHoursEarlier;
+    private Calendar twoHoursLater;
+    private Calendar threeHoursLater;
 
     /**
      * Sets up the test fixture.
