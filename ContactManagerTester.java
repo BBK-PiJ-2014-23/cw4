@@ -207,7 +207,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
-        allContacts.add(new ContactImpl(3, "unknown"));
+        allContacts.add(new ContactImpl(3, "unknown", ""));
         manager.addFutureMeeting(allContacts, twoHoursLater);
     }
 
@@ -239,7 +239,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
-        allContacts.add(new ContactImpl(99, "UnknownContact"));
+        allContacts.add(new ContactImpl(99, "UnknownContact", ""));
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
     }
 
@@ -353,7 +353,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "UnknownContact");
+        Contact unknown = new ContactImpl(99, "UnknownContact", "");
         manager.getFutureMeetingList(unknown);
     }
 
@@ -403,7 +403,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "unknown");
+        Contact unknown = new ContactImpl(99, "unknown", "");
         manager.getPastMeetingList(unknown);
     }
 

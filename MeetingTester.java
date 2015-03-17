@@ -78,14 +78,14 @@ public class MeetingTester {
      */
     @Test
     public void testMeetingContacts() {
-        Contact contact1 = new ContactImpl(1, "c1");
+        Contact contact1 = new ContactImpl(1, "c1", "");
         contacts1.add(contact1);
-        Contact contact2 = new ContactImpl(2, "c2");
+        Contact contact2 = new ContactImpl(2, "c2", "");
         contacts1.add(contact2);
         assertTrue(meeting1.getContacts().contains(contact1));
         assertTrue(meeting1.getContacts().contains(contact2));
         
-        Contact contact3 = new ContactImpl(3, "c3");
+        Contact contact3 = new ContactImpl(3, "c3", "");
         contacts2.add(contact3);
         assertTrue(meeting2.getContacts().contains(contact3));
     }
