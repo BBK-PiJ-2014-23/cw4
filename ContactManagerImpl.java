@@ -299,7 +299,7 @@ public class ContactManagerImpl implements ContactManager {
         Set<Contact> contacts = meeting.getContacts();
         Calendar date = meeting.getDate();
         allMeetings.remove(meeting);
-        allMeetings.add(id-1, new PastMeetingImpl(id, contacts, date, text));
+        allMeetings.add(id - 1, new PastMeetingImpl(id, contacts, date, text));
     }
 
     /**
