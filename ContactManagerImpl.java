@@ -233,6 +233,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
+<<<<<<< HEAD
      * Add notes to a meeting.
      * 
      * IMPORTANT: As it is not entirely clear what adding notes implies, this implementation will
@@ -248,6 +249,9 @@ public class ContactManagerImpl implements ContactManager {
      * @throws IllegalArgumentException if the meeting does not exist
      * @throws IllegalStateException if the meeting is set for a date in the future
      * @throws NullPointerException if the notes are null
+=======
+     * {@inheritDoc}
+>>>>>>> f72fa2a06fbbff6113e162a621e1e4dbb3b40df7
      */
     @Override
     public void addMeetingNotes(int id, String text) {
