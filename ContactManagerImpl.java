@@ -58,7 +58,9 @@ public class ContactManagerImpl implements ContactManager {
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
         }
+        // Meeting ID is calculated here in order to avoid static variables in the MeetingImpl class.
         lastMeetingId++;
+        
         allMeetings.add(new FutureMeetingImpl(lastMeetingId, contacts, date));
         return lastMeetingId;
     }
@@ -233,7 +235,9 @@ public class ContactManagerImpl implements ContactManager {
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
         }
+        // Meeting ID is calculated here in order to avoid static variables in the MeetingImpl class.
         lastMeetingId++;
+        
         allMeetings.add(new PastMeetingImpl(lastMeetingId, contacts, date, text));
     }
 
@@ -282,7 +286,9 @@ public class ContactManagerImpl implements ContactManager {
         if (name == null || notes == null) {
             throw new NullPointerException("'null' is invalid for either parameter!");
         }
+        // Contact ID is calculated here in order to avoid static variables in the ContactImpl class.
         lastContactId++;
+        
         Contact newGuy = new ContactImpl(lastContactId, name, notes);
         allContacts.add(newGuy);
     }
