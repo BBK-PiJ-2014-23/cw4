@@ -14,6 +14,7 @@ public class ContactManagerImpl implements ContactManager {
 
     /**
      * Create a new contact manager.
+     * If a config file exists, it loads data from it, otherwise it creates new objects.
      */
     public ContactManagerImpl() {
         config = new File("contacts.txt");
