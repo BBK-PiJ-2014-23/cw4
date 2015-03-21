@@ -235,8 +235,8 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Add notes to a meeting.
      * 
-     * IMPORTANT: As it is not entirely clear what adding notes implies, this implementation will
-     * overwrite any notes present with the notes present as parameter.
+     * IMPORTANT: As it is not entirely clear if adding notes implies changing or overwriting,
+     * this implementation will overwrite any notes present with the notes present as parameter.
      *
      * This method is used when a future meeting takes place, and is
      * then converted to a past meeting (with notes).
