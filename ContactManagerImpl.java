@@ -120,6 +120,9 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Returns the list of future meetings scheduled with this contact.
      * 
+     * IMPORTANT: Since there are seperate classes for past and future meetings, this implementation
+     * classifies meetings according to their class.
+     * 
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
