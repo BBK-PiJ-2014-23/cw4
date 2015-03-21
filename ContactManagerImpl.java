@@ -83,7 +83,7 @@ public class ContactManagerImpl implements ContactManager {
         Meeting meeting = getMeeting(id);
         if (meeting == null) {
             return null;
-        } else if (meeting.getClass() == FutureMeetingImpl.class) {
+        } else if (meeting.getClass().equals(FutureMeetingImpl.class)) {
             throw new IllegalArgumentException(
                       "Meeting with that ID is a future meeting!");
         } else {
@@ -109,7 +109,7 @@ public class ContactManagerImpl implements ContactManager {
         Meeting meeting = getMeeting(id);
         if (meeting == null) {
             return null;
-        } else if (meeting.getClass() == PastMeetingImpl.class) {
+        } else if (meeting.getClass().equals(PastMeetingImpl.class)) {
             throw new IllegalArgumentException(
                       "Meeting with that ID is a past meeting!");
         } else {
@@ -154,7 +154,7 @@ public class ContactManagerImpl implements ContactManager {
         List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
             if (meeting.getContacts().contains(contact) &&
-                meeting.getClass() == FutureMeetingImpl.class) {
+                meeting.getClass().equals(FutureMeetingImpl.class)) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
                 while (i < searchedMeetings.size() &&
@@ -224,7 +224,7 @@ public class ContactManagerImpl implements ContactManager {
         List<PastMeeting> searchedMeetings = new ArrayList<PastMeeting>();
         for (Meeting meeting : allMeetings) {
             if (meeting.getContacts().contains(contact) &&
-                meeting.getClass() == PastMeetingImpl.class) {
+                meeting.getClass().equals(PastMeetingImpl.class)) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
                 while (i < searchedMeetings.size() &&
