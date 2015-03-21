@@ -231,8 +231,10 @@ public class ContactManagerTester {
 
         manager.addFutureMeeting(allContacts, oneHourLater);
 
-        assertEquals(twoHoursLater, manager.getMeeting(TWO_HOURS_LATER_ID).getDate());
-        assertEquals(oneHourLater, manager.getMeeting(ADDED_MEETING_ID).getDate());
+        assertEquals(twoHoursLater,
+                     manager.getMeeting(TWO_HOURS_LATER_ID).getDate());
+        assertEquals(oneHourLater,
+                     manager.getMeeting(ADDED_MEETING_ID).getDate());
     }
 
     /**
@@ -299,7 +301,8 @@ public class ContactManagerTester {
 
         manager.addNewPastMeeting(allContacts, pastDate2, "");
 
-        assertEquals(twoHoursEarlier, manager.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
+        assertEquals(twoHoursEarlier,
+                     manager.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
         assertEquals(pastDate2, manager.getMeeting(ADDED_MEETING_ID).getDate());
     }
 
@@ -325,7 +328,8 @@ public class ContactManagerTester {
      */
     @Test
     public void testGetPastMeeting() {
-        assertEquals(TWO_HOURS_EARLIER_ID, manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getId());
+        assertEquals(TWO_HOURS_EARLIER_ID,
+                     manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getId());
     }
 
     /**
@@ -350,7 +354,8 @@ public class ContactManagerTester {
      */
     @Test
     public void testGetFutureMeeting() {
-        assertEquals(TWO_HOURS_LATER_ID, manager.getFutureMeeting(TWO_HOURS_LATER_ID).getId());
+        assertEquals(TWO_HOURS_LATER_ID,
+                     manager.getFutureMeeting(TWO_HOURS_LATER_ID).getId());
     }
 
     /**
@@ -526,8 +531,10 @@ public class ContactManagerTester {
 
         manager.addMeetingNotes(3, "Just happened");
 
-        assertTrue(manager.getMeeting(ADDED_MEETING_ID).getClass() == PastMeetingImpl.class);
-        assertEquals("Just happened", manager.getPastMeeting(ADDED_MEETING_ID).getNotes());
+        assertTrue(manager.getMeeting(ADDED_MEETING_ID).getClass()
+                   == PastMeetingImpl.class);
+        assertEquals("Just happened",
+                     manager.getPastMeeting(ADDED_MEETING_ID).getNotes());
     }
 
     /**
@@ -536,7 +543,8 @@ public class ContactManagerTester {
     @Test
     public void testAddMeetingNotesToPastMeeting() {
         manager.addMeetingNotes(TWO_HOURS_EARLIER_ID, "Notes added");
-        assertEquals("Notes added", manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
+        assertEquals("Notes added",
+                     manager.getPastMeeting(TWO_HOURS_EARLIER_ID).getNotes());
     }
 
     /**
@@ -568,8 +576,10 @@ public class ContactManagerTester {
         assertTrue(hasContact(all, "Lazy"));
 
         // There should be one past and one future meeting
-        assertEquals(twoHoursEarlier, configured.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
-        assertEquals(twoHoursLater, configured.getMeeting(TWO_HOURS_LATER_ID).getDate());
+        assertEquals(twoHoursEarlier,
+                     configured.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
+        assertEquals(twoHoursLater,
+                     configured.getMeeting(TWO_HOURS_LATER_ID).getDate());
         assertNull(configured.getMeeting(ADDED_MEETING_ID));
     }
 
