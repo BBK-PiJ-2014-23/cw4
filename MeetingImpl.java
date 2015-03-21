@@ -4,6 +4,9 @@ import java.io.Serializable;
  * A class to represent meetings
  *
  * Meetings have unique IDs, scheduled date and a list of participating contacts
+ * 
+ * @author Stefan E. Mayer
+ * @version 1.0
  */
 public class MeetingImpl implements Meeting, Serializable {
     private int id;
@@ -12,7 +15,8 @@ public class MeetingImpl implements Meeting, Serializable {
 
     /**
      * Constructor for a new meeting.
-     *
+     * 
+     * @param id the id of the meeting
      * @param contacts a list of contacts that will participate in the meeting
      * @param date the date on which the meeting will take place
      */
