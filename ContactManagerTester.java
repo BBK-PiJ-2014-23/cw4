@@ -30,7 +30,7 @@ public class ContactManagerTester {
     /**
      * Sets up the test fixture.
      *
-     * Called before every test case method.
+     * Called before every test case method. 
      */
     @Before
     public void setUp() {
@@ -473,6 +473,11 @@ public class ContactManagerTester {
     /**
      * Test if getting meetings via date returns a
      * chronological list of meetings from that day.
+     * 
+     * IMPORTANT: Because dates are assigned dynamically to ensure
+     *            tests run in the future, this test will fail between
+     *            9pm and 3 am. You really should not work during these
+     *            hours in the first place, go home!
      */
     @Test
     public void testGetMeetingListWithDate() {
