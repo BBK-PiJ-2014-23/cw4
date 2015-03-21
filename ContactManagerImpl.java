@@ -105,10 +105,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Returns the meeting with the requested ID, or null if it there is none.
-     *
-     * @param id the ID for the meeting
-     * @return the meeting with the requested ID, or null if it there is none.
+     * {@inheritDoc}
      */
     @Override
     public Meeting getMeeting(int id) {
@@ -122,7 +119,7 @@ public class ContactManagerImpl implements ContactManager {
 
     /**
      * Returns the list of future meetings scheduled with this contact.
-     *
+     * 
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
