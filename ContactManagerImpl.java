@@ -62,6 +62,9 @@ public class ContactManagerImpl implements ContactManager {
 
     /**
      * Returns the PAST meeting with the requested ID, or null if it there is none.
+     * 
+     * IMPORTANT: Since there are separate   classes for past and future meetings, this implementation
+     * classifies meetings according to their class.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
