@@ -233,18 +233,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Add notes to a meeting.
-     *
-     * This method is used when a future meeting takes place, and is
-     * then converted to a past meeting (with notes).
-     *
-     * It can be also used to add notes to a past meeting at a later date.
-     *
-     * @param id the ID of the meeting
-     * @param text messages to be added about the meeting.
-     * @throws IllegalArgumentException if the meeting does not exist
-     * @throws IllegalStateException if the meeting is set for a date in the future
-     * @throws NullPointerException if the notes are null
+     * {@inheritDoc}
      */
     @Override
     public void addMeetingNotes(int id, String text) {
