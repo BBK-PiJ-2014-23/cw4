@@ -97,7 +97,8 @@ public class MeetingTester {
     public void testPastMeetingNotes() {
         PastMeeting pastMeeting1 = new PastMeetingImpl(1, contacts1, date1, "");
         assertEquals("", pastMeeting1.getNotes());
-        PastMeeting pastMeeting2 = new PastMeetingImpl(2, contacts2, date2, "This meeting has notes");
+        PastMeeting pastMeeting2 = new PastMeetingImpl(
+                    2, contacts2, date2, "This meeting has notes");
         assertEquals("This meeting has notes", pastMeeting2.getNotes());
     }
 }
