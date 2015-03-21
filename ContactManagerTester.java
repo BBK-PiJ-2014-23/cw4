@@ -218,7 +218,7 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests if future meetings can be retrieved via ID..
+     * Tests if future meetings can be retrieved via ID.
      */
     @Test
     public void testAddAndGetFutureMeetings() {
