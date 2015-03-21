@@ -17,7 +17,8 @@ public class ContactManagerImpl implements ContactManager {
 
     /**
      * Create a new contact manager.
-     * If a config file exists, it loads data from it, otherwise it creates new objects.
+     * If a config file exists, it loads data from it,
+     * otherwise it creates new objects.
      */
     public ContactManagerImpl() {
         config = new File("contacts.txt");
@@ -56,7 +57,8 @@ public class ContactManagerImpl implements ContactManager {
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
         }
-        // Meeting ID is calculated here in order to avoid static variables in the MeetingImpl class.
+        // Meeting ID is calculated here in order to avoid
+        // static variables in the MeetingImpl class.
         lastMeetingId++;
 
         allMeetings.add(new FutureMeetingImpl(lastMeetingId, contacts, date));
@@ -64,14 +66,17 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Returns the PAST meeting with the requested ID, or null if it there is none.
+     * Returns the PAST meeting with the requested ID,
+     * or null if it there is none.
      * 
-     * IMPORTANT: Since there are separate classes for past and future meetings, this implementation
-     * classifies meetings according to their class.
+     * IMPORTANT: Since there are separate classes for past and
+     *            future meetings, this implementation classifies
+     *            meetings according to their class.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
-     * @throws IllegalArgumentException if there is a meeting with that ID happening in the future.
+     * @throws IllegalArgumentException if there is a
+     *         meeting with that ID happening in the future.
      */
     @Override
     public PastMeeting getPastMeeting(int id) {
@@ -86,14 +91,17 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Returns the FUTURE meeting with the requested ID, or null if there is none.
+     * Returns the FUTURE meeting with the requested ID,
+     * or null if there is none.
      * 
-     * IMPORTANT: Since there are seperate classes for past and future meetings, this implementation
-     * classifies meetings according to their class.
+     * IMPORTANT: Since there are seperate classes for past
+     *            and future meetings, this implementation classifies
+     *            meetings according to their class.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
-     * @throws IllegalArgumentException if there is a meeting with that ID happening in the past
+     * @throws IllegalArgumentException if there is a meeting
+     *         with that ID happening in the past
      */
     @Override
     public FutureMeeting getFutureMeeting(int id) {
@@ -123,15 +131,17 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Returns the list of future meetings scheduled with this contact.
      * 
-     * IMPORTANT: Since there are seperate classes for past and future meetings, this implementation
-     * classifies meetings according to their class.
+     * IMPORTANT: Since there are seperate classes for past and
+     *            future meetings, this implementation classifies meetings
+     *            according to their class.
      * 
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
      *
      * @param contact one of the user’s contacts
-     * @return the list of future meeting(s) scheduled with this contact (maybe empty).
+     * @return the list of future meeting(s) scheduled
+     *         with this contact (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
      */
     @Override
@@ -157,8 +167,9 @@ public class ContactManagerImpl implements ContactManager {
      * Returns the list of meetings that are scheduled for, or that took
      * place on, the specified date
      * 
-     * IMPORTANT: According to a forum post by Sergio, this method also needs to return past meetings
-     * if the data parameter lies in the past.
+     * IMPORTANT: According to a forum post by Sergio, this method
+     *            also needs to return past meetings if the data
+     *            parameter lies in the past.
      *
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
@@ -186,14 +197,16 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Returns the list of past meetings in which this contact has participated.
      * 
-     * IMPORTANT: According to the forum, 'future' is a typo and should be 'past'.
+     * IMPORTANT: According to the forum, 'future'
+     *            is a typo and should be 'past'.
      *
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
      *
      * @param contact one of the user’s contacts
-     * @return the list of future meeting(s) scheduled with this contact (maybe empty).
+     * @return the list of future meeting(s) scheduled
+     *         with this contact (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
      */
     @Override
@@ -238,8 +251,9 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Add notes to a meeting.
      * 
-     * IMPORTANT: As it is not entirely clear if adding notes implies changing or overwriting,
-     * this implementation will overwrite any notes present with the notes present as parameter.
+     * IMPORTANT: As it is not entirely clear if adding notes implies
+     *            changing or overwriting, this implementation will overwrite
+     *            any notes present with the notes present as parameter.
      *
      * This method is used when a future meeting takes place, and is
      * then converted to a past meeting (with notes).
@@ -249,7 +263,8 @@ public class ContactManagerImpl implements ContactManager {
      * @param id the ID of the meeting
      * @param text messages to be added about the meeting.
      * @throws IllegalArgumentException if the meeting does not exist
-     * @throws IllegalStateException if the meeting is set for a date in the future
+     * @throws IllegalStateException if the meeting
+     *         is set for a date in the future
      * @throws NullPointerException if the notes are null
      */
     @Override
@@ -347,7 +362,8 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Helper method that checks if a set of contacts contains an unknown contact.
+     * Helper method that checks if a set of
+     * contacts contains an unknown contact.
      * 
      * @param contacts a set of contacts
      * @return true if one contact is unknown, false otherwise
