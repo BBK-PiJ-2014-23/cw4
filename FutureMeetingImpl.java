@@ -6,7 +6,8 @@ import java.io.Serializable;
  * @author Stefan E. Mayer
  * @version 1.0
  */
-public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting, Serializable {
+public class FutureMeetingImpl extends MeetingImpl
+                               implements FutureMeeting, Serializable {
     /**
      * Constructor for a future meeting.
      * 
