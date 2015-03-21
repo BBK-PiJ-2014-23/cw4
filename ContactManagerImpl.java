@@ -224,14 +224,14 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-        if (contacts == null || date == null || text == null) {
-            throw new NullPointerException("Illegal arguement(s)!");
-        }
         if (contacts.size() == 0) {
             throw new IllegalArgumentException("Contact list is empty!");
         }
         if (hasUnknownContact(contacts)) {
             throw new IllegalArgumentException("Unknown contact(s) present!");
+        }
+        if (contacts == null || date == null || text == null) {
+            throw new NullPointerException("Illegal 'null' argument(s)!");
         }
         // Meeting ID is calculated here in order to avoid static variables in the MeetingImpl class.
         lastMeetingId++;
