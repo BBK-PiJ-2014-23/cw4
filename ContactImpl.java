@@ -52,8 +52,9 @@ public class ContactImpl implements Contact, Serializable {
     /**
      * Add notes about the contact.
      * 
-     * IMPORTANT: As it is not entirely clear if adding notes implies changing or overwriting,
-     * this implementation will overwrite any notes present with the notes present as parameter.
+     * IMPORTANT: As it is not entirely clear if adding notes
+     * implies changing or overwriting, this implementation will
+     * overwrite any notes present with the notes present as parameter.
      *
      * @param note the notes to be added
      */
