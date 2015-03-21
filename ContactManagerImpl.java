@@ -84,7 +84,8 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting == null) {
             return null;
         } else if (meeting.getClass() == FutureMeetingImpl.class) {
-            throw new IllegalArgumentException("Meeting with that ID is a future meeting!");
+            throw new IllegalArgumentException(
+                      "Meeting with that ID is a future meeting!");
         } else {
             return (PastMeeting)meeting;
         }
@@ -109,7 +110,8 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting == null) {
             return null;
         } else if (meeting.getClass() == PastMeetingImpl.class) {
-            throw new IllegalArgumentException("Meeting with that ID is a past meeting!");
+            throw new IllegalArgumentException(
+                      "Meeting with that ID is a past meeting!");
         } else {
             return (FutureMeeting)meeting;
         }
@@ -151,10 +153,13 @@ public class ContactManagerImpl implements ContactManager {
         }
         List<Meeting> searchedMeetings = new ArrayList<Meeting>();
         for (Meeting meeting : allMeetings) {
-            if (meeting.getContacts().contains(contact) && meeting.getClass() == FutureMeetingImpl.class) {
+            if (meeting.getContacts().contains(contact) &&
+                meeting.getClass() == FutureMeetingImpl.class) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
-                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                while (i < searchedMeetings.size() &&
+                       meeting.getDate().after(searchedMeetings.get(i)
+                                                               .getDate())) {
                     i++;
                 }
                 searchedMeetings.add(i, meeting);
@@ -185,7 +190,9 @@ public class ContactManagerImpl implements ContactManager {
             if (isSameDay(meeting.getDate(), date)) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
-                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                while (i < searchedMeetings.size() &&
+                       meeting.getDate().after(searchedMeetings.get(i)
+                                                               .getDate())) {
                     i++;
                 }
                 searchedMeetings.add(i, meeting);
@@ -216,10 +223,13 @@ public class ContactManagerImpl implements ContactManager {
         }
         List<PastMeeting> searchedMeetings = new ArrayList<PastMeeting>();
         for (Meeting meeting : allMeetings) {
-            if (meeting.getContacts().contains(contact) && meeting.getClass() == PastMeetingImpl.class) {
+            if (meeting.getContacts().contains(contact) &&
+                meeting.getClass() == PastMeetingImpl.class) {
                 // This block inserts meetings in a chronological fashion.
                 int i = 0;
-                while (i < searchedMeetings.size() && meeting.getDate().after(searchedMeetings.get(i).getDate())) {
+                while (i < searchedMeetings.size() &&
+                       meeting.getDate().after(searchedMeetings.get(i)
+                                                               .getDate())) {
                     i++;
                 }
                 searchedMeetings.add(i, (PastMeeting)meeting);
@@ -232,7 +242,8 @@ public class ContactManagerImpl implements ContactManager {
      * {@inheritDoc}
      */
     @Override
-    public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
+    public void addNewPastMeeting(Set<Contact> contacts,
+                                  Calendar date, String text) {
         if (contacts.size() == 0) {
             throw new IllegalArgumentException("Contact list is empty!");
         }
@@ -242,10 +253,12 @@ public class ContactManagerImpl implements ContactManager {
         if (contacts == null || date == null || text == null) {
             throw new NullPointerException("Illegal 'null' argument(s)!");
         }
-        // Meeting ID is calculated here in order to avoid static variables in the MeetingImpl class.
+        // Meeting ID is calculated here in order to avoid
+        // static variables in the MeetingImpl class.
         lastMeetingId++;
 
-        allMeetings.add(new PastMeetingImpl(lastMeetingId, contacts, date, text));
+        allMeetings.add(new PastMeetingImpl(lastMeetingId,
+                                            contacts, date, text));
     }
 
     /**
@@ -275,10 +288,12 @@ public class ContactManagerImpl implements ContactManager {
         }
         Calendar now = new GregorianCalendar();
         if (meeting.getDate().after(now)) {
-            throw new IllegalStateException("Meeting with that ID happens in the future");
+            throw new IllegalStateException(
+                      "Meeting with that ID happens in the future");
         }
         if (text == null) {
-            throw new NullPointerException("'null' is invalid as text parameter!");
+            throw new NullPointerException(
+                      "'null' is invalid as text parameter!");
         }
 
         Set<Contact> contacts = meeting.getContacts();
@@ -293,9 +308,11 @@ public class ContactManagerImpl implements ContactManager {
     @Override
     public void addNewContact(String name, String notes) {
         if (name == null || notes == null) {
-            throw new NullPointerException("'null' is invalid for either parameter!");
+            throw new NullPointerException(
+                      "'null' is invalid for either parameter!");
         }
-        // Contact ID is calculated here in order to avoid static variables in the ContactImpl class.
+        // Contact ID is calculated here in order to avoid
+        // static variables in the ContactImpl class.
         lastContactId++;
 
         Contact newGuy = new ContactImpl(lastContactId, name, notes);
