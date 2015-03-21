@@ -18,7 +18,7 @@ public class ContactManagerTester {
     private final static int TWO_HOURS_EARLIER_ID = 1;
     private final static int TWO_HOURS_LATER_ID = 2;
     private final static int ADDED_MEETING_ID = 3;
-    private final static File config = new File("contacts.txt");
+    private final static File CONFIG = new File("contacts.txt");
 
     private ContactManager manager;
     private Set<Contact> allContacts;
@@ -84,7 +84,7 @@ public class ContactManagerTester {
         twoHoursLater = null;
         threeHoursLater = null;
         // Ensure that following tests start with a clean config file.
-        config.delete();
+        CONFIG.delete();
     }
 
     /**
@@ -553,7 +553,7 @@ public class ContactManagerTester {
     @Test
     public void testFlushCreateConfigFile() {
         manager.flush();
-        assertTrue(config.exists());
+        assertTrue(CONFIG.exists());
     }
 
     /**
