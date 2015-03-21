@@ -252,13 +252,14 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting == null) {
             throw new IllegalArgumentException("ID is not valid");
         }
-        if (text == null) {
-            throw new NullPointerException("'null' is invalid as text parameter!");
-        }
         Calendar now = new GregorianCalendar();
         if (meeting.getDate().after(now)) {
             throw new IllegalStateException("Meeting with that ID happens in the future");
         }
+        if (text == null) {
+            throw new NullPointerException("'null' is invalid as text parameter!");
+        }
+        
         Set<Contact> contacts = meeting.getContacts();
         Calendar date = meeting.getDate();
         allMeetings.remove(meeting);
