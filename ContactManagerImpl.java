@@ -63,7 +63,7 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Returns the PAST meeting with the requested ID, or null if it there is none.
      * 
-     * IMPORTANT: Since there are separate   classes for past and future meetings, this implementation
+     * IMPORTANT: Since there are separate classes for past and future meetings, this implementation
      * classifies meetings according to their class.
      *
      * @param id the ID for the meeting
@@ -76,7 +76,7 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting == null) {
             return null;
         } else if (meeting.getClass() == FutureMeetingImpl.class) {
-            throw new IllegalArgumentException("Meeting with that ID happens in the future");
+            throw new IllegalArgumentException("Meeting with that ID is a future meeting!");
         } else {
             return (PastMeeting)meeting;
         }
