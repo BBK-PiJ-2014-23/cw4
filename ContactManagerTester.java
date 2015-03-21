@@ -587,7 +587,7 @@ public class ContactManagerTester {
         ContactManager empty = new ContactManagerImpl();
         empty.flush();
 
-        // Creat another contact manager that loads an empty state
+        // Create another contact manager that loads an empty state
         ContactManager anotherEmpty = new ContactManagerImpl();
         Set<Contact> all = anotherEmpty.getContacts("");
         assertEquals(0, all.size());
