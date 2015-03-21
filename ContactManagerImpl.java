@@ -98,7 +98,7 @@ public class ContactManagerImpl implements ContactManager {
         if (meeting == null) {
             return null;
         } else if (meeting.getClass() == PastMeetingImpl.class) {
-            throw new IllegalArgumentException("Meeting with that ID happend is a past meeting!");
+            throw new IllegalArgumentException("Meeting with that ID is a past meeting!");
         } else {
             return (FutureMeeting)meeting;
         }
