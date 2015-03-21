@@ -270,11 +270,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Create a new contact with the specified name and notes.
-     *
-     * @param name the name of the contact.
-     * @param notes notes to be added about the contact.
-     * @throws NullPointerException if the name or the notes are null
+     * {@inheritDoc}
      */
     @Override
     public void addNewContact(String name, String notes) {
@@ -289,11 +285,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Returns a list containing the contacts that correspond to the IDs.
-     *
-     * @param ids an arbitrary number of contact IDs
-     * @return a list containing the contacts that correspond to the IDs.
-     * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+     * {@inheritDoc}
      */
     @Override
     public Set<Contact> getContacts(int... ids) {
@@ -312,11 +304,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Returns a list with the contacts whose name contains that string.
-     *
-     * @param name the string to search for
-     * @return a list with the contacts whose name contains that string.
-     * @throws NullPointerException if the parameter is null
+     * {@inheritDoc}
      */
     @Override
     public Set<Contact> getContacts(String name) {
@@ -333,10 +321,7 @@ public class ContactManagerImpl implements ContactManager {
     }
 
     /**
-     * Save all data to disk.
-     *
-     * This method must be executed when the program is
-     * closed and when/if the user requests it.
+     * {@inheritDoc}
      */
     @Override
     public void flush() {
