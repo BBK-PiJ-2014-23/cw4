@@ -2,6 +2,9 @@ import java.util.*;
 import java.io.*;
 /**
  * A class to manage your contacts and meetings.
+ * 
+ * @author Stefan E. Mayer
+ * @version 1.0
  */
 public class ContactManagerImpl implements ContactManager {
     private Set<Contact> allContacts;
