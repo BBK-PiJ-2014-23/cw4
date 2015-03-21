@@ -292,15 +292,10 @@ public class ContactManagerTester {
      */
     @Test
     public void testAddAndGetPastMeetings() {
-        // Date assignments are dynamic to ensure tests run in the future
-        Calendar pastDate2 = new GregorianCalendar(2013, 02, 18);
-        pastDate2.add(1, -2);
+        Calendar pastDate = new GregorianCalendar(2013, 02, 18);
+        manager.addNewPastMeeting(allContacts, pastDate, "");
 
-        manager.addNewPastMeeting(allContacts, pastDate2, "");
-
-        assertEquals(twoHoursEarlier,
-                     manager.getMeeting(TWO_HOURS_EARLIER_ID).getDate());
-        assertEquals(pastDate2, manager.getMeeting(ADDED_MEETING_ID).getDate());
+        assertEquals(pastDate, manager.getMeeting(ADDED_MEETING_ID).getDate());
     }
 
     /**
