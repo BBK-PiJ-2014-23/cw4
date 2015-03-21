@@ -182,6 +182,8 @@ public class ContactManagerImpl implements ContactManager {
 
     /**
      * Returns the list of past meetings in which this contact has participated.
+     * 
+     * IMPORTANT: According to the forum, 'future' is a typo and should be 'past'.
      *
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
@@ -189,8 +191,6 @@ public class ContactManagerImpl implements ContactManager {
      *
      * @param contact one of the user’s contacts
      * @return the list of future meeting(s) scheduled with this contact (maybe empty).
-     * FORUM:
-     * 'future' should be a typo, should be 'past'.
      * @throws IllegalArgumentException if the contact does not exist
      */
     @Override
