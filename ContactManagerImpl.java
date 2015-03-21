@@ -153,16 +153,13 @@ public class ContactManagerImpl implements ContactManager {
     /**
      * Returns the list of meetings that are scheduled for, or that took
      * place on, the specified date
+     * 
+     * IMPORTANT: According to a forum post by Sergio, this method also needs to return past meetings
+     * if the data parameter lies in the past.
      *
      * If there are none, the returned list will be empty. Otherwise,
      * the list will be chronologically sorted and will not contain any
      * duplicates.
-     * 
-     * FORUM:
-     * The method must return also past meetings if it is called with a 
-     * past date as parameter.
-     * The name is confusing, a better name would have been getMeetingList(Calendar) 
-     * or even getMeetingListOn(Calendar). We apologise for the confusion.
      *
      * @param date the date
      * @return the list of meetings
