@@ -4,8 +4,12 @@ import java.io.Serializable;
  * A meeting that was held in the past.
  *
  * It includes your notes about what happened and what was agreed.
+ * 
+ * @author Stefan E. Mayer
+ * @version 1.0
  */
-public class PastMeetingImpl extends MeetingImpl implements PastMeeting, Serializable {
+public class PastMeetingImpl extends MeetingImpl
+                             implements PastMeeting, Serializable {
     private String notes;
 
     /**
@@ -15,7 +19,8 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting, Seriali
      * @param date the date on which the meeting took place
      * @param text messages to be added about the meeting.
      */
-    public PastMeetingImpl(int id, Set<Contact> contacts, Calendar date, String text) {
+    public PastMeetingImpl(int id, Set<Contact> contacts,
+                           Calendar date, String text) {
         super(id, contacts, date);
         notes = text;
     }
