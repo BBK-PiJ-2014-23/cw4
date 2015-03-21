@@ -55,7 +55,7 @@ public class ContactManagerTester {
         onlyOneContact = manager.getContacts("c2");
 
         // Providing a past and a future meeting.
-        // This ensures that the static variables form before are correct.
+        // This ensures that the static variables from before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, twoHoursLater);
 
