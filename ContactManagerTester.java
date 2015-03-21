@@ -57,11 +57,13 @@ public class ContactManagerTester {
         allContacts = manager.getContacts(1, 2, 3);
         onlyOneContact = manager.getContacts("c2");
 
-        // Providing a past and a future meeting. This ensures that the static variables form before are correct.
+        // Providing a past and a future meeting.
+        // This ensures that the static variables form before are correct.
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
         manager.addFutureMeeting(allContacts, twoHoursLater);
 
-        // Adding another contact who does not attent meetings and a set containing this contact
+        // Adding another contact who does not attent meetings
+        // and a set containing this contact
         manager.addNewContact("Lazy", "");
         onlyLazy = manager.getContacts("Lazy");
     }
@@ -86,7 +88,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests nullpointer exception when trying to create a contact with name 'null'.
+    * Tests nullpointer exception when trying
+    * to create a contact with name 'null'.
     */
     @Test(expected = NullPointerException.class)
     public void testNewContactNameException() {
@@ -94,7 +97,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests nullpointer exception when trying to create a contact with notes 'null'.
+    * Tests nullpointer exception when trying
+    * to create a contact with notes 'null'.
     */
     @Test(expected = NullPointerException.class)
     public void testNewContactNotesException() {
@@ -102,7 +106,8 @@ public class ContactManagerTester {
     }
 
     //     /**
-    //      * Tests nullpointer exception when trying to retrieve a contact by name 'null'.
+    //      * Tests nullpointer exception when trying
+    //      * to retrieve a contact by name 'null'.
     //      */
     //     @Test(expected = NullPointerException.class)
     //     public void testGettingContactByNameException() {
@@ -110,7 +115,8 @@ public class ContactManagerTester {
     //     }
 
     /**
-     * Tests to ensure that getting contacts from empty contacts set is also empty.
+     * Tests to ensure that getting contacts
+     * from empty contacts set is also empty.
      */
     @Test
     public void testGettingContactByNameFromEmptyList() {
@@ -140,7 +146,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests retrieving a contact without a name which should retrieve all contacts.
+     * Tests retrieving a contact without a name
+     * which should retrieve all contacts.
      */
     @Test
     public void testGettingEmptyNamedContact() {
@@ -167,7 +174,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests illegal argument exception when retrieving contacts with a negative ID.
+    * Tests illegal argument exception when
+    * retrieving contacts with a negative ID.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNegativeIdException() {
@@ -175,7 +183,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests illegal argument exception when retrieving contacts with non-existing IDs.
+    * Tests illegal argument exception when
+    * retrieving contacts with non-existing IDs.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGettingContactNonExistingIdException() {
@@ -244,7 +253,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if adding an empty contacts list to new past meetings throws an exception.
+    * Tests if adding an empty contacts list
+    * to new past meetings throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddEmptyContactListToPastMeetingException() {
@@ -253,7 +263,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if passing 'null' as contacts to past new meetings throws an exception.
+    * Tests if passing 'null' as contacts
+    * to past new meetings throws an exception.
     */
     @Test(expected = NullPointerException.class)
     public void testNullForContactListToPastMeetingException() {
@@ -269,7 +280,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if passing 'null' as text mesage to new past meetings throws an exception.
+    * Tests if passing 'null' as text mesage
+    * to new past meetings throws an exception.
     */
     @Test(expected = NullPointerException.class)
     public void testNullForTextToPastMeetingException() {
@@ -292,7 +304,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if getting a past meeting that lies in the future throws an exception.
+    * Tests if getting a past meeting that lies
+    * in the future throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingException() {
@@ -316,7 +329,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if getting a future meeting that lies in the past throws an exception.
+    * Tests if getting a future meeting that
+    * lies in the past throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingException() {
@@ -349,7 +363,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if getting future meetings of an unkonwn contact throws an exception.
+    * Tests if getting future meetings of
+    * an unkonwn contact throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
@@ -358,7 +373,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests if getting future meetings with a contact who has no meetings returns an empty list.
+     * Tests if getting future meetings with a contact
+     * who has no meetings returns an empty list.
      */
     @Test
     public void testGetEmptyFutureMeetingListWithContact() {
@@ -385,7 +401,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests if getting future meetings of a contact returns a chronologically sorted list.
+     * Tests if getting future meetings of a contact
+     * returns a chronologically sorted list.
      */
     @Test
     public void testGetFutureMeetingListWithContact() {
@@ -399,7 +416,8 @@ public class ContactManagerTester {
     }
 
     /**
-    * Tests if getting past meetings with an unkonwn contact throws an exception.
+    * Tests if getting past meetings with
+    * an unkonwn contact throws an exception.
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingListUnknownContactException() {
@@ -408,7 +426,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests if getting past meetings with a contact who has no meetings returns an empty list.
+     * Tests if getting past meetings with a contact
+     * who has no meetings returns an empty list.
      */
     @Test
     public void testGetEmptyPastMeetingListWithContact() {
@@ -417,7 +436,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Tests if getting past meetings of a contact returns a chronologically sorted list.
+     * Tests if getting past meetings of a contact
+     * returns a chronologically sorted list.
      */
     @Test
     public void testGetPastMeetingListWithContact() {
@@ -431,7 +451,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Test if getting a meeting via date that had no meeting returns en empty list.
+     * Test if getting a meeting via date that
+     * had no meeting returns en empty list.
      */
     @Test
     public void testGetEmptyMeetingListWithDate() {
@@ -448,7 +469,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Test if getting meetings via date returns a chronological list of meetings from that day.
+     * Test if getting meetings via date returns a
+     * chronological list of meetings from that day.
      */
     @Test
     public void testGetMeetingListWithDate() {
@@ -494,7 +516,8 @@ public class ContactManagerTester {
     }
 
     /**
-     * Test if formerly future meetings that took place are converted and if notes are added.
+     * Test if formerly future meetings that took place
+     * are converted and if notes are added.
      */
     @Test
     public void testAddMeetingNotesConvertToPastMeeting() {
@@ -530,7 +553,8 @@ public class ContactManagerTester {
      */
     @Test
     public void testConstructorLoadConfig() {
-        // This ensures that new contact manager 'configured' will find a config file.
+        // This ensures that new contact manager 'configured'
+        // will find a config file.
         manager.flush();
 
         ContactManager configured = new ContactManagerImpl();
