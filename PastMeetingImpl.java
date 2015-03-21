@@ -14,7 +14,8 @@ public class PastMeetingImpl extends MeetingImpl
 
     /**
      * Create a new record for a meeting that took place in the past.
-     *
+     * 
+     * @param id the id of the meeting
      * @param contacts a list of participants
      * @param date the date on which the meeting took place
      * @param text messages to be added about the meeting.
