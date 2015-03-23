@@ -15,7 +15,7 @@ public class ContactManagerTester {
     private final static int TWO_HOURS_EARLIER_ID = 1;
     private final static int TWO_HOURS_LATER_ID = 2;
     private final static int ADDED_MEETING_ID = 3;
-    private final static String NOTES = "note";
+    private final static String NOTES = "Random notes";
     private final static File CONFIG = new File("contacts.txt");
 
     private ContactManager manager;
