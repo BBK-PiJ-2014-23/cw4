@@ -257,7 +257,7 @@ public class ContactManagerTester {
     @Test(expected = IllegalArgumentException.class)
     public void testAddEmptyContactListToPastMeetingException() {
         Set<Contact> empty = new HashSet<Contact>();
-        manager.addNewPastMeeting(empty, twoHoursEarlier, "");
+        manager.addNewPastMeeting(empty, twoHoursEarlier, NOTES);
     }
 
     /**
