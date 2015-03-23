@@ -246,8 +246,8 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
-        allContacts.add(new ContactImpl(99, UNKNOWN_CONTACT, ""));
-        manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
+        allContacts.add(new ContactImpl(99, UNKNOWN_CONTACT, NOTES));
+        manager.addNewPastMeeting(allContacts, twoHoursEarlier, NOTES);
     }
 
     /**
