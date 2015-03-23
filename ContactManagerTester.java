@@ -15,6 +15,7 @@ public class ContactManagerTester {
     private final static int TWO_HOURS_EARLIER_ID = 1;
     private final static int TWO_HOURS_LATER_ID = 2;
     private final static int ADDED_MEETING_ID = 3;
+    private final static String NOTES = "note";
     private final static File CONFIG = new File("contacts.txt");
 
     private ContactManager manager;
@@ -90,7 +91,7 @@ public class ContactManagerTester {
     */
     @Test(expected = NullPointerException.class)
     public void testNewContactNameException() {
-        manager.addNewContact(null, "notes");
+        manager.addNewContact(null, NOTES);
     }
 
     /**
@@ -213,7 +214,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
-        allContacts.add(new ContactImpl(3, "unknown", ""));
+        allContacts.add(new ContactImpl(3, "unknown", NOTES));
         manager.addFutureMeeting(allContacts, twoHoursLater);
     }
 
@@ -265,7 +266,7 @@ public class ContactManagerTester {
     */
     @Test(expected = NullPointerException.class)
     public void testNullForContactListToPastMeetingException() {
-        manager.addNewPastMeeting(null, twoHoursEarlier, "");
+        manager.addNewPastMeeting(null, twoHoursEarlier, NOTES);
     }
 
     /**
@@ -273,7 +274,7 @@ public class ContactManagerTester {
     */
     @Test(expected = NullPointerException.class)
     public void testNullForDateToPastMeetingException() {
-        manager.addNewPastMeeting(allContacts, null, "");
+        manager.addNewPastMeeting(allContacts, null, NOTES);
     }
 
     /**
@@ -291,7 +292,7 @@ public class ContactManagerTester {
     @Test
     public void testAddAndGetPastMeetings() {
         Calendar pastDate = new GregorianCalendar(2013, 02, 18);
-        manager.addNewPastMeeting(allContacts, pastDate, "");
+        manager.addNewPastMeeting(allContacts, pastDate, NOTES);
 
         assertEquals(pastDate, manager.getMeeting(ADDED_MEETING_ID).getDate());
     }
@@ -363,7 +364,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "UnknownContact", "");
+        Contact unknown = new ContactImpl(99, "UnknownContact", NOTES);
         manager.getFutureMeetingList(unknown);
     }
 
@@ -416,7 +417,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "unknown", "");
+        Contact unknown = new ContactImpl(99, "unknown", NOTES);
         manager.getPastMeetingList(unknown);
     }
 
@@ -436,7 +437,7 @@ public class ContactManagerTester {
      */
     @Test
     public void testGetPastMeetingListWithContact() {
-        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
+        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, NOTES);
         Contact c2 = getContact(onlyOneContact, "c2");
         List<PastMeeting> meetings = manager.getPastMeetingList(c2);
 
@@ -479,7 +480,7 @@ public class ContactManagerTester {
         assertEquals(twoHoursEarlier, future.get(0).getDate());
         assertEquals(twoHoursLater, future.get(1).getDate());
 
-        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, "");
+        manager.addNewPastMeeting(onlyOneContact, threeHoursEarlier, NOTES);
         manager.addFutureMeeting(onlyOneContact, threeHoursLater);
 
         future = manager.getFutureMeetingList(twoHoursLater);
@@ -496,7 +497,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddMeetingNotesMeetingNotExistsException() {
-        manager.addMeetingNotes(INVALID_ID, "notes");
+        manager.addMeetingNotes(INVALID_ID, NOTES);
     }
 
     /**
@@ -504,7 +505,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalStateException.class)
     public void testAddMeetingNotesToFutureMeetingException() {
-        manager.addMeetingNotes(TWO_HOURS_LATER_ID, "notes");
+        manager.addMeetingNotes(TWO_HOURS_LATER_ID, NOTES);
     }
 
     /**
