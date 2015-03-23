@@ -16,6 +16,7 @@ public class ContactManagerTester {
     private final static int TWO_HOURS_LATER_ID = 2;
     private final static int ADDED_MEETING_ID = 3;
     private final static String NOTES = "Random notes";
+    private final static String UNKNOWN_CONTACT = "Random name";
     private final static File CONFIG = new File("contacts.txt");
 
     private ContactManager manager;
@@ -139,7 +140,7 @@ public class ContactManagerTester {
      */
     @Test
     public void testGettingNonExistingContact() {
-        assertTrue(manager.getContacts("UnknownContact").isEmpty());
+        assertTrue(manager.getContacts(UNKNOWN_CONTACT).isEmpty());
     }
 
     /**
@@ -213,7 +214,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToFutureMeetingException() {
-        allContacts.add(new ContactImpl(3, "unknown", NOTES));
+        allContacts.add(new ContactImpl(3, UNKNOWN_CONTACT, NOTES));
         manager.addFutureMeeting(allContacts, twoHoursLater);
     }
 
@@ -245,7 +246,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testAddUnknownContactToPastMeetingException() {
-        allContacts.add(new ContactImpl(99, "UnknownContact", ""));
+        allContacts.add(new ContactImpl(99, UNKNOWN_CONTACT, ""));
         manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
     }
 
@@ -363,7 +364,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetFutureMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "UnknownContact", NOTES);
+        Contact unknown = new ContactImpl(99, UNKNOWN_CONTACT, NOTES);
         manager.getFutureMeetingList(unknown);
     }
 
@@ -416,7 +417,7 @@ public class ContactManagerTester {
     */
     @Test(expected = IllegalArgumentException.class)
     public void testGetPastMeetingListUnknownContactException() {
-        Contact unknown = new ContactImpl(99, "unknown", NOTES);
+        Contact unknown = new ContactImpl(99, UNKNOWN_CONTACT, NOTES);
         manager.getPastMeetingList(unknown);
     }
 
