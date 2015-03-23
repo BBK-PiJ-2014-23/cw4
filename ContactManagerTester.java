@@ -57,12 +57,12 @@ public class ContactManagerTester {
 
         // Providing a past and a future meeting.
         // This ensures that the static variables from before are correct.
-        manager.addNewPastMeeting(allContacts, twoHoursEarlier, "");
+        manager.addNewPastMeeting(allContacts, twoHoursEarlier, NOTES);
         manager.addFutureMeeting(allContacts, twoHoursLater);
 
         // Adding another contact who does not attent meetings
         // and a set containing this contact
-        manager.addNewContact("Lazy", "");
+        manager.addNewContact("Lazy", NOTES);
         onlyLazy = manager.getContacts("Lazy");
     }
 
